@@ -61,7 +61,7 @@ public class TileManager : generalManager
         {
             GameObject aux = currentTile;
 
-            int rnd = Random.Range(0, 2);
+            int rnd = Random.Range(0, 3);
             int rndTex = Random.Range(0, 6);
 
             if (isFirst)
@@ -73,30 +73,13 @@ public class TileManager : generalManager
             }
             else
             {
-                Vector3 parentPos = currentTile.transform.position;
+              
                 Vector3 posOrigin = currentTile.transform.GetChild(rnd).position + new Vector3(0.0f, 4.0f, 0.0f);
-                Vector3 posDestiny = currentTile.transform.GetChild(rnd).position;
 
                 currentTile = (GameObject)Instantiate(tilePrefabList[rndPrefab], posOrigin, Quaternion.identity);
                 currentTile.transform.GetComponent<TileScript>().setMode(stageMode);
 
-                //currentTile.GetComponent<Renderer>().material.SetTexture("_MainTex", cosmicTex[rndTex]);
-
-                if (rnd == 0)
-                {
-                    //currentTile.GetComponent<Renderer>().material.color = Color.blue;
-                    currentTile.GetComponent<TileScript>().setType(tipo);
-                }
-                else
-                {
-                    //currentTile.GetComponent<Renderer>().material.color = Color.red;
-                    currentTile.GetComponent<TileScript>().setType(tipo);
-
-                    //currentTile.transform.Rotate( -90, 0, 0);
-                }
-
-                currentTile.GetComponent<TileScript>().setPos(posDestiny);
-                currentTile.GetComponent<TileScript>().setParent(parentPos);
+                currentTile.GetComponent<TileScript>().setType(tipo);
 
                 currentTile.GetComponent<TileScript>().setTile(aux);
                 currentTile.GetComponent<TileScript>().setAttachIndex(rnd);
@@ -105,34 +88,32 @@ public class TileManager : generalManager
         }
         else
         {
+            // Attach al que se une la nueva pieza
             int rnd = Random.Range(3, 6);
 
             GameObject aux = currentTile;
-
-            Vector3 parentPos = currentTile.transform.position;
             Vector3 posOrigin = currentTile.transform.GetChild(rnd).position + new Vector3(0.0f, 4.0f, 0.0f);
-            Vector3 posDestiny = currentTile.transform.GetChild(rnd).position;
-
 
             currentTile = (GameObject)Instantiate(tilePrefabList[rndPrefab], posOrigin, Quaternion.identity);
             currentTile.transform.GetComponent<TileScript>().setMode(stageMode);
 
-            currentTile.GetComponent<TileScript>().setType(platType.camChanger);
-
-            //currentTile.GetComponent<TileScript>().setPos(posDestiny);
-            //currentTile.GetComponent<TileScript>().setParent(parentPos);
-
             currentTile.GetComponent<TileScript>().setTile(aux);
             currentTile.GetComponent<TileScript>().setAttachIndex(rnd);
 
+            Debug.Log(rnd + " en fin " + aux.transform.GetChild(rnd).name);
 
-            tipo = platType.classicX;
+            // Al marcarlo como camChanger provoca el cambio de modo
+            currentTile.GetComponent<TileScript>().setType(platType.camChanger);
 
-            coca = true; ;
+            // En caso de que sea 3 se generará a la izquierda, si es 4 o 5 por delante
+            if (rnd == 3)
+                tipo = platType.classicZ;
+            else
+                tipo = platType.classicX;
+
+
+            coca = true; 
         }
 
-       
-
     }
-
 }

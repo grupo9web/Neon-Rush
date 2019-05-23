@@ -33,6 +33,8 @@ public class scirp : generalManager
         cam = gameObject.GetComponentInChildren<Camera>();
         pivot = gameObject.transform.GetChild(0).gameObject;
 
+        setWorldSpeed(1.0f);
+
         //Actualizamos el txt de la puntuación
         setScoretxt();
     }
@@ -72,11 +74,13 @@ public class scirp : generalManager
         // Al actualizar la posición del pivot, movemos la cámara
         if (Vector3.Distance(pivot.transform.localPosition, cam.transform.localPosition) > 0.01f)
         {
-            cam.transform.localPosition = Vector3.MoveTowards(cam.transform.localPosition, pivot.transform.localPosition, 75 * Time.deltaTime);         
+            cam.transform.localPosition = Vector3.MoveTowards(cam.transform.localPosition, pivot.transform.localPosition, (75 * getWS()) * Time.deltaTime);         
             cam.transform.LookAt(transform, stageMode.getCA());
         }
 
-        float autoMove = speed * Time.deltaTime;
+        Debug.Log(speed * getWS() + ", " + getWS());
+
+        float autoMove = (speed * getWS()) * Time.deltaTime;
 
         transform.Translate(direccion * autoMove);
 
