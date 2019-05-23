@@ -10,6 +10,7 @@ public class TileManager : generalManager
 
     public bool isFirst = true;
     public bool coca = true;
+    public bool coca2 = true;
 
 
     private tileManagerMode stageMode;          // Ref. para pillar los valores del mundo
@@ -24,8 +25,6 @@ public class TileManager : generalManager
     }
 
     public platType tipo;
-
-    public Vector3 gravitiy = new Vector3( 0, 9.8f, 0);
 
     public Texture[] cosmicTex;
 
@@ -50,6 +49,9 @@ public class TileManager : generalManager
     {
         if (Input.GetKeyDown("space"))
             coca = false;
+        if (Input.GetKeyDown("v"))
+            coca2 = false;
+
     }
 
     public void Spawner(){
@@ -57,7 +59,7 @@ public class TileManager : generalManager
 
         int rndPrefab = Random.Range(0, tilePrefabList.Length);
 
-        if (coca)
+        if (coca && coca2)
         {
             GameObject aux = currentTile;
 
@@ -76,7 +78,9 @@ public class TileManager : generalManager
               
                 Vector3 posOrigin = currentTile.transform.GetChild(rnd).position + new Vector3(0.0f, 4.0f, 0.0f);
 
-                currentTile = (GameObject)Instantiate(tilePrefabList[rndPrefab], posOrigin, Quaternion.identity);
+                //currentTile = (GameObject)Instantiate(tilePrefabList[rndPrefab], posOrigin, Quaternion.identity);
+                currentTile = (GameObject)Instantiate(tilePrefabList[rndPrefab], posOrigin, Quaternion.Euler(stageMode.getBO()));
+
                 currentTile.transform.GetComponent<TileScript>().setMode(stageMode);
 
                 currentTile.GetComponent<TileScript>().setType(tipo);
@@ -86,7 +90,7 @@ public class TileManager : generalManager
 
             }
         }
-        else
+        else if (!coca)
         {
             // Attach al que se une la nueva pieza
             int rnd = Random.Range(3, 6);
@@ -107,13 +111,53 @@ public class TileManager : generalManager
 
             // En caso de que sea 3 se generará a la izquierda, si es 4 o 5 por delante
             if (rnd == 3)
+            {
                 tipo = platType.classicZ;
+                updateStageMode("verticalZ");
+            }
             else
+            {
                 tipo = platType.classicX;
+                updateStageMode("verticalX");
+            }
 
 
             coca = true; 
         }
+        else if (!coca2)
+        {
 
+            // Attach al que se une la nueva pieza
+            //int rnd = Random.Range(3, 6);
+            int rnd = 4;
+            GameObject aux = currentTile;
+            Vector3 posOrigin = currentTile.transform.GetChild(rnd).position + new Vector3(0.0f, 4.0f, 0.0f);
+
+            currentTile = (GameObject)Instantiate(tilePrefabList[rndPrefab], posOrigin, Quaternion.identity);
+            currentTile.transform.GetComponent<TileScript>().setMode(stageMode);
+
+            currentTile.GetComponent<TileScript>().setTile(aux);
+            currentTile.GetComponent<TileScript>().setAttachIndex(rnd);
+
+            Debug.Log(rnd + " en fin " + aux.transform.GetChild(rnd).name);
+
+            // Al marcarlo como camChanger provoca el cambio de modo
+            currentTile.GetComponent<TileScript>().setType(platType.camChanger);
+
+            // En caso de que sea 3 se generará a la izquierda, si es 4 o 5 por delante
+            if (rnd == 3)
+                tipo = platType.classicZ;
+            else
+                tipo = platType.classicX;
+        }
+
+    }
+
+
+
+    public void updateStageMode(string key)
+    {
+        Debug.Log("El jauja de TileManager");
+        stageMode = mode[key];
     }
 }

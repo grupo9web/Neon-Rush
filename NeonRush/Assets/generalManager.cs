@@ -19,6 +19,10 @@ public class generalManager : MonoBehaviour
 
     protected Dictionary<string, tileManagerMode> mode = new Dictionary<string, tileManagerMode>();
 
+    // Referencias a cada uno de los elementos estáticos del mundo
+    private TileManager tileManager;
+    private scirp player;
+
     // Una velocidad global nos permite marcar ciertas pausas en todo el universo
     private float worldSpeed = 1.0f;
     public void setWorldSpeed(float f) { this.worldSpeed = f; }
@@ -47,6 +51,30 @@ public class generalManager : MonoBehaviour
                                                     Vector3.back, 
                                                     new Vector3( 0, -12,  -5)));
 
+        mode.Add("horizInv" , new tileManagerMode( new Vector3(0, 9.8f, 0),
+                                                   Vector3.zero,
+                                                   Vector3.back, Vector3.right,
+                                                   Vector3.down,
+                                                   new Vector3(0, -5, 12)));
+
+
+        // Definimos a posteriori las dependencias entre modos de juego
+        //mode["horizontal"].setCollindantModes
+
+
+        tileManager = gameObject.GetComponent<TileManager>();
+        player = GameObject.Find("Player").GetComponent<scirp>();
+
     }
+
+
+
+    public void changeStageMode(string key)
+    {
+        tileManager.updateStageMode(key);
+        player.updateStageMode(key);
+    }
+
+
 
 }

@@ -5,11 +5,12 @@ using UnityEngine;
 public class tileManagerMode
 {
 
-    private Vector3 gravity;                                // Gravedad que actúa sobre el mundo
-    private Vector3 blockOrientation;                       // Rotación que debe aplicarse a los bloques
-    private Vector3[] directionControl = new Vector3[2];    // Pareja de direcciones 
-    private Vector3 cameraDirection;                        // Eje de giro de cámara
-    private Vector3 pivotPos;                               // Posición del pívot quesigue la cámara
+    private Vector3 gravity;                                                            // Gravedad que actúa sobre el mundo
+    private Vector3 blockOrientation;                                                   // Rotación que debe aplicarse a los bloques
+    private Vector3[] directionControl = new Vector3[2];                                // Pareja de direcciones 
+    private Vector3 cameraDirection;                                                    // Eje de giro de cámara
+    private Vector3 pivotPos;                                                           // Posición del pívot quesigue la cámara
+    private tileManagerMode[] collindantModes = new tileManagerMode[3];                 // Modos que están entrelazods directamente entre ellos
 
 
     public tileManagerMode(Vector3 g, Vector3 euler, Vector3 basic, Vector3 alternative, Vector3 camAxis, Vector3 pivotPos)
@@ -29,6 +30,7 @@ public class tileManagerMode
     public void setDC(Vector3 baseC, Vector3 alternativeC) { this.directionControl[0] = baseC; this.directionControl[1] = alternativeC; }
     public void setCamAxis(Vector3 camAxis) { this.cameraDirection = camAxis; }
     public void setPivotPos(Vector3 pivot) { this.pivotPos = pivot; }
+    public void setCollindantModes(tileManagerMode[] modes) { this.collindantModes = modes; }
 
 
     // Setters (no deberían hacer falta)
@@ -37,5 +39,6 @@ public class tileManagerMode
     public Vector3[] getDC() { return this.directionControl; }
     public Vector3 getCA() { return this.cameraDirection; }
     public Vector3 getPP() { return this.pivotPos; }
+    public tileManagerMode[] getCollindantModes() { return this.collindantModes; }
 
 }

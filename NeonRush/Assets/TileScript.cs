@@ -6,6 +6,7 @@ public class TileScript : generalManager
 {
     TileManager instanceOfB;
     scirp instanceOfC;
+    generalManager generalMang;
 
     private Vector3 parentPos;                                                  // Indica la posición final de su antecesor
     [SerializeField]
@@ -30,35 +31,18 @@ public class TileScript : generalManager
     void Start()
     {
         instanceOfB = GameObject.Find("TileManager").GetComponent<TileManager>();
+        generalMang = GameObject.Find("TileManager").GetComponent<generalManager>();
         instanceOfC = GameObject.Find("Player").GetComponent<scirp>();
+
+        Debug.Log("No tienen puto mode definido " + stageMode.getGravity());
+
+        this.landedAxis = 1;                    // Se parará en el eje Y
+        landedPos = parentTile.transform.GetChild(attachIndex).transform.position;
+
 
         // Usando el enum marcamos el resto de valores de la plataforma
         switch (type)
         {
-            case TileManager.platType.classicY:
-
-                this.landedAxis = 1;                    // Se parará en el eje Y
-                landedPos = parentTile.transform.GetChild(attachIndex).transform.position;
-                transform.eulerAngles = mode["horizontal"].getBO();
-
-                break;
-
-            case TileManager.platType.classicX:
-
-                this.landedAxis = 1;
-                landedPos = parentTile.transform.GetChild(attachIndex).transform.position;
-                transform.eulerAngles = mode["verticalX"].getBO();
-
-                break;
-
-            case TileManager.platType.classicZ:
-
-                this.landedAxis = 1;
-                landedPos = parentTile.transform.GetChild(attachIndex).transform.position;
-                transform.eulerAngles = mode["verticalZ"].getBO();
-
-                break;
-
             case TileManager.platType.camChanger:
 
                 //Debug.Log("Padre " + parentTile.transform.GetChild(1).transform.position + " hijo " + landedPos + " y el eje " + transform.position[landedAxis]);
@@ -76,7 +60,6 @@ public class TileScript : generalManager
                     transform.eulerAngles = mode["verticalX"].getBO();
                     modeChanger = "verticalX";                
                 }
-
 
 
                 break;
@@ -120,7 +103,8 @@ public class TileScript : generalManager
         if (other.gameObject.name == "Player" && type == TileManager.platType.camChanger)
         {
             setWorldSpeed(0.02f);
-            instanceOfC.resolveNewDirection(modeChanger);
+            generalMang.changeStageMode(modeChanger);
+            //instanceOfC.resolveNewDirection(modeChanger);
         }
     }
 

@@ -54,8 +54,8 @@ public class scirp : generalManager
 
 
 
-        if (Input.GetMouseButtonDown(0))//
-        //if (Input.GetKeyDown("e"))
+        //if (Input.GetMouseButtonDown(0))
+        if (Input.GetKeyDown("e"))
         {
             if (direccion == stageMode.getDC()[0])
             {
@@ -98,6 +98,27 @@ public class scirp : generalManager
     {
         scoreTxt.text = "Puntuación: " + score.ToString();
     }
+
+
+
+
+    public void updateStageMode(string key) {
+        Debug.Log("El jauja del scirp");
+        stageMode = mode[key];
+        updateWorld = true;
+    }
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
