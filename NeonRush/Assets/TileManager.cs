@@ -7,6 +7,7 @@ public class TileManager : generalManager
     public GameObject[] tilePrefabList;
     public GameObject tilePrefab;               // Ref. MasterTile prefab
     public GameObject currentTile;              // Ref. Clones de MasterTile 
+    public GameObject powerUpSalto;
 
     public bool isFirst = true;
     public bool coca = true;
@@ -61,14 +62,23 @@ public class TileManager : generalManager
         {
             GameObject aux = currentTile;
 
+            //Metemos los tiles que vamos creando en una lista para saber cual es el ultimo hijo para teletransportar al jugador alli con el powerup
+            aux.transform.SetParent(GameObject.Find("ListaHijos").transform);
+
             int rnd = Random.Range(0, 3);
             int rndTex = Random.Range(0, 6);
 
             if (isFirst)
             {
                 currentTile = (GameObject)Instantiate(tilePrefabList[rndPrefab], currentTile.transform.GetChild(rnd).transform.position, Quaternion.identity);
-
                 currentTile.GetComponent<TileScript>().setPos(currentTile.transform.position);
+
+
+                //Con un 10% de probabilidad spawneamos el power up
+                if(Random.Range(0.0f,1.0f) <= 0.1f)
+                {
+                    Instantiate(powerUpSalto, currentTile.transform.GetChild(9).transform.position, Quaternion.identity);
+                }
 
             }
             else
@@ -83,6 +93,12 @@ public class TileManager : generalManager
 
                 currentTile.GetComponent<TileScript>().setTile(aux);
                 currentTile.GetComponent<TileScript>().setAttachIndex(rnd);
+
+                //Con un 10% de probabilidad spawneamos el power up
+                if (Random.Range(0.0f, 1.0f) <= 0.1f)
+                {
+                    Instantiate(powerUpSalto, currentTile.transform.GetChild(9).transform.position - new Vector3(0.0f,4.0f,0.0f), Quaternion.identity);
+                }
 
             }
         }

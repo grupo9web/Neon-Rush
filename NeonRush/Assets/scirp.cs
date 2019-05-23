@@ -78,7 +78,7 @@ public class scirp : generalManager
             cam.transform.LookAt(transform, stageMode.getCA());
         }
 
-        Debug.Log(speed * getWS() + ", " + getWS());
+        //Debug.Log(speed * getWS() + ", " + getWS());
 
         float autoMove = (speed * getWS()) * Time.deltaTime;
 

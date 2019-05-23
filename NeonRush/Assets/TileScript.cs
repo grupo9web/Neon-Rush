@@ -16,7 +16,6 @@ public class TileScript : generalManager
     private GameObject parentTile;                                              // Nodo padre
     private int attachIndex;                                                    // Índice que marca la posición del nodo
 
-
     private int landedAxis;
     private Vector3 axisFacing;
 
@@ -31,6 +30,7 @@ public class TileScript : generalManager
     {
         instanceOfB = GameObject.Find("TileManager").GetComponent<TileManager>();
         instanceOfC = GameObject.Find("Player").GetComponent<scirp>();
+
 
         // Usando el enum marcamos el resto de valores de la plataforma
         switch (type)
@@ -109,6 +109,7 @@ public class TileScript : generalManager
     void OnTriggerExit(Collider other){
 
         if (other.gameObject.name == "Player"){
+            print("AHORA");
             GameControl();
             setWorldSpeed(1.0f);
             GravityControl();                
@@ -124,7 +125,8 @@ public class TileScript : generalManager
         }
     }
 
-    void GameControl(){
+    public void GameControl(){
+
         //Generamos una nueva plataforma
         instanceOfB.Spawner();
         //Actualizamos la puntuación
@@ -132,7 +134,7 @@ public class TileScript : generalManager
     }
 
 
-    void GravityControl(){
+    public void GravityControl(){
 
         //Physics.gravity = stageMode.getGravity();
 
