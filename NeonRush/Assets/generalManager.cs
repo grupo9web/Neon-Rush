@@ -10,6 +10,7 @@ public class generalManager : MonoBehaviour
      * - Gravedad
      * - Rotación de los bloques 
      * - Dirección de los controles al hacer click
+     * - Rotación y posición de cámara
      * 
      * En el propio TileManager y el controlador del jugador 
      * se tendrán en cuenta estos para alterar el mundo
@@ -17,6 +18,12 @@ public class generalManager : MonoBehaviour
      **/
 
     protected Dictionary<string, tileManagerMode> mode = new Dictionary<string, tileManagerMode>();
+
+    // Una velocidad global nos permite marcar ciertas pausas en todo el universo
+    private float worldSpeed = 1.0f;
+    public void setWorldSpeed(float f) { this.worldSpeed = f; }
+    public float getWS() { return this.worldSpeed; }
+
 
     // Start is called before the first frame update
     void Awake()
@@ -28,17 +35,18 @@ public class generalManager : MonoBehaviour
                                                     Vector3.up, 
                                                     new Vector3( 0, 5, -12)));
 
-        mode.Add("verticalZ" , new tileManagerMode( new Vector3( 9.8f, 0, 0), 
-                                                    new Vector3( -90, 0, 0), 
-                                                    Vector3.up, Vector3.left, 
-                                                    Vector3.left   , 
-                                                    new Vector3( 0, 5, -12)));
+        mode.Add("verticalZ" , new tileManagerMode( new Vector3( -9.8f, 0, 0), 
+                                                    new Vector3( 0, 0, -90), 
+                                                    Vector3.forward, Vector3.up, 
+                                                    Vector3.right, 
+                                                    new Vector3( 5, 0, -12)));
 
         mode.Add("verticalX" , new tileManagerMode( new Vector3(0, 0,  9.8f), 
-                                                    new Vector3( 0, 0, -90), 
+                                                    new Vector3( -90, 0, 0), 
                                                     Vector3.up, Vector3.left, 
                                                     Vector3.back, 
                                                     new Vector3( 0, -12,  -5)));
+
     }
 
 }
