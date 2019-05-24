@@ -24,6 +24,7 @@ public class TileScript : generalManager
     private tileManagerMode stageMode;
     private string modeChanger = "";                                             // Cada tile camChanger determina en qué sentido se actualiza el mundo
 
+    private bool landTile;                                                       // Marcamos si el bloque es donde aterriza la bola después powerUp del salto
 
 
     // Start is called before the first frame update
@@ -69,7 +70,7 @@ public class TileScript : generalManager
                 break;
         }
 
-        gameObject.name = type.ToString();
+        gameObject.name = type.ToString() + " " + instanceOfB.index;
 
     }
 
@@ -81,8 +82,11 @@ public class TileScript : generalManager
         if (!landed && Vector3.Distance(transform.position, landedPos) > 0.001f)
             transform.position = Vector3.MoveTowards(transform.position, landedPos, (8 * getWS()) * Time.fixedDeltaTime);
 
-        if (!landed && transform.position[landedAxis] != parentTile.transform.GetChild(attachIndex).transform.position[landedAxis])
-            transform.position = Vector3.MoveTowards(transform.position, parentTile.transform.GetChild(attachIndex).transform.position, (18 * getWS()) * Time.fixedDeltaTime);
+        if (parentTile != null)
+        {
+            if (!landed && transform.position[landedAxis] != parentTile.transform.GetChild(attachIndex).transform.position[landedAxis])
+                transform.position = Vector3.MoveTowards(transform.position, parentTile.transform.GetChild(attachIndex).transform.position, (18 * getWS()) * Time.fixedDeltaTime);
+        }
 
         if (transform.position[landedAxis] == landedPos[landedAxis])
             landed = true;
@@ -93,7 +97,6 @@ public class TileScript : generalManager
     void OnTriggerExit(Collider other){
 
         if (other.gameObject.name == "Player"){
-            print("AHORA");
             GameControl();
             setWorldSpeed(1.0f);
             GravityControl();                
@@ -142,5 +145,6 @@ public class TileScript : generalManager
 
     public void setMode(tileManagerMode mode) { this.stageMode = mode; }
 
-
+    public void setLandTile(bool b) { this.landTile = b; }
+    public bool getLandTile() { return this.landTile; }
 }

@@ -16,7 +16,7 @@ public class saltoPowerUp : MonoBehaviour
     //Vector3 ultimaPosicionSubida;
 
     GameObject player;
-
+    private TileManager tileMang;
 
     protected float Animation;
     public float velocidadSalto = 2.0f;
@@ -24,8 +24,8 @@ public class saltoPowerUp : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        tileMang = GameObject.Find("TileManager").GetComponent<TileManager>();
         player = GameObject.Find("Player");
-        
     }
 
     // Update is called once per frame
@@ -93,6 +93,9 @@ public class saltoPowerUp : MonoBehaviour
 
             Transform ultimobloque = listaBloques.transform.GetChild(listaBloques.transform.childCount - 1); //Saltamos al ukltimo bloque disponible
 
+            // Marcamos el bloque como la pista de aterrizaje
+            ultimobloque.GetComponent<TileScript>().setLandTile(true);
+
             posicionSalto = new Vector3(ultimobloque.position.x, 0.6f, ultimobloque.position.z);
 
             saltando = true;
@@ -112,9 +115,13 @@ public class saltoPowerUp : MonoBehaviour
             for (int i = 1; i< numero; i++)
             {
                 TileScript scriptBloque = listaBloques.transform.GetChild(i).GetComponent<TileScript>();
+                //scriptBloque.GameControl();
                 scriptBloque.GravityControl();
                 
             }
+
+            tileMang.reSpawnTiles();
+
             
             //Destruye el PowerUp
             //Destroy(gameObject);

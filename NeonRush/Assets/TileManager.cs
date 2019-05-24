@@ -13,6 +13,8 @@ public class TileManager : generalManager
     public bool coca = true;
     public bool coca2 = true;
 
+    public int index = 0;
+    private int guarrada = 0;
 
     private tileManagerMode stageMode;          // Ref. para pillar los valores del mundo
 
@@ -36,13 +38,9 @@ public class TileManager : generalManager
         if (mode.ContainsKey("horizontal"))
             stageMode = mode["horizontal"];
 
-
-        for (int i = 0; i < 5; i++) Spawner();
-        isFirst = false;
-
+        reSpawnTiles();
 
         tipo = platType.classicY;
-
     }
 
     // Update is called once per frame
@@ -55,10 +53,23 @@ public class TileManager : generalManager
 
     }
 
+
+    public void reSpawnTiles()
+    {
+        isFirst = true;
+        for (int i = 0; i < 5; i++) Spawner();
+        isFirst = false;
+    }
+
+
+
     public void Spawner(){
 
 
         int rndPrefab = Random.Range(0, tilePrefabList.Length);
+
+        index++;
+        Debug.Log("Llamas a spawner pero no entras al otro lao?"); 
 
         if (coca && coca2)
         {
@@ -68,43 +79,40 @@ public class TileManager : generalManager
             aux.transform.SetParent(GameObject.Find("ListaHijos").transform);
 
             int rnd = Random.Range(0, 3);
-            int rndTex = Random.Range(0, 6);
+            //int rndTex = Random.Range(0, 6);
 
+
+            Vector3 posOrigin = aux.transform.GetChild(rnd).position + new Vector3(0.0f, 4.0f, 0.0f);
+            Vector3 posOriginInsta = aux.transform.GetChild(rnd).position;
+
+
+            // AL generar varias de golpe obviamos la caída y las generamos en su sitio directamente
             if (isFirst)
-            {
-                currentTile = (GameObject)Instantiate(tilePrefabList[rndPrefab], currentTile.transform.GetChild(rnd).transform.position, Quaternion.identity);
-                currentTile.GetComponent<TileScript>().setPos(currentTile.transform.position);
-
-
-                //Con un 10% de probabilidad spawneamos el power up
-                if(Random.Range(0.0f,1.0f) <= 0.1f)
-                {
-                    Instantiate(powerUpSalto, currentTile.transform.GetChild(9).transform.position, Quaternion.identity);
-                }
-
-            }
+                currentTile = (GameObject)Instantiate(tilePrefabList[rndPrefab], posOriginInsta, Quaternion.Euler(stageMode.getBO()));
             else
-            {
-              
-                Vector3 posOrigin = currentTile.transform.GetChild(rnd).position + new Vector3(0.0f, 4.0f, 0.0f);
-
-                //currentTile = (GameObject)Instantiate(tilePrefabList[rndPrefab], posOrigin, Quaternion.identity);
                 currentTile = (GameObject)Instantiate(tilePrefabList[rndPrefab], posOrigin, Quaternion.Euler(stageMode.getBO()));
 
-                currentTile.transform.GetComponent<TileScript>().setMode(stageMode);
 
-                currentTile.GetComponent<TileScript>().setType(tipo);
+            //
+            currentTile.name = "Tile " + index;
 
-                currentTile.GetComponent<TileScript>().setTile(aux);
-                currentTile.GetComponent<TileScript>().setAttachIndex(rnd);
+            // Marcamos el modo de juego y establecemos tanto el apdre como el punto de anclaje que será el destino de la nueva ficha
+            currentTile.transform.GetComponent<TileScript>().setMode(stageMode);
 
-                //Con un 10% de probabilidad spawneamos el power up
-                if (Random.Range(0.0f, 1.0f) <= 0.1f)
-                {
-                    Instantiate(powerUpSalto, currentTile.transform.GetChild(9).transform.position - new Vector3(0.0f,4.0f,0.0f), Quaternion.identity);
-                }
+            currentTile.GetComponent<TileScript>().setTile(aux);
+            currentTile.GetComponent<TileScript>().setAttachIndex(rnd);
+
+
+
+            Debug.Log("Hermano del rey");
+
+            //Con un 10% de probabilidad spawneamos el power up y nunca en el bloque en el que caemos
+            if (Random.Range(0.0f, 1.0f) <= 0.1f && !currentTile.GetComponent<TileScript>().getLandTile())
+            {
+                Instantiate(powerUpSalto, currentTile.transform.GetChild(9).transform.position - new Vector3(0, 4.0f, 0), Quaternion.identity);
 
             }
+         
         }
         else if (!coca)
         {
@@ -166,6 +174,10 @@ public class TileManager : generalManager
             else
                 tipo = platType.classicX;
         }
+
+        //currentTile.transform.SetParent(GameObject.Find("ListaHijos").transform);
+
+        guarrada++;
 
     }
 
