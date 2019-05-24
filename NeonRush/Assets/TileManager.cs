@@ -38,7 +38,7 @@ public class TileManager : generalManager
         if (mode.ContainsKey("horizontal"))
             stageMode = mode["horizontal"];
 
-        reSpawnTiles();
+        for(int i = 0; i < 5; i++) Spawner();
 
         tipo = platType.classicY;
     }
@@ -57,7 +57,9 @@ public class TileManager : generalManager
     public void reSpawnTiles()
     {
         isFirst = true;
-        for (int i = 0; i < 5; i++) Spawner();
+        Spawner();
+        Debug.Log("Posiciooooooooooooooon: " + currentTile.transform.GetComponent<TileScript>().getLandTile());
+        currentTile.transform.GetComponent<TileScript>().setLandTile(true);
         isFirst = false;
     }
 
@@ -69,7 +71,7 @@ public class TileManager : generalManager
         int rndPrefab = Random.Range(0, tilePrefabList.Length);
 
         index++;
-        Debug.Log("Llamas a spawner pero no entras al otro lao?"); 
+        //Debug.Log("Llamas a spawner pero no entras al otro lao?"); 
 
         if (coca && coca2)
         {
