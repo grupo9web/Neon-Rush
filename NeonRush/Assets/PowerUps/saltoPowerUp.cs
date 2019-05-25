@@ -53,6 +53,7 @@ public class saltoPowerUp : MonoBehaviour
             if( Vector3.Distance(player.transform.position,posicionSalto) <= 0.3f)// Si hemos llegado a la posicion que queremos
             {
                 saltando = false;
+                GameObject.Find("CanvasTextoSalto").transform.GetChild(0).gameObject.SetActive(false);
                 Destroy(gameObject);
             }
         }
@@ -67,6 +68,10 @@ public class saltoPowerUp : MonoBehaviour
         //Si el jugador choca con el PowerUp
         if (col.gameObject.name == "Player")
         {
+            //Activamos el texto del salto
+            GameObject.Find("CanvasTextoSalto").transform.GetChild(0).gameObject.SetActive(true);
+                
+                
             //t = 0;
 
             startPosition = player.transform.position;
