@@ -10,7 +10,10 @@ public class MathParabola
 
         var mid = Vector3.Lerp(start, end, t);
 
-        return new Vector3(mid.x, f(t) + Mathf.Lerp(start.y, end.y, t), mid.z);
+        //return new Vector3(mid.x, f(t) + Mathf.Lerp(start.y, end.y, t), mid.z);
+        //return new Vector3(f(t) + Mathf.Lerp(start.x, end.x, t), mid.y, mid.z);
+        return new Vector3(mid.x,  mid.y, f(t) + Mathf.Lerp(start.z, end.z, t));
+
     }
 
 }

@@ -196,7 +196,8 @@ public class TileManager : generalManager
         {
 
             //Metemos los tiles que vamos creando en una lista para saber cual es el ultimo hijo para teletransportar al jugador alli con el powerup
-            aux.transform.SetParent(GameObject.Find("ListaHijos").transform);
+            //aux.transform.SetParent(GameObject.Find("ListaHijos").transform);
+            
 
             int rnd = Random.Range(0, 3);
             //int rndTex = Random.Range(0, 6);
@@ -290,7 +291,7 @@ public class TileManager : generalManager
         }
 
         //currentTile.transform.SetParent(GameObject.Find("ListaHijos").transform);
-
+        currentTile.transform.SetParent(GameObject.Find("ListaHijos").transform);
 
     }
 
@@ -305,5 +306,6 @@ public class TileManager : generalManager
     {
         return coca;
     }
+
 
 }

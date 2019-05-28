@@ -40,7 +40,7 @@ public class TileScript : generalManager
 
         landedPos = parentTile.transform.GetChild(attachIndex).transform.position;
 
-        Debug.Log("Pieza " + gameObject.name + ", " + stageMode.getNameAndKey());
+        //Debug.Log("Pieza " + gameObject.name + ", " + stageMode.getNameAndKey());
 
         // Usando el enum marcamos el resto de valores de la plataforma
         /*switch (type)
