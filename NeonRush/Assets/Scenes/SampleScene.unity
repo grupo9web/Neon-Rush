@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 170076734}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -438,7 +438,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 2451869975a149a43a43fb2b6cb9281f, type: 2}
+  - {fileID: 2100000, guid: 05f56c19b9884374694e0b624c0e4150, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -509,6 +509,7 @@ GameObject:
   - component: {fileID: 534669905}
   - component: {fileID: 534669904}
   - component: {fileID: 534669903}
+  - component: {fileID: 534669906}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -580,6 +581,19 @@ Transform:
   m_Father: {fileID: 406072880}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 20, y: 0, z: 0}
+--- !u!114 &534669906
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 534669902}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff26db721962cdf4a8edcdfa9a767d2a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  profile: {fileID: 11400000, guid: 022959cd2cdbc054a9eacad08644403d, type: 2}
 --- !u!1 &1085677025
 GameObject:
   m_ObjectHideFlags: 0
@@ -611,11 +625,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tilePrefabList:
-  - {fileID: 3634826254518303147, guid: 586cad879814d0f41b6b393bdbc6d3ac, type: 3}
-  - {fileID: 4258798013544462307, guid: 1c5b82a36083e8c4ab7ad5e019cd7222, type: 3}
-  - {fileID: 4258798013544462307, guid: 70355aba5bb5f1f4095eca987c249105, type: 3}
-  - {fileID: 4258798013544462307, guid: 692727fd799c34d4885b715ba74d0cd2, type: 3}
-  - {fileID: 2439902230855212466, guid: ed8529c174c1ec14a95fd79ed5ee4dc2, type: 3}
+  - {fileID: 6516807413689093613, guid: 46543b452b5fcda4681698321c107cdb, type: 3}
+  - {fileID: 4493194168998398237, guid: 2419070d046bed644868edd5e12a27e3, type: 3}
+  - {fileID: 5910500255468588550, guid: ddfadd2f0e461eb47998977a395fa15a, type: 3}
+  - {fileID: 8040916357172726179, guid: e61a8924327ff2946b3b911975373c2d, type: 3}
+  - {fileID: 8953790233157782229, guid: cba311b24eb517d4cb79360325e7b37d, type: 3}
   tilePrefab: {fileID: 3259815793017323733, guid: fd05ace00b9b5814ea7b3b4fb5aef137,
     type: 3}
   currentTile: {fileID: 1885398724}
@@ -625,6 +639,7 @@ MonoBehaviour:
   coca: 1
   coca2: 1
   index: 0
+  counter: 0
   tipo: 3
   cosmicTex:
   - {fileID: 2800000, guid: 2e433026b50caac468a3d8597eade730, type: 3}
