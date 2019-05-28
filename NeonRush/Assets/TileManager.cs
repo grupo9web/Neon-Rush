@@ -26,7 +26,7 @@ public class TileManager : generalManager
         classicZ,
         camChanger,
     }
-
+    
     public platType tipo;
 
     public Texture[] cosmicTex;
@@ -62,7 +62,8 @@ public class TileManager : generalManager
         isFirst = true;
         Spawner();
         Debug.Log("Posiciooooooooooooooon: " + currentTile.transform.GetComponent<TileScript>().getLandTile());
-        currentTile.transform.GetComponent<TileScript>().setLandTile(true);
+        currentTile.transform.GetComponent<TileScript>().setLandState(true);
+        //currentTile.transform.GetComponent<TileScript>().setLandTile(true);
         isFirst = false;
     }
 
@@ -296,4 +297,10 @@ public class TileManager : generalManager
     {
         stageMode = mode[key];
     }
+
+    public bool getCoca()
+    {
+        return coca;
+    }
+
 }
