@@ -38,7 +38,7 @@ public class TileManager : generalManager
         if (mode.ContainsKey("dirZpositiva"))
             stageMode = mode["dirZpositiva"];
 
-        reSpawnTiles();
+        for(int i = 0; i < 5; i++) Spawner();
 
         tipo = platType.classicY;
     }
@@ -59,7 +59,9 @@ public class TileManager : generalManager
     public void reSpawnTiles()
     {
         isFirst = true;
-        for (int i = 0; i < 5; i++) Spawner();
+        Spawner();
+        Debug.Log("Posiciooooooooooooooon: " + currentTile.transform.GetComponent<TileScript>().getLandTile());
+        currentTile.transform.GetComponent<TileScript>().setLandTile(true);
         isFirst = false;
     }
 

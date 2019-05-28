@@ -18,6 +18,8 @@ public class saltoPowerUp : MonoBehaviour
     GameObject player;
     private TileManager tileMang;
 
+     GameObject listaBloques;
+
     protected float Animation;
     public float velocidadSalto = 2.0f;
 
@@ -32,42 +34,26 @@ public class saltoPowerUp : MonoBehaviour
     void Update()
     {
 
+         listaBloques = GameObject.Find("ListaHijos"); //Lista de bloques activos
+
         //Si nos hemos saltado un powerup, se destruye
         if (player.transform.position.z >= transform.position.z + 1.0f && saltando == false)
             Destroy(gameObject);
 
         if (saltando)
         {
-            /* FORMA CUTRE
-
-            t += Time.deltaTime / 1;
-
-            if (t <= 0.5f) {
-                player.transform.position = Vector3.Lerp(startPosition, posicionSaltoArriba, t);
-            }
-            else
-            {
-                player.transform.position = Vector3.Lerp(startPosition, posicionSalto, t);
-            }
-            
-            if (player.transform.position == posicionSalto)
-            {
-                saltando = false;
-                Destroy(gameObject);
-            }
-
-            */
 
             Animation += Time.deltaTime;
 
             Animation = Animation % velocidadSalto;
 
-
+            //Para que la animación del salto vaya bien, tendríamos que añadir en la parabola las coordenadas según el sistema de gravedad.
             player.transform.position = MathParabola.Parabola(startPosition, posicionSalto, 3f, Animation/velocidadSalto);
 
             if( Vector3.Distance(player.transform.position,posicionSalto) <= 0.3f)// Si hemos llegado a la posicion que queremos
             {
                 saltando = false;
+                GameObject.Find("CanvasTextoSalto").transform.GetChild(0).gameObject.SetActive(false);
                 Destroy(gameObject);
             }
         }
@@ -82,11 +68,14 @@ public class saltoPowerUp : MonoBehaviour
         //Si el jugador choca con el PowerUp
         if (col.gameObject.name == "Player")
         {
+            //Activamos el texto del salto
+            GameObject.Find("CanvasTextoSalto").transform.GetChild(0).gameObject.SetActive(true);
+                
+                
             //t = 0;
 
             startPosition = player.transform.position;
 
-            GameObject listaBloques = GameObject.Find("ListaHijos"); //Lista de bloques activos
 
             //Transform ultimobloque = listaBloques.transform.GetChild(transform.childCount - 1);
 
@@ -96,7 +85,8 @@ public class saltoPowerUp : MonoBehaviour
             // Marcamos el bloque como la pista de aterrizaje
             ultimobloque.GetComponent<TileScript>().setLandTile(true);
 
-            posicionSalto = new Vector3(ultimobloque.position.x, 0.6f, ultimobloque.position.z);
+            Vector3 aux = ultimobloque.transform.GetChild(9).position;
+            posicionSalto = aux;
 
             saltando = true;
 
@@ -117,10 +107,10 @@ public class saltoPowerUp : MonoBehaviour
                 TileScript scriptBloque = listaBloques.transform.GetChild(i).GetComponent<TileScript>();
                 //scriptBloque.GameControl();
                 scriptBloque.GravityControl();
+                tileMang.reSpawnTiles();
                 
             }
 
-            tileMang.reSpawnTiles();
 
             
             //Destruye el PowerUp
