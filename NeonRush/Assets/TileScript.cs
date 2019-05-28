@@ -79,7 +79,6 @@ public class TileScript : generalManager
     // Update is called once per frame
     void FixedUpdate()
     {   
-        Debug.Log("Fixed updateOoOoo");
         if (!landed && Vector3.Distance(transform.position, landedPos) > 0.001f)
             transform.position = Vector3.MoveTowards(transform.position, landedPos, (8 * getWS()) * Time.fixedDeltaTime);
 

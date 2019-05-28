@@ -216,6 +216,8 @@ public class TileManager : generalManager
             //
             currentTile.name = "Tile " + index;
 
+            Debug.Log("Pieza existe? " + currentTile.name + ", " + stageMode.getNameAndKey());
+
             // Marcamos el modo de juego y establecemos tanto el apdre como el punto de anclaje que será el destino de la nueva ficha
             currentTile.transform.GetComponent<TileScript>().setMode(stageMode.getNameAndKey());
 
@@ -227,9 +229,7 @@ public class TileManager : generalManager
             //Con un 10% de probabilidad spawneamos el power up y nunca en el bloque en el que caemos
             if (Random.Range(0.0f, 1.0f) <= 0.1f && !currentTile.GetComponent<TileScript>().getLandTile())
             {
-                Instantiate(powerUpSalto, currentTile.transform.GetChild(9).transform.position /* - new Vector3(0, 4.0f, 0)*/, currentTile.transform.GetChild(9).transform.rotation);
-                //currentTile.transform.GetChild(10).gameObject.SetActive(true);
-
+                //Instantiate(powerUpSalto, currentTile.transform.GetChild(9).transform.position - new Vector3(0, 4.0f, 0), Quaternion.identity);
             }
 
         } 
@@ -274,7 +274,6 @@ public class TileManager : generalManager
 
             // Marcamos la nueva plataforma como cambio de cámara para que al pisarla el jugador se produzca un efecto
             currentTile.GetComponent<TileScript>().setType(platType.camChanger);
-            currentTile.tag = "Changer";
 
             currentTile.name = "CamChanger Tile " + index;
 
@@ -295,6 +294,7 @@ public class TileManager : generalManager
 
     }
 
+    public Vector3 getGrabity(){return stageMode.getGravity();}
 
 
     public void updateStageMode(string key)
