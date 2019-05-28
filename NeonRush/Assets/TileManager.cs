@@ -216,6 +216,8 @@ public class TileManager : generalManager
             currentTile.name = "Tile " + index;
 
             // Marcamos el modo de juego y establecemos tanto el apdre como el punto de anclaje que será el destino de la nueva ficha
+
+            Debug.Log("Pieza existe? " + currentTile.name + ", " + stageMode.getNameAndKey());
             currentTile.transform.GetComponent<TileScript>().setMode(stageMode.getNameAndKey());
 
             currentTile.GetComponent<TileScript>().setTile(aux);
