@@ -12,6 +12,7 @@ public class TileScript : generalManager
     [SerializeField]
     private Vector3 landedPos = new Vector3(0,0,5);                             // Indica la posición de la plataforma final (init en 1 plat pos)
     
+    [SerializeField]
     private bool landed = false;                                                // Marca cuando está la plat en su posición
 
     private GameObject parentTile;                                              // Nodo padre

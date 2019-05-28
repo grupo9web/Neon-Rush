@@ -26,7 +26,7 @@ public class TileManager : generalManager
         classicZ,
         camChanger,
     }
-
+    
     public platType tipo;
 
     public Texture[] cosmicTex;
@@ -59,7 +59,8 @@ public class TileManager : generalManager
         isFirst = true;
         Spawner();
         Debug.Log("Posiciooooooooooooooon: " + currentTile.transform.GetComponent<TileScript>().getLandTile());
-        currentTile.transform.GetComponent<TileScript>().setLandTile(true);
+        currentTile.transform.GetComponent<TileScript>().setLandState(true);
+        //currentTile.transform.GetComponent<TileScript>().setLandTile(true);
         isFirst = false;
     }
 
@@ -75,6 +76,7 @@ public class TileManager : generalManager
 
         if (coca && coca2)
         {
+            
             GameObject aux = currentTile;
 
             //Metemos los tiles que vamos creando en una lista para saber cual es el ultimo hijo para teletransportar al jugador alli con el powerup
@@ -108,11 +110,22 @@ public class TileManager : generalManager
 
             Debug.Log("Hermano del rey");
 
-            //Con un 10% de probabilidad spawneamos el power up y nunca en el bloque en el que caemos
-            if (Random.Range(0.0f, 1.0f) <= 0.1f && !currentTile.GetComponent<TileScript>().getLandTile())
-            {
-                Instantiate(powerUpSalto, currentTile.transform.GetChild(9).transform.position - new Vector3(0, 4.0f, 0), Quaternion.identity);
 
+            bool plantarPowerUp = true;
+
+            for (int i = 0; i<GameObject.Find("ListaHijos").transform.childCount; i++)
+            {
+                if(GameObject.Find("ListaHijos").transform.GetChild(i).tag == "Changer")
+                {
+                    plantarPowerUp = false;
+                    break;
+                }
+            }
+
+            //Con un 10% de probabilidad spawneamos el power up y nunca en el bloque en el que caemos
+            if (Random.Range(0.0f, 1.0f) <= 0.1f && !currentTile.GetComponent<TileScript>().getLandTile() && plantarPowerUp)
+            {
+                Instantiate(powerUpSalto, currentTile.transform.GetChild(9).transform.position /* - new Vector3(0, 4.0f, 0)*/, Quaternion.identity);
             }
          
         }
@@ -134,6 +147,7 @@ public class TileManager : generalManager
 
             // Al marcarlo como camChanger provoca el cambio de modo
             currentTile.GetComponent<TileScript>().setType(platType.camChanger);
+            currentTile.tag = "Changer";
 
             // En caso de que sea 3 se generará a la izquierda, si es 4 o 5 por delante
             if (rnd == 3)
@@ -190,4 +204,10 @@ public class TileManager : generalManager
         Debug.Log("El jauja de TileManager");
         stageMode = mode[key];
     }
+
+    public bool getCoca()
+    {
+        return coca;
+    }
+
 }
