@@ -13,6 +13,10 @@ public class TileManager : generalManager
     public bool coca = true;
     public bool coca2 = true;
 
+    [SerializeField]
+    private Vector3 gravedad;
+
+
     public int index = 0;                       // Esto era para ver el número de bloque y renombrarlo, da un poco igual
     public int counter = 0;                     // Cada doce se genera un camChanger
 
@@ -53,6 +57,8 @@ public class TileManager : generalManager
         if (Input.GetKeyDown("r"))
             coca2 = false;
       */
+
+        gravedad = stageMode.getGravity();
 
     }
 
@@ -229,7 +235,7 @@ public class TileManager : generalManager
             //Con un 10% de probabilidad spawneamos el power up y nunca en el bloque en el que caemos
             if (Random.Range(0.0f, 1.0f) <= 0.1f && !currentTile.GetComponent<TileScript>().getLandTile())
             {
-                //Instantiate(powerUpSalto, currentTile.transform.GetChild(9).transform.position - new Vector3(0, 4.0f, 0), Quaternion.identity);
+                Instantiate(powerUpSalto, currentTile.transform.GetChild(9).transform.position - new Vector3(0, 4.0f, 0), currentTile.transform.GetChild(9).transform.rotation);
             }
 
         } 
@@ -294,7 +300,9 @@ public class TileManager : generalManager
 
     }
 
-    public Vector3 getGrabity(){return stageMode.getGravity();}
+    public Vector3 getGrabity(){
+        return stageMode.getGravity();
+    }
 
 
     public void updateStageMode(string key)
