@@ -24,7 +24,7 @@ PrefabInstance:
     - target: {fileID: 3600007949286224725, guid: c2e40be946088a04e89d0d80a250d2cc,
         type: 3}
       propertyPath: m_Name
-      value: SpeedPowerUp
+      value: SpeedPowerUp Con Script
       objectReference: {fileID: 0}
     - target: {fileID: 768098728693567801, guid: c2e40be946088a04e89d0d80a250d2cc,
         type: 3}
@@ -95,6 +95,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.z
       value: 0.16396433
+      objectReference: {fileID: 0}
+    - target: {fileID: 4843919390058486437, guid: c2e40be946088a04e89d0d80a250d2cc,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c2e40be946088a04e89d0d80a250d2cc, type: 3}
