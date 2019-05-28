@@ -34,16 +34,15 @@ public class TileScript : generalManager
         generalMang = GameObject.Find("TileManager").GetComponent<generalManager>();
         instanceOfC = GameObject.Find("Player").GetComponent<scirp>();
 
-        Debug.Log("No tienen puto mode definido " + stageMode.getGravity());
-
-
 
         this.landedAxis = 1;                    // Se parará en el eje Y
+
         landedPos = parentTile.transform.GetChild(attachIndex).transform.position;
 
+        Debug.Log("Pieza " + gameObject.name + ", " + stageMode.getNameAndKey());
 
         // Usando el enum marcamos el resto de valores de la plataforma
-        switch (type)
+        /*switch (type)
         {
             case TileManager.platType.camChanger:
 
@@ -68,9 +67,9 @@ public class TileScript : generalManager
 
             default:
                 break;
-        }
+        }*/
 
-        gameObject.name = type.ToString() + " " + instanceOfB.index;
+        //gameObject.name = type.ToString() + " " + instanceOfB.index;
 
     }
 
@@ -147,4 +146,7 @@ public class TileScript : generalManager
 
     public void setLandTile(bool b) { this.landTile = b; }
     public bool getLandTile() { return this.landTile; }
+
+    public void setMode(string s) { this.modeChanger = s; }
+    public string getMode() { return this.modeChanger; }
 }

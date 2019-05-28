@@ -25,8 +25,8 @@ public class scirp : generalManager
 
     void Start()
     {
-        if (mode.ContainsKey("horizontal"))
-            stageMode = mode["horizontal"];
+        if (mode.ContainsKey("dirZpositiva"))
+            stageMode = mode["dirZpositiva"];
 
         direccion = stageMode.getDC()[0];
 
