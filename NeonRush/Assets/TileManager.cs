@@ -47,11 +47,12 @@ public class TileManager : generalManager
     // Update is called once per frame
     void Update()
     {
+        /*
         if (Input.GetKeyDown("space"))
             coca = false;
         if (Input.GetKeyDown("r"))
             coca2 = false;
-      
+      */
 
     }
 
@@ -214,7 +215,7 @@ public class TileManager : generalManager
             currentTile.name = "Tile " + index;
 
             // Marcamos el modo de juego y establecemos tanto el apdre como el punto de anclaje que será el destino de la nueva ficha
-            currentTile.transform.GetComponent<TileScript>().setMode(stageMode);
+            currentTile.transform.GetComponent<TileScript>().setMode(stageMode.getNameAndKey());
 
             currentTile.GetComponent<TileScript>().setTile(aux);
             currentTile.GetComponent<TileScript>().setAttachIndex(rnd);
@@ -273,7 +274,7 @@ public class TileManager : generalManager
             currentTile.name = "CamChanger Tile " + index;
 
 
-            currentTile.transform.GetComponent<TileScript>().setMode(stageMode);
+            currentTile.transform.GetComponent<TileScript>().setMode(stageMode.getNameAndKey());
 
             currentTile.GetComponent<TileScript>().setTile(aux);
             currentTile.GetComponent<TileScript>().setAttachIndex(attachPos);

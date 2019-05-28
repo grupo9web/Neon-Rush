@@ -143,11 +143,11 @@ public class TileScript : generalManager
     public void setTile(GameObject tile) { this.parentTile = tile; }
     public void setAttachIndex(int index) { this.attachIndex = index; }
 
-    public void setMode(tileManagerMode mode) { this.stageMode = mode; }
-
     public void setLandTile(bool b) { this.landTile = b; }
     public bool getLandTile() { return this.landTile; }
 
     public string getMode() { return this.modeChanger; }
+    public void setMode(string key) { this.modeChanger = key; }
+
     public void setLandState(bool a){this.landed = a;}
 }
