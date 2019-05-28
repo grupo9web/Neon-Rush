@@ -293,6 +293,7 @@ public class TileManager : generalManager
 
     }
 
+    public Vector3 getGrabity(){return stageMode.getGravity();}
 
 
     public void updateStageMode(string key)
