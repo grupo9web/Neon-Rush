@@ -58,8 +58,8 @@ public class TileManager : generalManager
             coca2 = false;
       */
 
-        gravedad = stageMode.getGravity();
-
+        //gravedad = stageMode.getGravity();
+        gravedad = Physics.gravity;
     }
 
 
@@ -232,12 +232,7 @@ public class TileManager : generalManager
 
 
 
-            //Con un 10% de probabilidad spawneamos el power up y nunca en el bloque en el que caemos
-            if (Random.Range(0.0f, 1.0f) <= 0.1f && !currentTile.GetComponent<TileScript>().getLandTile())
-            {
-                Instantiate(powerUpSalto, currentTile.transform.GetChild(9).transform.position - new Vector3(0, 4.0f, 0), currentTile.transform.GetChild(9).transform.rotation);
-            }
-
+            
         } 
         else if (counter >= 12)
         {
@@ -297,6 +292,13 @@ public class TileManager : generalManager
 
         //currentTile.transform.SetParent(GameObject.Find("ListaHijos").transform);
         currentTile.transform.SetParent(GameObject.Find("ListaHijos").transform);
+
+        //Con un 10% de probabilidad spawneamos el power up y nunca en el bloque en el que caemos
+        if (Random.Range(0.0f, 1.0f) <= 0.1f && !currentTile.GetComponent<TileScript>().getLandTile())
+        {
+            Instantiate(powerUpSalto, currentTile.transform.GetChild(9).transform.position /*- new Vector3(0, 4.0f, 0)*/, currentTile.transform.GetChild(9).transform.rotation);
+        }
+
 
     }
 

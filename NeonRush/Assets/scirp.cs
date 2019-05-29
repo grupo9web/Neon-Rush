@@ -54,8 +54,8 @@ public class scirp : generalManager
 
 
 
-        //if (Input.GetMouseButtonDown(0))
-        if (Input.GetKeyDown("e"))
+        if (Input.GetMouseButtonDown(0))
+        //if (Input.GetKeyDown("e"))
         {
             if (direccion == stageMode.getDC()[0])
             {

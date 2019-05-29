@@ -6,14 +6,9 @@ public class MathParabola
     
     public static Vector3 Parabola(Vector3 start, Vector3 end, float height, float t)
     {
-        Vector3 gravedad = GameObject.Find("TileManager").GetComponent<TileManager>().getGrabity();
-
-        
-
-        
-
-        
-        if (gravedad.x == -9.8f || gravedad.y == -9.8f || gravedad.z == -9.8f){
+        //Vector3 gravedad = GameObject.Find("TileManager").GetComponent<TileManager>().getGrabity();
+        Vector3 gravedad = Physics.gravity;
+        if (gravedad.x == -9.81f || gravedad.y == -9.81f || gravedad.z == -9.81f){
 
             Func<float, float> f = x => -4 * height * x * x + 4 * height * x;
             Vector3 mid = Vector3.Lerp(start, end, t);
