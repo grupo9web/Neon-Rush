@@ -37,6 +37,7 @@ public class velocidadPowerUp : MonoBehaviour
             {
                 activo = false;
                 ScriptPersonaje.speed = velocidadNormalPersonaje;
+                GameObject.Find("CanvasTextoSalto").transform.GetChild(0).gameObject.SetActive(false);
                 Destroy(gameObject);
             }
         }
@@ -51,6 +52,9 @@ public class velocidadPowerUp : MonoBehaviour
         //Si el jugador choca con el PowerUp
         if (col.gameObject.name == "Player")
         {
+            GameObject.Find("CanvasTextoSalto").transform.GetChild(0).gameObject.SetActive(true);
+            GameObject.Find("CanvasTextoSalto").transform.GetChild(0).gameObject.GetComponent<UnityEngine.UI.Text>().text = "¡ SLOW DOWN !";
+
             gameObject.GetComponent<Renderer>().enabled = false;
             velocidadNormalPersonaje = ScriptPersonaje.speedBase;
             activo = true;

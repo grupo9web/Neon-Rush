@@ -82,6 +82,9 @@ public class saltoPowerUp : MonoBehaviour
 
             //Activa el texto de salto
             GameObject.Find("CanvasTextoSalto").transform.GetChild(0).gameObject.SetActive(true);
+            GameObject.Find("CanvasTextoSalto").transform.GetChild(0).gameObject.GetComponent<UnityEngine.UI.Text>().text = "¡ JUMPING !";         
+
+
 
             Transform bloqueSalto;
             GameObject ListaHijos = GameObject.Find("ListaHijos");
