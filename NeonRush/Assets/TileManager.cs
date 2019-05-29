@@ -7,7 +7,8 @@ public class TileManager : generalManager
     public GameObject[] tilePrefabList;
     public GameObject tilePrefab;               // Ref. MasterTile prefab
     public GameObject currentTile;              // Ref. Clones de MasterTile 
-    public GameObject powerUpSalto;
+    //public GameObject powerUpSalto;
+    public GameObject[] listaPowerUps;
 
     public bool isFirst = true;
     public bool coca = true;
@@ -245,10 +246,18 @@ public class TileManager : generalManager
             //Con un 10% de probabilidad spawneamos el power up y nunca en el bloque en el que caemos
             if (Random.Range(0.0f, 1.0f) <= 0.1f && !currentTile.GetComponent<TileScript>().getLandTile())
             {
-                GameObject powerUP = Instantiate(powerUpSalto, currentTile.transform.GetChild(9).transform.position, currentTile.transform.GetChild(9).transform.rotation);
-                //powerUP.transform.SetParent(currentTile.transform);
-                //Asociamos el game object de la pieza en la que esta el powerup
-                powerUP.GetComponent<saltoPowerUp>().tileAsociado = currentTile;
+                int aleatorio = Random.Range(0, 2);
+                if (aleatorio == 0) //PowerUp Salto
+                {
+                    GameObject powerUP = Instantiate(listaPowerUps[0], currentTile.transform.GetChild(9).transform.position, currentTile.transform.GetChild(9).transform.rotation);
+                    //powerUP.transform.SetParent(currentTile.transform);
+                    //Asociamos el game object de la pieza en la que esta el powerup
+                    powerUP.GetComponent<saltoPowerUp>().tileAsociado = currentTile;
+                }
+                else //PowerUp disminuir velocidad
+                {
+                    Instantiate(listaPowerUps[1], currentTile.transform.GetChild(9).transform.position, currentTile.transform.GetChild(9).transform.rotation);
+                }
             }
 
         } 

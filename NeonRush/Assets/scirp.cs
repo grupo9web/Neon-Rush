@@ -11,6 +11,7 @@ public class scirp : generalManager
     private bool updateWorld = false;           // AL cambiar de modo actualizar valores
 
     public float speed;
+    public float speedBase;
     public float score = 0;
 
     //We tell the script more about canvas and text 
@@ -34,6 +35,8 @@ public class scirp : generalManager
         pivot = gameObject.transform.GetChild(0).gameObject;
 
         setWorldSpeed(1.0f);
+
+        speedBase = speed;
 
         //Actualizamos el txt de la puntuación
         setScoretxt();
