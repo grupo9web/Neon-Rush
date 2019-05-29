@@ -15,6 +15,8 @@ public class scirp : generalManager
     public float speedBase;
     public float score = 0;
 
+    private saltoPowerUp auxSaltoScript;
+
     //We tell the script more about canvas and text 
     public Text scoreTxt;
 
@@ -89,7 +91,7 @@ public class scirp : generalManager
         */
 
         //Soy retrasado y se podia condensar en esto:
-         if(Vector3.Distance(playerHeightPos, referencePosition) > 7f) {
+         if(Vector3.Distance(playerHeightPos, referencePosition) > 10f) {
             SceneManager.LoadScene("SampleScene");
             Physics.gravity = new Vector3(0, -9.8f, 0);
         }

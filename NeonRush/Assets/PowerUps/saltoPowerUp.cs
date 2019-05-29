@@ -6,6 +6,7 @@ public class saltoPowerUp : MonoBehaviour
 {
 
     public int numeroSaltos = 3;
+    [SerializeField]
     bool saltando = false;
     Vector3 posicionSalto;
 
@@ -132,5 +133,8 @@ public class saltoPowerUp : MonoBehaviour
             //Destroy(gameObject);
 
         }
+
     }
+
+    public bool getJumpState(){return this.saltando;}
 }
