@@ -218,7 +218,7 @@ public class TileManager : generalManager
             int rnd = Random.Range(0, 3);
             //int rndTex = Random.Range(0, 6);
 
-            Vector3 posOrigin = aux.transform.GetChild(rnd).position + new Vector3(0.0f, 4.0f, 0.0f);
+            Vector3 posOrigin = aux.transform.GetChild(rnd).position; //+ new Vector3(0.0f, 4.0f, 0.0f); ////////MOVIDA QUITAR
             Vector3 posOriginInsta = aux.transform.GetChild(rnd).position;
 
 
@@ -243,9 +243,12 @@ public class TileManager : generalManager
 
 
             //Con un 10% de probabilidad spawneamos el power up y nunca en el bloque en el que caemos
-            if (Random.Range(0.0f, 1.0f) <= 0.5f && !currentTile.GetComponent<TileScript>().getLandTile())
+            if (Random.Range(0.0f, 1.0f) <= 0.1f && !currentTile.GetComponent<TileScript>().getLandTile())
             {
-                Instantiate(powerUpSalto, currentTile.transform.GetChild(9).transform.position, currentTile.transform.GetChild(9).transform.rotation);
+                GameObject powerUP = Instantiate(powerUpSalto, currentTile.transform.GetChild(9).transform.position, currentTile.transform.GetChild(9).transform.rotation);
+                //powerUP.transform.SetParent(currentTile.transform);
+                //Asociamos el game object de la pieza en la que esta el powerup
+                powerUP.GetComponent<saltoPowerUp>().tileAsociado = currentTile;
             }
 
         } 
@@ -291,7 +294,9 @@ public class TileManager : generalManager
             // Marcamos la nueva plataforma como cambio de cámara para que al pisarla el jugador se produzca un efecto
             currentTile.GetComponent<TileScript>().setType(platType.camChanger);
 
+            currentTile.tag = "Changer";
             currentTile.name = "CamChanger Tile " + index;
+
 
 
             currentTile.transform.GetComponent<TileScript>().setMode(stageMode.getNameAndKey());

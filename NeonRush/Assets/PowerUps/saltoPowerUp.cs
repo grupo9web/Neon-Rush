@@ -21,6 +21,9 @@ public class saltoPowerUp : MonoBehaviour
     protected float Animation;
     public float velocidadSalto = 2.0f;
 
+    [SerializeField]
+    public GameObject tileAsociado;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -33,9 +36,22 @@ public class saltoPowerUp : MonoBehaviour
 
         //Si nos hemos saltado un powerup, se destruye
         //if (player.transform.position.z >= transform.position.z + 1.0f && saltando == false)
-            //Destroy(gameObject);
+        //Destroy(gameObject);
 
 
+        //Si hay mas hijos por delante de la pieza en la que esta este powerup
+
+        if (tileAsociado != null)
+        {
+            if ((GameObject.Find("ListaHijos").transform.GetChildCount() - 1) > tileAsociado.transform.GetSiblingIndex())
+            {
+                //Mira si la pieza en la que esta puesta el powerup es justo la de detras de un cam changer y lo eliminamos para quitar problemas
+                if (GameObject.Find("ListaHijos").transform.GetChild(tileAsociado.transform.GetSiblingIndex() + 1).tag == "Changer")
+                {
+                    Destroy(gameObject);
+                }
+            }
+        }
         if (saltando)
         {
             Animation += Time.deltaTime;
@@ -53,7 +69,6 @@ public class saltoPowerUp : MonoBehaviour
             }
         }
     }
-
 
 
     void OnCollisionEnter(Collision col)
