@@ -73,7 +73,7 @@ public class saltoPowerUp : MonoBehaviour
 
     void OnCollisionEnter(Collision col)
     {
-        print("Debugito");
+        //print("Debugito");
 
         //Si el jugador choca con el PowerUp
         if (col.gameObject.name == "Player")

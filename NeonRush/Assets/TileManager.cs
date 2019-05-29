@@ -71,7 +71,6 @@ public class TileManager : generalManager
     {
         isFirst = true;
         Spawner();
-        Debug.Log("Posiciooooooooooooooon: " + currentTile.transform.GetComponent<TileScript>().getLandTile());
         currentTile.transform.GetComponent<TileScript>().setLandState(true);
         //currentTile.transform.GetComponent<TileScript>().setLandTile(true);
         isFirst = false;
@@ -233,7 +232,7 @@ public class TileManager : generalManager
             //
             currentTile.name = "Tile " + index;
 
-            Debug.Log("Pieza existe? " + currentTile.name + ", " + stageMode.getNameAndKey());
+            //Debug.Log("Pieza existe? " + currentTile.name + ", " + stageMode.getNameAndKey());
 
             // Marcamos el modo de juego y establecemos tanto el apdre como el punto de anclaje que será el destino de la nueva ficha
             currentTile.transform.GetComponent<TileScript>().setMode(stageMode.getNameAndKey());
