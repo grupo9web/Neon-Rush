@@ -14,7 +14,10 @@ public class TileManager : generalManager
     public bool coca2 = true;
 
     [SerializeField]
-    private Vector3 gravedad;
+    private Vector3 gravedad = Physics.gravity;
+
+    [SerializeField]
+    Queue<GameObject> tilesQue = new Queue<GameObject>();
 
 
     public int index = 0;                       // Esto era para ver el número de bloque y renombrarlo, da un poco igual
@@ -79,6 +82,13 @@ public class TileManager : generalManager
 
 
         int rndPrefab = Random.Range(0, tilePrefabList.Length);
+        
+        //Probamos a meter una pila intermedia que contenga todos los GameObjects que se deben ir spawneando
+        //  -La diferencia ahora es que el Instantiate pilla el primero de la cola así no se turbia con las posiciones al mezclar con el salto.
+        //  -Sigue fallando xd
+        //  -Para revertir cambios únicamente cambiar tilesQue.Dequeue() por tilePrefabList[rndPrefab]
+        
+        tilesQue.Enqueue(tilePrefabList[rndPrefab]);
 
         index++;
         counter++;
@@ -198,7 +208,7 @@ public class TileManager : generalManager
         }*/
         #endregion
 
-        if (counter < 12)
+        if (counter < 8)
         {
 
             //Metemos los tiles que vamos creando en una lista para saber cual es el ultimo hijo para teletransportar al jugador alli con el powerup
@@ -214,9 +224,9 @@ public class TileManager : generalManager
 
             // AL generar varias de golpe obviamos la caída y las generamos en su sitio directamente
             if (isFirst)
-                currentTile = (GameObject)Instantiate(tilePrefabList[rndPrefab], posOriginInsta, Quaternion.Euler(stageMode.getBO()));
+                currentTile = (GameObject)Instantiate(tilesQue.Dequeue(), posOriginInsta, Quaternion.Euler(stageMode.getBO()));
             else
-                currentTile = (GameObject)Instantiate(tilePrefabList[rndPrefab], posOrigin, Quaternion.Euler(stageMode.getBO()));
+                currentTile = (GameObject)Instantiate(tilesQue.Dequeue(), posOrigin, Quaternion.Euler(stageMode.getBO()));
 
 
             //
@@ -232,9 +242,14 @@ public class TileManager : generalManager
 
 
 
-            
+            //Con un 10% de probabilidad spawneamos el power up y nunca en el bloque en el que caemos
+            if (Random.Range(0.0f, 1.0f) <= 0.5f && !currentTile.GetComponent<TileScript>().getLandTile())
+            {
+                Instantiate(powerUpSalto, currentTile.transform.GetChild(9).transform.position, currentTile.transform.GetChild(9).transform.rotation);
+            }
+
         } 
-        else if (counter >= 12)
+        else if (counter >= 8)
         {
             int attachPos;
 
@@ -244,9 +259,9 @@ public class TileManager : generalManager
                 // Esto implica que solo tiene conexión por su izquierda, de modo que el attach
                 // a tener en cuenta es el 3 hijo
                 attachPos = 3;
-                Vector3 posOrigin = currentTile.transform.GetChild(attachPos).position + new Vector3(0.0f, 4.0f, 0.0f);
+                Vector3 posOrigin = currentTile.transform.GetChild(attachPos).position /* + new Vector3(0.0f, 4.0f, 0.0f)*/;
 
-                currentTile = (GameObject)Instantiate(tilePrefabList[rndPrefab], posOrigin, Quaternion.Euler(stageMode.getCollindantModes()[0].getBO()));
+                currentTile = (GameObject)Instantiate(tilesQue.Dequeue(), posOrigin, Quaternion.Euler(stageMode.getCollindantModes()[0].getBO()));
                 currentTile.GetComponent<TileScript>().setMode(stageMode.getCollindantModes()[0].getNameAndKey());
                 updateStageMode(stageMode.getCollindantModes()[0].getNameAndKey());
 
@@ -255,18 +270,18 @@ public class TileManager : generalManager
             {
                 // Al tener también la posibilidad de generarse al frente, se decide de form aleatoria
                 attachPos = Random.Range(3, 6);
-                Vector3 posOrigin = currentTile.transform.GetChild(attachPos).position + new Vector3(0.0f, 4.0f, 0.0f);
+                Vector3 posOrigin = currentTile.transform.GetChild(attachPos).position /*+ new Vector3(0.0f, 4.0f, 0.0f)*/;
 
 
                 if (attachPos == 3)
                 {
-                    currentTile = (GameObject)Instantiate(tilePrefabList[rndPrefab], posOrigin, Quaternion.Euler(stageMode.getCollindantModes()[0].getBO()));
+                    currentTile = (GameObject)Instantiate(tilesQue.Dequeue(), posOrigin, Quaternion.Euler(stageMode.getCollindantModes()[0].getBO()));
                     currentTile.GetComponent<TileScript>().setMode(stageMode.getCollindantModes()[0].getNameAndKey());
                     updateStageMode(stageMode.getCollindantModes()[0].getNameAndKey());
                 }
                 else
                 {
-                    currentTile = (GameObject)Instantiate(tilePrefabList[rndPrefab], posOrigin, Quaternion.Euler(stageMode.getCollindantModes()[1].getBO()));
+                    currentTile = (GameObject)Instantiate(tilesQue.Dequeue(), posOrigin, Quaternion.Euler(stageMode.getCollindantModes()[1].getBO()));
                     currentTile.GetComponent<TileScript>().setMode(stageMode.getCollindantModes()[1].getNameAndKey());
                     updateStageMode(stageMode.getCollindantModes()[1].getNameAndKey());
                 }
@@ -292,12 +307,6 @@ public class TileManager : generalManager
 
         //currentTile.transform.SetParent(GameObject.Find("ListaHijos").transform);
         currentTile.transform.SetParent(GameObject.Find("ListaHijos").transform);
-
-        //Con un 10% de probabilidad spawneamos el power up y nunca en el bloque en el que caemos
-        if (Random.Range(0.0f, 1.0f) <= 0.1f && !currentTile.GetComponent<TileScript>().getLandTile())
-        {
-            Instantiate(powerUpSalto, currentTile.transform.GetChild(9).transform.position /*- new Vector3(0, 4.0f, 0)*/, currentTile.transform.GetChild(9).transform.rotation);
-        }
 
 
     }
