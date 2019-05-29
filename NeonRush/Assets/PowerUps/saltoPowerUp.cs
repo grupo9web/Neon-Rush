@@ -43,7 +43,7 @@ public class saltoPowerUp : MonoBehaviour
 
         if (tileAsociado != null)
         {
-            if ((GameObject.Find("ListaHijos").transform.GetChildCount() - 1) > tileAsociado.transform.GetSiblingIndex())
+            if ((GameObject.Find("ListaHijos").transform.childCount - 1) > tileAsociado.transform.GetSiblingIndex())
             {
                 //Mira si la pieza en la que esta puesta el powerup es justo la de detras de un cam changer y lo eliminamos para quitar problemas
                 if (GameObject.Find("ListaHijos").transform.GetChild(tileAsociado.transform.GetSiblingIndex() + 1).tag == "Changer")
@@ -73,7 +73,7 @@ public class saltoPowerUp : MonoBehaviour
 
     void OnCollisionEnter(Collision col)
     {
-        print("Debugito");
+        //print("Debugito");
 
         //Si el jugador choca con el PowerUp
         if (col.gameObject.name == "Player")
