@@ -6,8 +6,10 @@ public class saltoPowerUp : MonoBehaviour
 {
 
     public int numeroSaltos = 3;
+
     [SerializeField]
     bool saltando = false;
+
     Vector3 posicionSalto;
 
     //float t;

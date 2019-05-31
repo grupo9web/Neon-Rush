@@ -106,14 +106,14 @@ public class scirp : generalManager
             direccion = stageMode.getDC()[0];
             pivot.transform.localPosition = stageMode.getPP();
             pivot.transform.LookAt(transform);
+            setWorldSpeed(0.2f);
 
             updateWorld = false;
         }
 
 
 
-        if (Input.GetMouseButtonDown(0))
-        //if (Input.GetKeyDown("e"))
+        if (Input.GetMouseButtonDown(0) || Input.GetKeyDown("e"))
         {
             if (direccion == stageMode.getDC()[0])
             {
@@ -133,9 +133,11 @@ public class scirp : generalManager
         // Al actualizar la posición del pivot, movemos la cámara
         if (Vector3.Distance(pivot.transform.localPosition, cam.transform.localPosition) > 0.01f)
         {
-            cam.transform.localPosition = Vector3.MoveTowards(cam.transform.localPosition, pivot.transform.localPosition, (75 * getWS()) * Time.deltaTime);         
+            cam.transform.localPosition = Vector3.MoveTowards(cam.transform.localPosition, pivot.transform.localPosition, (75 * getWS()) * Time.deltaTime);
             cam.transform.LookAt(transform, stageMode.getCA());
         }
+        else if (Vector3.Distance(pivot.transform.localPosition, cam.transform.localPosition) < 0.1f)
+            setWorldSpeed(1.0f);
 
         //Debug.Log(speed * getWS() + ", " + getWS());
 
@@ -172,22 +174,6 @@ public class scirp : generalManager
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-    public void resolveNewDirection(string key)
-    {
-        stageMode = mode[key];
-        updateWorld = true;
-    }
 
 }
 

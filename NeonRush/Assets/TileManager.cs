@@ -26,17 +26,6 @@ public class TileManager : generalManager
 
     private tileManagerMode stageMode;          // Ref. para pillar los valores del mundo
 
-
-    public enum platType
-    {
-        classicY,
-        classicX,
-        classicZ,
-        camChanger,
-    }
-    
-    public platType tipo;
-
     public Texture[] cosmicTex;
 
 
@@ -48,7 +37,8 @@ public class TileManager : generalManager
 
         for(int i = 0; i < 5; i++) Spawner();
 
-        tipo = platType.classicY;
+
+        //tipo = platType.basic;
     }
 
 
@@ -299,21 +289,14 @@ public class TileManager : generalManager
 
             }
 
-            // Marcamos la nueva plataforma como cambio de cámara para que al pisarla el jugador se produzca un efecto
-            currentTile.GetComponent<TileScript>().setType(platType.camChanger);
 
             currentTile.tag = "Changer";
             currentTile.name = "CamChanger Tile " + index;
-
-
 
             currentTile.transform.GetComponent<TileScript>().setMode(stageMode.getNameAndKey());
 
             currentTile.GetComponent<TileScript>().setTile(aux);
             currentTile.GetComponent<TileScript>().setAttachIndex(attachPos);
-
-            // El resto de plataformas se genera de forma normal
-            tipo = platType.classicZ;
 
             counter = 0;
         }

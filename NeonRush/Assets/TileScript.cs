@@ -10,8 +10,8 @@ public class TileScript : generalManager
 
     private Vector3 parentPos;                                                  // Indica la posición final de su antecesor
     [SerializeField]
-    private Vector3 landedPos = new Vector3(0,0,5);                             // Indica la posición de la plataforma final (init en 1 plat pos)
-    
+    private Vector3 landedPos = new Vector3(0, 0, 5);                             // Indica la posición de la plataforma final (init en 1 plat pos)
+
     [SerializeField]
     private bool landed = false;                                                // Marca cuando está la plat en su posición
 
@@ -21,7 +21,6 @@ public class TileScript : generalManager
     private int landedAxis;
     private Vector3 axisFacing;
 
-    private TileManager.platType type;
     private tileManagerMode stageMode;
     private string modeChanger = "";                                             // Cada tile camChanger determina en qué sentido se actualiza el mundo
 
@@ -39,46 +38,13 @@ public class TileScript : generalManager
         this.landedAxis = 1;                    // Se parará en el eje Y
 
         landedPos = parentTile.transform.GetChild(attachIndex).transform.position;
-
-        //Debug.Log("Pieza " + gameObject.name + ", " + stageMode.getNameAndKey());
-
-        // Usando el enum marcamos el resto de valores de la plataforma
-        /*switch (type)
-        {
-            case TileManager.platType.camChanger:
-
-                //Debug.Log("Padre " + parentTile.transform.GetChild(1).transform.position + " hijo " + landedPos + " y el eje " + transform.position[landedAxis]);
-                this.landedAxis = 1;
-                landedPos = parentTile.transform.GetChild(attachIndex).transform.position;
-
-                // Comprobamos la izquierda
-                if (Vector3.Distance(parentTile.transform.GetChild(3).transform.position, landedPos) <= 1)
-                {
-                    transform.eulerAngles = mode["verticalZ"].getBO();
-                    modeChanger = "verticalZ";
-                }
-                else
-                {
-                    transform.eulerAngles = mode["verticalX"].getBO();
-                    modeChanger = "verticalX";                
-                }
-
-
-                break;
-
-            default:
-                break;
-        }*/
-
-        //gameObject.name = type.ToString() + " " + instanceOfB.index;
-
     }
 
 
 
     // Update is called once per frame
     void FixedUpdate()
-    {   
+    {
         if (!landed && Vector3.Distance(transform.position, landedPos) > 0.001f)
             transform.position = Vector3.MoveTowards(transform.position, landedPos, (8 * getWS()) * Time.fixedDeltaTime);
 
@@ -94,35 +60,34 @@ public class TileScript : generalManager
 
 
 
-    void OnTriggerExit(Collider other){
-
-        if (other.gameObject.name == "Player"){
+    void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.name == "Player")
+        {
             GameControl();
             setWorldSpeed(1.0f);
-            GravityControl();                
+            GravityControl();
         }
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.name == "Player" && type == TileManager.platType.camChanger)
-        {
-            setWorldSpeed(0.02f);
+        if (other.gameObject.name == "Player" && tag == "Changer")
             generalMang.changeStageMode(modeChanger);
-            //instanceOfC.resolveNewDirection(modeChanger);
-        }
     }
 
-    public void GameControl(){
+    public void GameControl()
+    {
 
         //Generamos una nueva plataforma
         instanceOfB.Spawner();
         //Actualizamos la puntuación
-        instanceOfC.ScoreUpdate();        
+        instanceOfC.ScoreUpdate();
     }
 
 
-    public void GravityControl(){
+    public void GravityControl()
+    {
 
         //Physics.gravity = stageMode.getGravity();
 
@@ -138,7 +103,6 @@ public class TileScript : generalManager
     public void setParent(Vector3 pos) { this.parentPos = pos; }
     public void setPos(Vector3 pos) { this.landedPos = pos; }
 
-    public void setType(TileManager.platType tipoPlat) {type =  tipoPlat; }
 
     public void setTile(GameObject tile) { this.parentTile = tile; }
     public void setAttachIndex(int index) { this.attachIndex = index; }
@@ -149,5 +113,5 @@ public class TileScript : generalManager
     public string getMode() { return this.modeChanger; }
     public void setMode(string key) { this.modeChanger = key; }
 
-    public void setLandState(bool a){this.landed = a;}
+    public void setLandState(bool a) { this.landed = a; }
 }
