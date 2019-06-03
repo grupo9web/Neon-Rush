@@ -41,6 +41,8 @@ public class saltoPowerUp : MonoBehaviour
         //if (player.transform.position.z >= transform.position.z + 1.0f && saltando == false)
         //Destroy(gameObject);
 
+        //Comprobamos si nos hemos saltado el powerup para destruirlo
+        checkDestruirPowerUp();
 
         //Si hay mas hijos por delante de la pieza en la que esta este powerup
 
@@ -84,7 +86,7 @@ public class saltoPowerUp : MonoBehaviour
 
             //Activa el texto de salto
             GameObject.Find("CanvasTextoSalto").transform.GetChild(0).gameObject.SetActive(true);
-            GameObject.Find("CanvasTextoSalto").transform.GetChild(0).gameObject.GetComponent<UnityEngine.UI.Text>().text = "¡ JUMPING !";         
+            GameObject.Find("CanvasTextoSalto").transform.GetChild(0).gameObject.GetComponent<UnityEngine.UI.Text>().text = "¡ JUMPING !";
 
 
 
@@ -98,7 +100,7 @@ public class saltoPowerUp : MonoBehaviour
             {
                 if (ListaHijos.transform.GetChild(i).tag == "Changer")
                 {
-                    indiceBloqueASaltar = i-1;
+                    indiceBloqueASaltar = i - 1;
                     break;
                 }
                 else if (i == 5)
@@ -123,13 +125,17 @@ public class saltoPowerUp : MonoBehaviour
 
             //Hace la llamada a gravity control para cada uno de los bloques que hemos saltado
 
-            for (int i = 1; i < indiceBloqueASaltar; i++)
+
+            for (int i = 0; i < indiceBloqueASaltar; i++)
             {
                 TileScript scriptBloque = ListaHijos.transform.GetChild(i).GetComponent<TileScript>();
-                //¡scriptBloque.GameControl();
+                //scriptBloque.GameControl();
                 scriptBloque.GravityControl();
-                tileMang.reSpawnTiles();
 
+                
+                if (ListaHijos.transform.childCount < 5)
+                    tileMang.reSpawnTiles();
+                
             }
 
 
@@ -141,5 +147,54 @@ public class saltoPowerUp : MonoBehaviour
 
     }
 
-    public bool getJumpState(){return this.saltando;}
+
+    public void checkDestruirPowerUp()
+    {
+
+        scirp ScriptPersonaje = player.GetComponent<scirp>();
+        Debug.Log(ScriptPersonaje.getDirection());
+
+        if (!saltando)
+        {
+            if (ScriptPersonaje.getDirection().x == 1.0f)
+            {
+                if (player.transform.position.x >= transform.position.x + 1)
+                    Destroy(gameObject);
+            }
+            else if (ScriptPersonaje.getDirection().y == 1.0f)
+            {
+                if (player.transform.position.y >= transform.position.y + 1)
+                    Destroy(gameObject);
+            }
+            else if (ScriptPersonaje.getDirection().z == 1.0f)
+            {
+                if (player.transform.position.z >= transform.position.z + 1)
+                    Destroy(gameObject);
+            }
+            else if (ScriptPersonaje.getDirection().x == -1.0f)
+            {
+                if (player.transform.position.x <= transform.position.x - 1)
+                    Destroy(gameObject);
+            }
+            else if (ScriptPersonaje.getDirection().y == -1.0f)
+            {
+                if (player.transform.position.y <= transform.position.y - 1)
+                    Destroy(gameObject);
+            }
+            else if (ScriptPersonaje.getDirection().z == -1.0f)
+            {
+                if (player.transform.position.z <= transform.position.z - 1)
+                    Destroy(gameObject);
+            }
+        }
+    }
+
+
+
+
+
+
+
+    public bool getJumpState() { return this.saltando; }
 }
+

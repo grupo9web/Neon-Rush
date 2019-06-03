@@ -203,7 +203,7 @@ public class generalManager : MonoBehaviour
         //mode["Znegativa2"].setCollindantModes(mode["dirYpositiva"]);    // mal
 
         mode["Znegativa3"].setCollindantModes(mode["dirYnegativa"]);    // bien
-        mode["Znegativa3"].setCollindantModes(mode["dirYpositiva"]);    // bien
+        //mode["Znegativa3"].setCollindantModes(mode["dirYpositiva"]);    // bien
 
 
 
@@ -216,7 +216,7 @@ public class generalManager : MonoBehaviour
         //mode["Ynegativa2"].setCollindantModes(mode["dirYnegativa"]);    // mal
 
         mode["Ynegativa3"].setCollindantModes(mode["dirYnegativa"]);    // bien
-        mode["Ynegativa3"].setCollindantModes(mode["dirZpositiva"]);    // mal
+        mode["Ynegativa3"].setCollindantModes(mode["dirZpositiva"]);    // bien
 
 
 
@@ -232,7 +232,7 @@ public class generalManager : MonoBehaviour
 
     public void changeStageMode(string key)
     {
-        tileManager.updateStageMode(key);
+        //tileManager.updateStageMode(key);
         player.updateStageMode(key);
     }
 

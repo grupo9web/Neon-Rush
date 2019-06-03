@@ -10,7 +10,7 @@ public class velocidadPowerUp : MonoBehaviour
     bool activo = false;
     float tiempo;
 
-    public float velocidadAAplicar = 2.0f;
+    //public float velocidadAAplicar = 2.0f;
     public float tiempoDuracion = 5.0f;
 
     private float velocidadNormalPersonaje;
@@ -28,7 +28,7 @@ public class velocidadPowerUp : MonoBehaviour
     {
         if (activo)
         {
-            ScriptPersonaje.speed = velocidadAAplicar;
+            ScriptPersonaje.speed = velocidadNormalPersonaje - 1;
             gameObject.GetComponent<CapsuleCollider>().enabled = false;
             tiempo += Time.deltaTime;
 
@@ -56,7 +56,7 @@ public class velocidadPowerUp : MonoBehaviour
             GameObject.Find("CanvasTextoSalto").transform.GetChild(0).gameObject.GetComponent<UnityEngine.UI.Text>().text = "¡ SLOW DOWN !";
 
             gameObject.GetComponent<Renderer>().enabled = false;
-            velocidadNormalPersonaje = ScriptPersonaje.speedBase;
+            velocidadNormalPersonaje = ScriptPersonaje.speed;
             activo = true;
         }
     }

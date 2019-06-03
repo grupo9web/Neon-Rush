@@ -22,6 +22,8 @@ public class TileScript : generalManager
     private Vector3 axisFacing;
 
     private tileManagerMode stageMode;
+
+    [SerializeField]
     private string modeChanger = "";                                             // Cada tile camChanger determina en qué sentido se actualiza el mundo
 
     private bool landTile;                                                       // Marcamos si el bloque es donde aterriza la bola después powerUp del salto
@@ -78,7 +80,6 @@ public class TileScript : generalManager
 
     public void GameControl()
     {
-
         //Generamos una nueva plataforma
         instanceOfB.Spawner();
         //Actualizamos la puntuación
@@ -93,6 +94,12 @@ public class TileScript : generalManager
 
         GetComponent<Rigidbody>().useGravity = true;
         GetComponent<Rigidbody>().isKinematic = false;
+
+        GameObject tileQuitado;
+
+        GameObject.Find("TileManager").GetComponent<TileManager>().colaTilesActivos.TryDequeue(out tileQuitado);
+
+
 
         Destroy(this.gameObject, 1);
     }

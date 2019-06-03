@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -22,21 +23,33 @@ public class TileManager : generalManager
 
 
     public int index = 0;                       // Esto era para ver el número de bloque y renombrarlo, da un poco igual
+    [SerializeField]
     public int counter = 0;                     // Cada doce se genera un camChanger
 
     private tileManagerMode stageMode;          // Ref. para pillar los valores del mundo
 
     public Texture[] cosmicTex;
 
+    
+    public ConcurrentQueue<GameObject> colaTilesActivos;
+
+    bool semaforoCutre = false;
+
 
     // Start is called before the first frame update
     void Start()
     {
+
+        colaTilesActivos = new ConcurrentQueue<GameObject>();
+
         if (mode.ContainsKey("dirZpositiva"))
             stageMode = mode["dirZpositiva"];
 
         for(int i = 0; i < 5; i++) Spawner();
 
+        semaforoCutre = false;
+
+        
 
         //tipo = platType.basic;
     }
@@ -70,6 +83,11 @@ public class TileManager : generalManager
 
     public void Spawner(){
 
+        print("Hola");
+
+        while (semaforoCutre == true);
+
+        semaforoCutre = true;
 
         int rndPrefab = Random.Range(0, tilePrefabList.Length);
         
@@ -231,11 +249,12 @@ public class TileManager : generalManager
             currentTile.GetComponent<TileScript>().setAttachIndex(rnd);
 
 
-
+            
             //Con un 10% de probabilidad spawneamos el power up y nunca en el bloque en el que caemos
             if (Random.Range(0.0f, 1.0f) <= 0.1f && !currentTile.GetComponent<TileScript>().getLandTile())
             {
                 int aleatorio = Random.Range(0, 2);
+                aleatorio = 1;
                 if (aleatorio == 0) //PowerUp Salto
                 {
                     GameObject powerUP = Instantiate(listaPowerUps[0], currentTile.transform.GetChild(9).transform.position, currentTile.transform.GetChild(9).transform.rotation);
@@ -248,7 +267,8 @@ public class TileManager : generalManager
                     Instantiate(listaPowerUps[1], currentTile.transform.GetChild(9).transform.position, currentTile.transform.GetChild(9).transform.rotation);
                 }
             }
-
+            
+            
         } 
         else if (counter >= 8)
         {
@@ -304,6 +324,9 @@ public class TileManager : generalManager
         //currentTile.transform.SetParent(GameObject.Find("ListaHijos").transform);
         currentTile.transform.SetParent(GameObject.Find("ListaHijos").transform);
 
+        colaTilesActivos.Enqueue(currentTile);
+
+        semaforoCutre = false;
 
     }
 

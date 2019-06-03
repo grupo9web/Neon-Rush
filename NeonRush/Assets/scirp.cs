@@ -14,6 +14,7 @@ public class scirp : generalManager
     public float speed;
     public float speedBase;
     public float score = 0;
+    public float incrementoVelocidad = 0.001f;
 
     private saltoPowerUp auxSaltoScript;
 
@@ -27,6 +28,8 @@ public class scirp : generalManager
 
     private Camera cam;                         // Ref. a cámara
     private GameObject pivot;                   // Ref. a pivot que recibe la nueva posición a la que debe ir la cámara
+
+    
 
     #endregion
 
@@ -55,7 +58,7 @@ public class scirp : generalManager
         Vector3 playerHeightPos = this.gameObject.transform.position;
         Vector3 referencePosition = GameObject.Find("ListaHijos").transform.GetChild(1).transform.position;
 
-             
+        speed = speed + incrementoVelocidad;
 
         /*/
         if (gravedad.x == -9.8f || gravedad.y == -9.8f || gravedad.z == -9.8f || gravedad.y == -9.81f){
@@ -90,13 +93,15 @@ public class scirp : generalManager
         } 
         */
 
+        
+        
         //Soy retrasado y se podia condensar en esto:
-         if(Vector3.Distance(playerHeightPos, referencePosition) > 10f) {
+         if(Vector3.Distance(playerHeightPos, referencePosition) > 15f) {
             SceneManager.LoadScene("SampleScene");
             Physics.gravity = new Vector3(0, -9.8f, 0);
         }
-
-
+        
+        
 
 
 
@@ -171,7 +176,10 @@ public class scirp : generalManager
 
 
 
-
+    public Vector3 getDirection()
+    {
+        return this.direccion;
+    }
 
 
 
