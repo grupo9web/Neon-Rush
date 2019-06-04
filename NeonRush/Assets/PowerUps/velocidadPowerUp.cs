@@ -32,11 +32,13 @@ public class velocidadPowerUp : MonoBehaviour
             gameObject.GetComponent<CapsuleCollider>().enabled = false;
             tiempo += Time.deltaTime;
 
+            GameObject.Find("Player").GetComponent<scirp>().velocidadReducida = true;
             //Duracion total del powerup
-            if(tiempo >= tiempoDuracion)
+            if (tiempo >= tiempoDuracion)
             {
                 activo = false;
                 ScriptPersonaje.speed = velocidadNormalPersonaje;
+                GameObject.Find("Player").GetComponent<scirp>().velocidadReducida = false;
                 GameObject.Find("CanvasTextoSalto").transform.GetChild(0).gameObject.SetActive(false);
                 Destroy(gameObject);
             }
@@ -56,8 +58,10 @@ public class velocidadPowerUp : MonoBehaviour
             GameObject.Find("CanvasTextoSalto").transform.GetChild(0).gameObject.GetComponent<UnityEngine.UI.Text>().text = "¡ SLOW DOWN !";
 
             gameObject.GetComponent<Renderer>().enabled = false;
-            velocidadNormalPersonaje = ScriptPersonaje.speed;
+            velocidadNormalPersonaje = ScriptPersonaje.speedAux;
             activo = true;
+
+            
         }
     }
 }

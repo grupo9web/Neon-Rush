@@ -12,7 +12,7 @@ public class scirp : generalManager
     private bool updateWorld = false;           // AL cambiar de modo actualizar valores
 
     public float speed;
-    public float speedBase;
+    public float speedAux;
     public float score = 0;
     public float incrementoVelocidad = 0.001f;
 
@@ -29,7 +29,11 @@ public class scirp : generalManager
     private Camera cam;                         // Ref. a cámara
     private GameObject pivot;                   // Ref. a pivot que recibe la nueva posición a la que debe ir la cámara
 
-    
+
+    public bool velocidadReducida = false;
+
+   
+
 
     #endregion
 
@@ -45,7 +49,7 @@ public class scirp : generalManager
 
         setWorldSpeed(1.0f);
 
-        speedBase = speed;
+        
 
         //Actualizamos el txt de la puntuación
         setScoretxt();
@@ -59,6 +63,12 @@ public class scirp : generalManager
         Vector3 referencePosition = GameObject.Find("ListaHijos").transform.GetChild(1).transform.position;
 
         speed = speed + incrementoVelocidad;
+
+
+        if (!velocidadReducida)
+        {
+            speedAux = speed;
+        }
 
         /*/
         if (gravedad.x == -9.8f || gravedad.y == -9.8f || gravedad.z == -9.8f || gravedad.y == -9.81f){
@@ -180,8 +190,6 @@ public class scirp : generalManager
     {
         return this.direccion;
     }
-
-
 
 }
 

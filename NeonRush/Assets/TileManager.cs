@@ -254,7 +254,7 @@ public class TileManager : generalManager
             if (Random.Range(0.0f, 1.0f) <= 0.1f && !currentTile.GetComponent<TileScript>().getLandTile())
             {
                 int aleatorio = Random.Range(0, 2);
-                aleatorio = 1;
+                //aleatorio = 1;
                 if (aleatorio == 0) //PowerUp Salto
                 {
                     GameObject powerUP = Instantiate(listaPowerUps[0], currentTile.transform.GetChild(9).transform.position, currentTile.transform.GetChild(9).transform.rotation);
@@ -264,7 +264,8 @@ public class TileManager : generalManager
                 }
                 else //PowerUp disminuir velocidad
                 {
-                    Instantiate(listaPowerUps[1], currentTile.transform.GetChild(9).transform.position, currentTile.transform.GetChild(9).transform.rotation);
+                    if (GameObject.Find("Player").GetComponent<scirp>().velocidadReducida == false)
+                        Instantiate(listaPowerUps[1], currentTile.transform.GetChild(9).transform.position, currentTile.transform.GetChild(9).transform.rotation);
                 }
             }
             
