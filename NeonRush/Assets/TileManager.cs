@@ -28,9 +28,9 @@ public class TileManager : generalManager
 
     private tileManagerMode stageMode;          // Ref. para pillar los valores del mundo
 
-    public Texture[] cosmicTex;
+    private tileGenerator tileGen;              // Ref. al tileGenerator
+    private CoroutineWithData coroutineGO;      // Ref. a la clase anexa de corrutinas para acceder al valor devuelto
 
-    
     public ConcurrentQueue<GameObject> colaTilesActivos;
 
     bool semaforoCutre = false;
@@ -39,8 +39,8 @@ public class TileManager : generalManager
     // Start is called before the first frame update
     void Start()
     {
-
         colaTilesActivos = new ConcurrentQueue<GameObject>();
+        tileGen = gameObject.GetComponent<tileGenerator>();
 
         if (mode.ContainsKey("dirZpositiva"))
             stageMode = mode["dirZpositiva"];
@@ -49,9 +49,8 @@ public class TileManager : generalManager
 
         semaforoCutre = false;
 
-        
+        isFirst = false;
 
-        //tipo = platType.basic;
     }
 
 
@@ -230,10 +229,19 @@ public class TileManager : generalManager
 
             // AL generar varias de golpe obviamos la caída y las generamos en su sitio directamente
             if (isFirst)
-                currentTile = (GameObject)Instantiate(tilesQue.Dequeue(), posOriginInsta, Quaternion.Euler(stageMode.getBO()));
-            else
-                currentTile = (GameObject)Instantiate(tilesQue.Dequeue(), posOrigin, Quaternion.Euler(stageMode.getBO()));
+            {
+                coroutineGO = new CoroutineWithData(this, tileGen.BuildL(posOriginInsta, stageMode));
+                currentTile = (GameObject)coroutineGO.result;
 
+                //currentTile = (GameObject)Instantiate(tilesQue.Dequeue(), posOriginInsta, Quaternion.Euler(stageMode.getBO()));
+            }
+            else
+            {
+                coroutineGO = new CoroutineWithData(this, tileGen.BuildL(posOriginInsta, stageMode));
+                currentTile = (GameObject)coroutineGO.result;
+
+                //currentTile = (GameObject)Instantiate(tilesQue.Dequeue(), posOrigin, Quaternion.Euler(stageMode.getBO()));
+            }
 
             //
             currentTile.name = "Tile " + index;
@@ -247,7 +255,7 @@ public class TileManager : generalManager
             currentTile.GetComponent<TileScript>().setAttachIndex(rnd);
 
 
-            
+            /* 
             //Con un 10% de probabilidad spawneamos el power up y nunca en el bloque en el que caemos
             if (Random.Range(0.0f, 1.0f) <= 0.1f && !currentTile.GetComponent<TileScript>().getLandTile())
             {
@@ -267,7 +275,7 @@ public class TileManager : generalManager
                 }
             }
             
-            
+            */
         } 
         else if (counter >= 8)
         {
@@ -281,7 +289,10 @@ public class TileManager : generalManager
                 attachPos = 3;
                 Vector3 posOrigin = currentTile.transform.GetChild(attachPos).position /* + new Vector3(0.0f, 4.0f, 0.0f)*/;
 
-                currentTile = (GameObject)Instantiate(tilesQue.Dequeue(), posOrigin, Quaternion.Euler(stageMode.getCollindantModes()[0].getBO()));
+                coroutineGO = new CoroutineWithData(this, tileGen.BuildL(posOrigin, stageMode.getCollindantModes()[0]));
+                currentTile = (GameObject)coroutineGO.result;
+
+                //currentTile = (GameObject)Instantiate(tilesQue.Dequeue(), posOrigin, Quaternion.Euler(stageMode.getCollindantModes()[0].getBO()));
                 currentTile.GetComponent<TileScript>().setMode(stageMode.getCollindantModes()[0].getNameAndKey());
                 updateStageMode(stageMode.getCollindantModes()[0].getNameAndKey());
 
@@ -295,13 +306,19 @@ public class TileManager : generalManager
 
                 if (attachPos == 3)
                 {
-                    currentTile = (GameObject)Instantiate(tilesQue.Dequeue(), posOrigin, Quaternion.Euler(stageMode.getCollindantModes()[0].getBO()));
+                    coroutineGO = new CoroutineWithData(this, tileGen.BuildL(posOrigin, stageMode.getCollindantModes()[0]));
+                    currentTile = (GameObject)coroutineGO.result;
+
+                    //currentTile = (GameObject)Instantiate(tilesQue.Dequeue(), posOrigin, Quaternion.Euler(stageMode.getCollindantModes()[0].getBO()));
                     currentTile.GetComponent<TileScript>().setMode(stageMode.getCollindantModes()[0].getNameAndKey());
                     updateStageMode(stageMode.getCollindantModes()[0].getNameAndKey());
                 }
                 else
                 {
-                    currentTile = (GameObject)Instantiate(tilesQue.Dequeue(), posOrigin, Quaternion.Euler(stageMode.getCollindantModes()[1].getBO()));
+                    coroutineGO = new CoroutineWithData(this, tileGen.BuildL(posOrigin, stageMode.getCollindantModes()[1]));
+                    currentTile = (GameObject)coroutineGO.result;
+
+                    //currentTile = (GameObject)Instantiate(tilesQue.Dequeue(), posOrigin, Quaternion.Euler(stageMode.getCollindantModes()[1].getBO()));
                     currentTile.GetComponent<TileScript>().setMode(stageMode.getCollindantModes()[1].getNameAndKey());
                     updateStageMode(stageMode.getCollindantModes()[1].getNameAndKey());
                 }
