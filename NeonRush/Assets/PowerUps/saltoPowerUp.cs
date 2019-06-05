@@ -12,6 +12,11 @@ public class saltoPowerUp : MonoBehaviour
 
     Vector3 posicionSalto;
 
+
+    //Efectos de sonido
+    public AudioClip efectoSonidoSalto;
+    AudioSource audioSourcePowerUP;
+
     //float t;
 
     Vector3 startPosition;
@@ -32,6 +37,8 @@ public class saltoPowerUp : MonoBehaviour
     {
         tileMang = GameObject.Find("TileManager").GetComponent<TileManager>();
         player = GameObject.Find("Player");
+        audioSourcePowerUP = GetComponent<AudioSource>();
+
     }
     // Update is called once per frame
     void Update()
@@ -83,6 +90,12 @@ public class saltoPowerUp : MonoBehaviour
         //Si el jugador choca con el PowerUp
         if (col.gameObject.name == "Player")
         {
+
+
+            //Lanzamos el sonido de salto
+            audioSourcePowerUP.clip = efectoSonidoSalto;
+            audioSourcePowerUP.Play();
+
 
             //Activa el texto de salto
             GameObject.Find("CanvasTextoSalto").transform.GetChild(0).gameObject.SetActive(true);

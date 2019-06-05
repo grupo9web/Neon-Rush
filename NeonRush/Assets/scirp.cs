@@ -15,7 +15,7 @@ public class scirp : generalManager
     public float speedAux;
     public float score = 0;
     public float incrementoVelocidad = 0.001f;
-     float timeLeft = 2.0f;
+    float timeLeft = 2.0f;
 
     private saltoPowerUp auxSaltoScript;
 
@@ -30,11 +30,17 @@ public class scirp : generalManager
     private Camera cam;                         // Ref. a cámara
     private GameObject pivot;                   // Ref. a pivot que recibe la nueva posición a la que debe ir la cámara
 
+    //Efectos de sonido
+    public AudioClip efectoSonidoMuerte;
+    public AudioClip efectoSonidoCambioCamara;
+    AudioSource audioSourceJugador;
+
+
 
     public bool velocidadReducida = false;
     float scoreTxtCount = 5.0f;
 
-   
+    bool noReproducido = true;
 
 
     #endregion
@@ -51,7 +57,9 @@ public class scirp : generalManager
 
         setWorldSpeed(1.0f);
 
-        
+
+        audioSourceJugador = GetComponent<AudioSource>();
+
 
         //Actualizamos el txt de la puntuación
         setScoretxt();
@@ -65,9 +73,12 @@ public class scirp : generalManager
         Vector3 referencePosition = GameObject.Find("ListaHijos").transform.GetChild(1).transform.position;
 
         speed = speed + incrementoVelocidad;
-        
+
         Debug.Log("speed: " + speed);
+
+
         
+
         /*/
         if (speed > 4.02f  && scoreTxtCount == 0) {
             Debug.Log("chispitas rompe el saque y 40 iguales");
@@ -95,13 +106,14 @@ public class scirp : generalManager
             scoreTxtCount++;         
         }
         */
-        if (Mathf.FloorToInt(speed) % scoreTxtCount == 0){
+        if (Mathf.FloorToInt(speed) % scoreTxtCount == 0)
+        {
             //Activa el texto de salto
             GameObject.Find("CanvasTextoSalto").transform.GetChild(0).gameObject.SetActive(true);
             GameObject.Find("CanvasTextoSalto").transform.GetChild(0).gameObject.GetComponent<UnityEngine.UI.Text>().text = "Speed LVL: " + Mathf.Round(speed);
             StartCoroutine(Example());
             timeLeft = 2.0f;
-            scoreTxtCount++;        
+            scoreTxtCount++;
         }
 
         if (!velocidadReducida)
@@ -142,15 +154,28 @@ public class scirp : generalManager
         } 
         */
 
-        
-        
+
+        if (Vector3.Distance(playerHeightPos, referencePosition) > 15f && noReproducido)
+        {
+            //Sonido muerte
+            audioSourceJugador.clip = efectoSonidoMuerte;
+            audioSourceJugador.Play();
+            noReproducido = false;
+
+            GameObject.Find("CanvasTextoSalto").transform.GetChild(0).gameObject.SetActive(true);
+            GameObject.Find("CanvasTextoSalto").transform.GetChild(0).gameObject.GetComponent<UnityEngine.UI.Text>().text = "¡ GAME OVER !";
+
+        }
+
         //Soy retrasado y se podia condensar en esto:
-         if(Vector3.Distance(playerHeightPos, referencePosition) > 15f) {
+        if (Vector3.Distance(playerHeightPos, referencePosition) > 30f)
+        {
+            noReproducido = true;
             SceneManager.LoadScene("SampleScene");
             Physics.gravity = new Vector3(0, -9.8f, 0);
         }
-        
-        
+
+
 
 
 
@@ -178,7 +203,7 @@ public class scirp : generalManager
             {
                 direccion = stageMode.getDC()[0];
                 pivot.transform.RotateAround(transform.position, stageMode.getCA(), 90.0f);
-            } 
+            }
 
         }
 
@@ -214,7 +239,7 @@ public class scirp : generalManager
     }
 
 
-     IEnumerator Example()
+    IEnumerator Example()
     {
         //print(Time.time);
         yield return new WaitForSeconds(2);
@@ -223,9 +248,17 @@ public class scirp : generalManager
     }
 
 
-    public void updateStageMode(string key) {
+    public void updateStageMode(string key)
+    {
+        //Efecto sonido cambio de camara
+        audioSourceJugador.clip = efectoSonidoCambioCamara;
+        audioSourceJugador.Play();
+
+
+
         //Debug.Log("El jauja del scirp");
         stageMode = mode[key];
+        print("Debugito");
         updateWorld = true;
     }
 
