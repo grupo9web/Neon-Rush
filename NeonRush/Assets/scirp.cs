@@ -158,7 +158,10 @@ public class scirp : generalManager
             {
                 UIManagerInGame.Instance.OnDeath(score.ToString());
                 string leaderBoard = PlayerPrefs.GetString("LEADERBOARD");
-                leaderBoard += "|" + PlayerPrefs.GetString("USERNAME") + "%" + score.ToString();
+                if(leaderBoard != "")
+                    leaderBoard += "|" + PlayerPrefs.GetString("USERNAME") + "%" + score.ToString();
+                else
+                    leaderBoard += PlayerPrefs.GetString("USERNAME") + "%" + score.ToString();
                 PlayerPrefs.SetString("LEADERBOARD", leaderBoard);
                 Debug.Log("La tabla esta así: " + leaderBoard);
                 Debug.Log(PlayerPrefs.GetString("LEADERBOARD"));

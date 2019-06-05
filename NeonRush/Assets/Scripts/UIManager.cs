@@ -338,7 +338,12 @@ public class UIManager : MonoBehaviour
         string finalLeaders = "";
 
         // Recorremos el array de jugadores en la lista de marcadores y los metemos en la lista de jugadores
-        for(int i = 0; i < leadersArray.Length; i++)
+        Debug.Log(leadersArray[0]);
+
+        if (leadersArray[0] == "")
+            return;
+
+        for (int i = 0; i < leadersArray.Length; i++)
         {
             string[] currentLeader = leadersArray[i].Split('%');
             playersList.Add(new Player(currentLeader[0], int.Parse(currentLeader[1])));

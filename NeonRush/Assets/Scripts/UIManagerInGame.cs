@@ -72,7 +72,8 @@ public class UIManagerInGame : MonoBehaviour
     {
         gameOverMenu.SetActive(true);
         gameOverMenu.GetComponentsInChildren<TMPro.TextMeshProUGUI>()[1].text += score;
-        gameOverMenu.GetComponentsInChildren<TMPro.TextMeshProUGUI>()[2].text += " " + PlayerPrefs.GetString("LEADERBOARD").Split('|')[0].Split('%')[0] + " - " +
+        if(PlayerPrefs.GetString("LEADERBOARD") != "")
+            gameOverMenu.GetComponentsInChildren<TMPro.TextMeshProUGUI>()[2].text += " " + PlayerPrefs.GetString("LEADERBOARD").Split('|')[0].Split('%')[0] + " - " +
                                                                                  PlayerPrefs.GetString("LEADERBOARD").Split('|')[0].Split('%')[1].ToString();
 
     }
