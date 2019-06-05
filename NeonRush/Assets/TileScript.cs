@@ -39,7 +39,7 @@ public class TileScript : generalManager
 
         this.landedAxis = 1;                    // Se parará en el eje Y
 
-        landedPos = parentTile.transform.GetChild(attachIndex).transform.position;
+        //landedPos = parentTile.transform.GetChild(attachIndex).transform.position;
     }
 
 
@@ -47,6 +47,7 @@ public class TileScript : generalManager
     // Update is called once per frame
     void FixedUpdate()
     {
+        /*
         if (!landed && Vector3.Distance(transform.position, landedPos) > 0.001f)
             transform.position = Vector3.MoveTowards(transform.position, landedPos, (8 * getWS()) * Time.fixedDeltaTime);
 
@@ -58,6 +59,7 @@ public class TileScript : generalManager
 
         if (transform.position[landedAxis] == landedPos[landedAxis])
             landed = true;
+            */
     }
 
 

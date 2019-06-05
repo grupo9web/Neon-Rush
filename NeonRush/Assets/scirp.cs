@@ -15,6 +15,7 @@ public class scirp : generalManager
     public float speedAux;
     public float score = 0;
     public float incrementoVelocidad = 0.001f;
+     float timeLeft = 2.0f;
 
     private saltoPowerUp auxSaltoScript;
 
@@ -31,6 +32,7 @@ public class scirp : generalManager
 
 
     public bool velocidadReducida = false;
+    float scoreTxtCount = 5.0f;
 
    
 
@@ -63,7 +65,44 @@ public class scirp : generalManager
         Vector3 referencePosition = GameObject.Find("ListaHijos").transform.GetChild(1).transform.position;
 
         speed = speed + incrementoVelocidad;
-
+        
+        Debug.Log("speed: " + speed);
+        
+        /*/
+        if (speed > 4.02f  && scoreTxtCount == 0) {
+            Debug.Log("chispitas rompe el saque y 40 iguales");
+            //Activa el texto de salto
+            GameObject.Find("CanvasTextoSalto").transform.GetChild(0).gameObject.SetActive(true);
+            GameObject.Find("CanvasTextoSalto").transform.GetChild(0).gameObject.GetComponent<UnityEngine.UI.Text>().text = "Speed LVL: " + Mathf.Round(speed);
+            StartCoroutine(Example());
+            timeLeft = 2.0f;
+            scoreTxtCount++;            
+        }else if (speed > 4.08 && scoreTxtCount == 1){
+            Debug.Log("warwinka");
+            //Activa el texto de salto
+            GameObject.Find("CanvasTextoSalto").transform.GetChild(0).gameObject.SetActive(true);
+            GameObject.Find("CanvasTextoSalto").transform.GetChild(0).gameObject.GetComponent<UnityEngine.UI.Text>().text = "Speed LVL: " + Mathf.Round(speed);
+            StartCoroutine(Example());
+            timeLeft = 2.0f;
+            scoreTxtCount++;         
+        }else if (speed > 4.12 && scoreTxtCount == 2){
+            Debug.Log("juan pedro comitea y el codigo perrea");
+            //Activa el texto de salto
+            GameObject.Find("CanvasTextoSalto").transform.GetChild(0).gameObject.SetActive(true);
+            GameObject.Find("CanvasTextoSalto").transform.GetChild(0).gameObject.GetComponent<UnityEngine.UI.Text>().text = "Speed LVL: " + Mathf.Round(speed);
+            StartCoroutine(Example());
+            timeLeft = 2.0f;
+            scoreTxtCount++;         
+        }
+        */
+        if (Mathf.FloorToInt(speed) % scoreTxtCount == 0){
+            //Activa el texto de salto
+            GameObject.Find("CanvasTextoSalto").transform.GetChild(0).gameObject.SetActive(true);
+            GameObject.Find("CanvasTextoSalto").transform.GetChild(0).gameObject.GetComponent<UnityEngine.UI.Text>().text = "Speed LVL: " + Mathf.Round(speed);
+            StartCoroutine(Example());
+            timeLeft = 2.0f;
+            scoreTxtCount++;        
+        }
 
         if (!velocidadReducida)
         {
@@ -164,8 +203,7 @@ public class scirp : generalManager
 
     public void ScoreUpdate()
     {
-        score += 10 * speed;
-
+        score += 10;
         //Actualizamos el txt de la puntuación
         setScoretxt();
     }
@@ -176,6 +214,13 @@ public class scirp : generalManager
     }
 
 
+     IEnumerator Example()
+    {
+        //print(Time.time);
+        yield return new WaitForSeconds(2);
+        GameObject.Find("CanvasTextoSalto").transform.GetChild(0).gameObject.SetActive(false);
+        //print(Time.time);
+    }
 
 
     public void updateStageMode(string key) {
