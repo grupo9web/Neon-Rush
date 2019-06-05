@@ -60,7 +60,7 @@ public class UIManager : MonoBehaviour
             setLanguage(languageIndex);
         }
         
-        settingsMenu.GetComponentsInChildren<Text>()[2].text = languages[languageIndex];
+        settingsMenu.GetComponentsInChildren<TMPro.TextMeshProUGUI>()[2].text = languages[languageIndex];
     }
     private void setUserNameStart()
     {
@@ -82,106 +82,106 @@ public class UIManager : MonoBehaviour
             case 0: //ESPAÑOL
 
                 // Set Name Menu
-                setNameMenu.GetComponentsInChildren<Text>()[0].text = "¡Bienvenid@ a Neon Rush!";
-                setNameMenu.GetComponentsInChildren<Text>()[1].text = "INTRODUCE TU NOMBRE";
-                setNameMenu.GetComponentsInChildren<Text>()[2].text = "Tu nombre aquí...";
-                setNameMenu.GetComponentsInChildren<Text>()[4].text = "*Si no pones nada se generará un nombre aleatorio*";
+                setNameMenu.GetComponentsInChildren<TMPro.TextMeshProUGUI>()[0].text = "¡Bienvenid@ a Neon Rush!";
+                setNameMenu.GetComponentsInChildren<TMPro.TextMeshProUGUI>()[1].text = "INTRODUCE TU NOMBRE";
+                setNameMenu.GetComponentsInChildren<TMPro.TextMeshProUGUI>()[2].text = "*Si no pones nada se generará un nombre aleatorio*";
+                setNameMenu.GetComponentsInChildren<Text>()[0].text = "Tu nombre aquí...";
 
                 // Confirm Anon Menu
-                confirmAnon.GetComponentsInChildren<Text>()[0].text = "¿Seguro que no quieres usar un nombre?";
-                confirmAnon.GetComponentsInChildren<Text>()[1].text = "VOLVER";
-                confirmAnon.GetComponentsInChildren<Text>()[2].text = "CONTINUAR";
+                confirmAnon.GetComponentsInChildren<TMPro.TextMeshProUGUI>()[0].text = "¿Seguro que no quieres usar un nombre?";
+                confirmAnon.GetComponentsInChildren<TMPro.TextMeshProUGUI>()[1].text = "VOLVER";
+                confirmAnon.GetComponentsInChildren<TMPro.TextMeshProUGUI>()[2].text = "CONTINUAR";
 
                 // Main Menu
-                mainMenu.GetComponentsInChildren<Text>()[0].text = "NUEVA PARTIDA";
-                mainMenu.GetComponentsInChildren<Text>()[1].text = "AJUSTES";
-                mainMenu.GetComponentsInChildren<Text>()[2].text = "MARCADORES";
-                mainMenu.GetComponentsInChildren<Text>()[3].text = "CRÉDITOS";
+                mainMenu.GetComponentsInChildren<TMPro.TextMeshProUGUI>()[0].text = "NUEVA PARTIDA";
+                mainMenu.GetComponentsInChildren<TMPro.TextMeshProUGUI>()[1].text = "AJUSTES";
+                mainMenu.GetComponentsInChildren<TMPro.TextMeshProUGUI>()[2].text = "MARCADORES";
+                mainMenu.GetComponentsInChildren<TMPro.TextMeshProUGUI>()[3].text = "CRÉDITOS";
 
                 // Settings Menu
-                settingsMenu.GetComponentsInChildren<Text>()[0].text = "AJUSTES";
-                settingsMenu.GetComponentsInChildren<Text>()[1].text = "IDIOMA";
-                settingsMenu.GetComponentsInChildren<Text>()[3].text = "VOLUMEN";
-                settingsMenu.GetComponentsInChildren<Text>()[4].text = "CAMBIAR NOMBRE";
-                settingsMenu.GetComponentsInChildren<Text>()[5].text = "VOLVER";
+                settingsMenu.GetComponentsInChildren<TMPro.TextMeshProUGUI>()[0].text = "AJUSTES";
+                settingsMenu.GetComponentsInChildren<TMPro.TextMeshProUGUI>()[1].text = "IDIOMA";
+                settingsMenu.GetComponentsInChildren<TMPro.TextMeshProUGUI>()[3].text = "VOLUMEN";
+                settingsMenu.GetComponentsInChildren<TMPro.TextMeshProUGUI>()[4].text = "CAMBIAR NOMBRE";
+                settingsMenu.GetComponentsInChildren<TMPro.TextMeshProUGUI>()[5].text = "VOLVER";
 
                 // Leaderboard
-                leaderboardMenu.GetComponentsInChildren<Text>()[0].text = "MARCADORES";
-                leaderboardMenu.GetComponentsInChildren<Text>()[31].text = "VOLVER";
+                leaderboardMenu.GetComponentsInChildren<TMPro.TextMeshProUGUI>()[0].text = "MARCADORES";
+                leaderboardMenu.GetComponentsInChildren<TMPro.TextMeshProUGUI>()[1].text = "VOLVER";
 
                 // Credits Menu
-                creditsMenu.GetComponentsInChildren<Text>()[0].text = "CRÉDITOS";
-                creditsMenu.GetComponentsInChildren<Text>()[5].text = "VOLVER";
+                creditsMenu.GetComponentsInChildren<TMPro.TextMeshProUGUI>()[0].text = "CRÉDITOS";
+                creditsMenu.GetComponentsInChildren<TMPro.TextMeshProUGUI>()[5].text = "VOLVER";
 
                 break;
             case 1: //INGLÉS
 
                 // Set Name Menu
-                setNameMenu.GetComponentsInChildren<Text>()[0].text = "Welcome to Neon Rush!";
-                setNameMenu.GetComponentsInChildren<Text>()[1].text = "ENTER YOUR NAME";
-                setNameMenu.GetComponentsInChildren<Text>()[2].text = "Your name here...";
-                setNameMenu.GetComponentsInChildren<Text>()[4].text = "*If you do not put anything, a random name will be generated*";
+                setNameMenu.GetComponentsInChildren<TMPro.TextMeshProUGUI>()[0].text = "Welcome to Neon Rush!";
+                setNameMenu.GetComponentsInChildren<TMPro.TextMeshProUGUI>()[1].text = "ENTER YOUR NAME";
+                setNameMenu.GetComponentsInChildren<TMPro.TextMeshProUGUI>()[2].text = "*If you do not put anything, a random name will be generated*";
+                setNameMenu.GetComponentsInChildren<Text>()[0].text = "Your name here...";
 
                 // Confirm Anon Menu
-                confirmAnon.GetComponentsInChildren<Text>()[0].text = "Are you sure you do not want to use a name?";
-                confirmAnon.GetComponentsInChildren<Text>()[1].text = "BACK";
-                confirmAnon.GetComponentsInChildren<Text>()[2].text = "CONTINUE";
+                confirmAnon.GetComponentsInChildren<TMPro.TextMeshProUGUI>()[0].text = "Are you sure you do not want to use a name?";
+                confirmAnon.GetComponentsInChildren<TMPro.TextMeshProUGUI>()[1].text = "BACK";
+                confirmAnon.GetComponentsInChildren<TMPro.TextMeshProUGUI>()[2].text = "CONTINUE";
 
                 // Main Menu
-                mainMenu.GetComponentsInChildren<Text>()[0].text = "NEW GAME";
-                mainMenu.GetComponentsInChildren<Text>()[1].text = "SETTINGS";
-                mainMenu.GetComponentsInChildren<Text>()[2].text = "LEADERBOARD";
-                mainMenu.GetComponentsInChildren<Text>()[3].text = "CREDITS";
+                mainMenu.GetComponentsInChildren<TMPro.TextMeshProUGUI>()[0].text = "NEW GAME";
+                mainMenu.GetComponentsInChildren<TMPro.TextMeshProUGUI>()[1].text = "SETTINGS";
+                mainMenu.GetComponentsInChildren<TMPro.TextMeshProUGUI>()[2].text = "LEADERBOARD";
+                mainMenu.GetComponentsInChildren<TMPro.TextMeshProUGUI>()[3].text = "CREDITS";
 
                 // Settings Menu
-                settingsMenu.GetComponentsInChildren<Text>()[0].text = "SETTINGS";
-                settingsMenu.GetComponentsInChildren<Text>()[1].text = "LANGUAGE";
-                settingsMenu.GetComponentsInChildren<Text>()[3].text = "VOLUME";
-                settingsMenu.GetComponentsInChildren<Text>()[4].text = "CHANGE NAME";
-                settingsMenu.GetComponentsInChildren<Text>()[5].text = "BACK";
+                settingsMenu.GetComponentsInChildren<TMPro.TextMeshProUGUI>()[0].text = "SETTINGS";
+                settingsMenu.GetComponentsInChildren<TMPro.TextMeshProUGUI>()[1].text = "LANGUAGE";
+                settingsMenu.GetComponentsInChildren<TMPro.TextMeshProUGUI>()[3].text = "VOLUME";
+                settingsMenu.GetComponentsInChildren<TMPro.TextMeshProUGUI>()[4].text = "CHANGE NAME";
+                settingsMenu.GetComponentsInChildren<TMPro.TextMeshProUGUI>()[5].text = "BACK";
 
                 // Leaderboard
-                leaderboardMenu.GetComponentsInChildren<Text>()[0].text = "LEADERBOARD";
-                leaderboardMenu.GetComponentsInChildren<Text>()[31].text = "BACK";
+                leaderboardMenu.GetComponentsInChildren<TMPro.TextMeshProUGUI>()[0].text = "LEADERBOARD";
+                leaderboardMenu.GetComponentsInChildren<TMPro.TextMeshProUGUI>()[1].text = "BACK";
 
                 // Credits Menu
-                creditsMenu.GetComponentsInChildren<Text>()[0].text = "CREDITS";
-                creditsMenu.GetComponentsInChildren<Text>()[5].text = "BACK";
+                creditsMenu.GetComponentsInChildren<TMPro.TextMeshProUGUI>()[0].text = "CREDITS";
+                creditsMenu.GetComponentsInChildren<TMPro.TextMeshProUGUI>()[5].text = "BACK";
 
                 break;
             case 2: //FRANCÉS
 
                 // Set Name Menu
-                setNameMenu.GetComponentsInChildren<Text>()[0].text = "Bienvenue dans Neon Rush!";
-                setNameMenu.GetComponentsInChildren<Text>()[1].text = "ENTREZ VOTRE NOM";
-                setNameMenu.GetComponentsInChildren<Text>()[2].text = "Votre nom ici...";
-                setNameMenu.GetComponentsInChildren<Text>()[4].text = "*Si vous ne mettez rien, un nom aléatoire sera généré*";
+                setNameMenu.GetComponentsInChildren<TMPro.TextMeshProUGUI>()[0].text = "Bienvenue dans Neon Rush!";
+                setNameMenu.GetComponentsInChildren<TMPro.TextMeshProUGUI>()[1].text = "ENTREZ VOTRE NOM";
+                setNameMenu.GetComponentsInChildren<TMPro.TextMeshProUGUI>()[2].text = "*Si vous ne mettez rien, un nom aléatoire sera généré*";
+                setNameMenu.GetComponentsInChildren<Text>()[0].text = "Votre nom ici...";
 
                 // Confirm Anon Menu
-                confirmAnon.GetComponentsInChildren<Text>()[0].text = "Êtes-vous sûr de ne pas vouloir utiliser un nom?";
-                confirmAnon.GetComponentsInChildren<Text>()[1].text = "REVENIR";
-                confirmAnon.GetComponentsInChildren<Text>()[2].text = "CONTINUER";
+                confirmAnon.GetComponentsInChildren<TMPro.TextMeshProUGUI>()[0].text = "Êtes-vous sûr de ne pas vouloir utiliser un nom?";
+                confirmAnon.GetComponentsInChildren<TMPro.TextMeshProUGUI>()[1].text = "REVENIR";
+                confirmAnon.GetComponentsInChildren<TMPro.TextMeshProUGUI>()[2].text = "CONTINUER";
 
                 // Main Menu
-                mainMenu.GetComponentsInChildren<Text>()[0].text = "NOUVEAU JEU";
-                mainMenu.GetComponentsInChildren<Text>()[1].text = "AJUSTEMENTS";
-                mainMenu.GetComponentsInChildren<Text>()[2].text = "CLASSEMENT";
-                mainMenu.GetComponentsInChildren<Text>()[3].text = "CRÉDITS";
+                mainMenu.GetComponentsInChildren<TMPro.TextMeshProUGUI>()[0].text = "NOUVEAU JEU";
+                mainMenu.GetComponentsInChildren<TMPro.TextMeshProUGUI>()[1].text = "AJUSTEMENTS";
+                mainMenu.GetComponentsInChildren<TMPro.TextMeshProUGUI>()[2].text = "CLASSEMENT";
+                mainMenu.GetComponentsInChildren<TMPro.TextMeshProUGUI>()[3].text = "CRÉDITS";
 
                 // Settings Menu
-                settingsMenu.GetComponentsInChildren<Text>()[0].text = "AJUSTEMENTS";
-                settingsMenu.GetComponentsInChildren<Text>()[1].text = "LANGAGE";
-                settingsMenu.GetComponentsInChildren<Text>()[3].text = "VOLUME";
-                settingsMenu.GetComponentsInChildren<Text>()[4].text = "REBAPTISER";
-                settingsMenu.GetComponentsInChildren<Text>()[5].text = "REVENIR";
+                settingsMenu.GetComponentsInChildren<TMPro.TextMeshProUGUI>()[0].text = "AJUSTEMENTS";
+                settingsMenu.GetComponentsInChildren<TMPro.TextMeshProUGUI>()[1].text = "LANGAGE";
+                settingsMenu.GetComponentsInChildren<TMPro.TextMeshProUGUI>()[3].text = "VOLUME";
+                settingsMenu.GetComponentsInChildren<TMPro.TextMeshProUGUI>()[4].text = "REBAPTISER";
+                settingsMenu.GetComponentsInChildren<TMPro.TextMeshProUGUI>()[5].text = "REVENIR";
 
                 // Leaderboard
-                leaderboardMenu.GetComponentsInChildren<Text>()[0].text = "CLASSEMENT";
-                leaderboardMenu.GetComponentsInChildren<Text>()[31].text = "REVENIR";
+                leaderboardMenu.GetComponentsInChildren<TMPro.TextMeshProUGUI>()[0].text = "CLASSEMENT";
+                leaderboardMenu.GetComponentsInChildren<TMPro.TextMeshProUGUI>()[1].text = "REVENIR";
 
                 // Credits Menu
-                creditsMenu.GetComponentsInChildren<Text>()[0].text = "CRÉDITS";
-                creditsMenu.GetComponentsInChildren<Text>()[5].text = "REVENIR";
+                creditsMenu.GetComponentsInChildren<TMPro.TextMeshProUGUI>()[0].text = "CRÉDITS";
+                creditsMenu.GetComponentsInChildren<TMPro.TextMeshProUGUI>()[5].text = "REVENIR";
                 break;
             default:
                 break;
@@ -293,7 +293,7 @@ public class UIManager : MonoBehaviour
 
         Debug.Log("El índice de lenguaje es: " + languageIndex);
 
-        settingsMenu.GetComponentsInChildren<Text>()[2].text = languages[languageIndex];
+        settingsMenu.GetComponentsInChildren<TMPro.TextMeshProUGUI>()[2].text = languages[languageIndex];
         PlayerPrefs.SetInt("LANGUAGE", languageIndex);
         setLanguage(languageIndex);
     }
@@ -321,8 +321,8 @@ public class UIManager : MonoBehaviour
             for(int i = 0; i < leaders.Length; i++)
             {
                 string[] currentLeader = leaders[i].Split('%');
-                leaderboardMenu.GetComponentsInChildren<Text>()[i * 3 + 2].text = currentLeader[0];
-                leaderboardMenu.GetComponentsInChildren<Text>()[i * 3 + 3].text = currentLeader[1];
+                leaderboardMenu.GetComponentsInChildren<Text>()[i * 3 + 1].text = currentLeader[0];
+                leaderboardMenu.GetComponentsInChildren<Text>()[i * 3 + 2].text = currentLeader[1];
             }
         }
     }
@@ -365,6 +365,7 @@ public class UIManager : MonoBehaviour
                 if(playersList[i].getPlayerName() == playersList[j].getPlayerName())
                 {
                     playersList.RemoveAt(j);
+                    j--;
                 }
             }
         }
@@ -374,8 +375,6 @@ public class UIManager : MonoBehaviour
         {
             playersList.RemoveAt(playersList.Count - 1);
         }
-
-        Debug.Log(playersList.Count);
 
         // Recorremos la lista y metemos los jugadores en el string de PlayerPrefs
         for (int i = 0; i < playersList.Count; i++)
