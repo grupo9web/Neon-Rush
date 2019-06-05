@@ -1,9 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using UnityEngine.EventSystems;
+using UnityEngine.PostProcessing;
 
 public class scirp : generalManager
 {
@@ -48,13 +48,21 @@ public class scirp : generalManager
     private int language;
     private string preScore;
     private bool scoreSent;
-    
+
+    private PostProcessingProfile profileFinal;
+
+    bool jauja = false;
+
+    float intensidad = 1.0f;
+
     #endregion
 
     void Start()
     {
         language = PlayerPrefs.GetInt("LANGUAGE");
         scoreSent = false;
+        profileFinal = gameObject.GetComponentInChildren<PostProcessingBehaviour>().profile;
+        profileFinal.vignette.Reset();
 
         SetLanguage(language);
 
@@ -85,10 +93,25 @@ public class scirp : generalManager
 
         speed = speed + incrementoVelocidad;
 
-        Debug.Log("speed: " + speed);
+        //Debug.Log("speed: " + speed);
+
+        /*
+        if (jauja)
+        {
+            if (intensidad > 0.005)
+            {
+                intensidad -= 0.005f;
+                //juanpeAtiende[2].vignette.setIntensity(intensidad);
+            }
+            else if (intensidad <= 0.0f)
+            {
+                intensidad = 0.0f;
+                //juanpeAtiende[2].vignette.setIntensity(intensidad);
+            }
 
 
-        
+        }*/
+
 
         /*/
         if (speed > 4.02f  && scoreTxtCount == 0) {
@@ -190,12 +213,13 @@ public class scirp : generalManager
 
 
 
-         if(Vector3.Distance(playerHeightPos, referencePosition) > 15f) {
+        if (Vector3.Distance(playerHeightPos, referencePosition) > 15f)
+        {
             if (!scoreSent)
             {
                 UIManagerInGame.Instance.OnDeath(score.ToString());
                 string leaderBoard = PlayerPrefs.GetString("LEADERBOARD");
-                if(leaderBoard != "")
+                if (leaderBoard != "")
                     leaderBoard += "|" + PlayerPrefs.GetString("USERNAME") + "%" + score.ToString();
                 else
                     leaderBoard += PlayerPrefs.GetString("USERNAME") + "%" + score.ToString();
@@ -205,8 +229,8 @@ public class scirp : generalManager
                 scoreSent = true;
             }
         }
-        
-        
+
+
         if (updateWorld)
         {
             Physics.gravity = stageMode.getGravity();
@@ -246,7 +270,11 @@ public class scirp : generalManager
             cam.transform.LookAt(transform, stageMode.getCA());
         }
         else if (Vector3.Distance(pivot.transform.localPosition, cam.transform.localPosition) < 0.1f)
+        {
+            //cam.GetComponent<PostProcessingBehaviour>().profile = juanpeAtiende[0];
+            profileFinal.motionBlur.enabled = false;
             setWorldSpeed(1.0f);
+        }
 
         //Debug.Log(speed * getWS() + ", " + getWS());
 
@@ -260,11 +288,14 @@ public class scirp : generalManager
     {
         switch (lang)
         {
-            case 0: preScore = "PUNTUACIÓN: ";
+            case 0:
+                preScore = "PUNTUACIÓN: ";
                 break;
-            case 1: preScore = "SCORE: ";
+            case 1:
+                preScore = "SCORE: ";
                 break;
-            case 2: preScore = "SCORE: ";
+            case 2:
+                preScore = "SCORE: ";
                 break;
         }
     }
@@ -282,13 +313,13 @@ public class scirp : generalManager
     }
 
 
-    
+
     public string getScoretxt()
     {
         return score.ToString();
     }
-    
-     IEnumerator Example()
+
+    IEnumerator Example()
     {
         //print(Time.time);
         yield return new WaitForSeconds(2);
@@ -303,6 +334,18 @@ public class scirp : generalManager
         audioSourceJugador.clip = efectoSonidoCambioCamara;
         audioSourceJugador.Play();
 
+        profileFinal.motionBlur.enabled = true;
+
+
+        //cam.GetComponent<PostProcessingBehaviour>().profile = juanpeAtiende[1];
+
+
+        // Ceguera xd
+        /*
+        cam.GetComponent<PostProcessingBehaviour>().profile = juanpeAtiende[2];
+        intensidad = 1.0f;
+        jauja = true;
+        */
 
 
         //Debug.Log("El jauja del scirp");

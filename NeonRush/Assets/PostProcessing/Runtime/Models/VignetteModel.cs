@@ -51,15 +51,16 @@ namespace UnityEngine.PostProcessing
                         mode = Mode.Classic,
                         color = new Color(0f, 0f, 0f, 1f),
                         center = new Vector2(0.5f, 0.5f),
-                        intensity = 0.45f,
-                        smoothness = 0.2f,
+                        intensity = 0.0f,
+                        smoothness = 1.0f,
                         roundness = 1f,
                         mask = null,
                         opacity = 1f,
-                        rounded = false
+                        rounded = true
                     };
                 }
             }
+
         }
 
         [SerializeField]
@@ -72,7 +73,17 @@ namespace UnityEngine.PostProcessing
 
         public override void Reset()
         {
+            //m_Settings.intensity = 1.0f;
             m_Settings = Settings.defaultSettings;
         }
+
+        public void setIntensity(float intensidad)
+        {
+            m_Settings.intensity = intensidad;
+            //m_Settings = Settings.defaultSettings;
+
+        }
+
+
     }
 }

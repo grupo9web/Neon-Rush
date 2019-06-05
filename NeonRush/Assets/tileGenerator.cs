@@ -17,7 +17,10 @@ public class tileGenerator : generalManager
     public tileS Stiles;
  
     private GameObject parent;
-    private GameObject tileElement;   
+    private GameObject tileElement;
+
+    private CoroutineWithData coroutineGO;
+
 
     public void Awake()
     {
@@ -33,9 +36,44 @@ public class tileGenerator : generalManager
         Ttiles.buildT();
         Stiles = new tileS();
         Stiles.buildS();
-        // Resto de piezas  
+        
+    }
+
+
+    public GameObject MasterBuilder(Vector3 origin, tileManagerMode mode, int selector)
+    {
+        switch (selector)
+        {
+            case 0:
+                coroutineGO = new CoroutineWithData(this, BuildS(origin, mode));
+
+                return (GameObject)coroutineGO.result;
+
+            case 1:
+                coroutineGO = new CoroutineWithData(this, BuildL(origin, mode));
+
+                return (GameObject)coroutineGO.result;
+
+            case 2:
+                coroutineGO = new CoroutineWithData(this, BuildBox(origin, mode));
+
+                return (GameObject)coroutineGO.result;
+
+            case 3:
+                coroutineGO = new CoroutineWithData(this, BuildT(origin, mode));
+
+                return (GameObject)coroutineGO.result;
+
+            case 4:
+                coroutineGO = new CoroutineWithData(this, BuildI(origin, mode));
+
+                return (GameObject)coroutineGO.result;
+
+            default: return null;
+        }
 
     }
+
 
 
     // 
