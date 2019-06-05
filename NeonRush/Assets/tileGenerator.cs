@@ -11,6 +11,7 @@ public class tileGenerator : generalManager
     private generalManager genManager;
 
     public tileL Ltiles;
+    public tileI Itiles;
  
     private GameObject parent;
     private GameObject tileElement;   
@@ -20,6 +21,9 @@ public class tileGenerator : generalManager
         genManager = new generalManager();
 
         Ltiles = new tileL();
+        Ltiles.buildL();
+        Itiles = new tileI();
+        Itiles.buildI();
 
         // Resto de piezas
     
@@ -30,7 +34,6 @@ public class tileGenerator : generalManager
     // 
     public IEnumerator BuildL(Vector3 origin, tileManagerMode mode)
     {
-        Ltiles.buildL(origin);
 
         parent = (GameObject)Instantiate(neonTiles[0], Ltiles.tileBricks[0] + origin, Quaternion.Euler(mode.getBO())) as GameObject;
 
@@ -70,6 +73,49 @@ public class tileGenerator : generalManager
         tileElement.transform.localScale = Ltiles.powerUp[1];
 
         Debug.Log("Jauja");
+
+        yield return parent;
+    }
+
+    public IEnumerator BuildI(Vector3 origin, tileManagerMode mode)
+    {
+
+        parent = (GameObject)Instantiate(neonTiles[0], Itiles.tileBricks[0] + origin, Quaternion.Euler(mode.getBO())) as GameObject;
+
+        foreach (Vector3 v in Itiles.attachPoints)
+        {
+            tileElement = new GameObject();
+            tileElement.transform.SetParent(parent.transform);
+            tileElement.transform.localRotation = Quaternion.Euler(mode.getBO());
+            tileElement.transform.localPosition = v;
+            tileElement.name = " attach " + v.x;
+        }
+
+        foreach (Vector3 v in Itiles.tileBricks)
+        {
+            int rnd = Random.Range(0,5);
+            if (!v.Equals(Itiles.tileBricks[0]))
+            {          
+                tileElement = (GameObject)Instantiate(neonTiles[rnd], Vector3.zero, Quaternion.identity) as GameObject;
+
+                tileElement.transform.SetParent(parent.transform);
+                tileElement.transform.localRotation = Quaternion.Euler(mode.getBO());
+                tileElement.transform.localPosition = v;
+
+                tileElement.name = "I " + v.x;       
+            }
+        }
+
+        BoxCollider triggerBox = parent.AddComponent<BoxCollider>();
+        triggerBox.size = Itiles.triggerSize;
+        triggerBox.center = Itiles.triggerCenter;
+        triggerBox.isTrigger = true;
+
+        tileElement = new GameObject();
+        tileElement.transform.SetParent(parent.transform);
+        tileElement.transform.localRotation = Quaternion.Euler(Itiles.powerUp[2]);
+        tileElement.transform.localPosition = Itiles.powerUp[0];
+        tileElement.transform.localScale = Itiles.powerUp[1];
 
         yield return parent;
     }

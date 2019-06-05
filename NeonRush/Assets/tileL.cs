@@ -31,14 +31,8 @@ public class tileL
     public Vector3 triggerCenter = new Vector3(-0.5f, 0.55f,1);
 
 
-    public void buildL(Vector3 origin)
+    public void buildL()
     {
-
-        tileBricks.Clear();
-        attachPoints.Clear();
-        powerUp.Clear();
-
-
         // Posiciones globales de cada bloque
         tileBricks.Add(localL1pos);
         tileBricks.Add(localL2pos);
