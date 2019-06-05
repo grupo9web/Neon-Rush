@@ -255,7 +255,7 @@ public class TileManager : generalManager
             currentTile.GetComponent<TileScript>().setAttachIndex(rnd);
 
 
-            /* 
+             
             //Con un 10% de probabilidad spawneamos el power up y nunca en el bloque en el que caemos
             if (Random.Range(0.0f, 1.0f) <= 0.1f && !currentTile.GetComponent<TileScript>().getLandTile())
             {
@@ -275,7 +275,7 @@ public class TileManager : generalManager
                 }
             }
             
-            */
+            
         } 
         else if (counter >= 8)
         {

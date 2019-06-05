@@ -224,14 +224,20 @@ public class generalManager : MonoBehaviour
 
 
         tileManager = gameObject.GetComponent<TileManager>();
-        player = GameObject.Find("Player").GetComponent<scirp>();
-
+        
+        print("Debugito");
     }
 
+
+    private void Start()
+    {
+        player = GameObject.Find("Player").GetComponent<scirp>();
+    }
 
 
     public void changeStageMode(string key)
     {
+        //player = GameObject.Find("Player").GetComponent<scirp>();
         //tileManager.updateStageMode(key);
         player.updateStageMode(key);
     }

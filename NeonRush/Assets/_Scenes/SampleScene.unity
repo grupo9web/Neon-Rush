@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 170076734}
-  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028352, g: 0.22571376, b: 0.30692244, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1329,10 +1329,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 958154338}
-  - component: {fileID: 1085677027}
-  - component: {fileID: 1085677026}
-  - component: {fileID: 1085677028}
-  - component: {fileID: 1085677029}
   m_Layer: 0
   m_Name: Izqa
   m_TagString: Untagged
@@ -1394,8 +1390,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1085677027}
-  - component: {fileID: 1085677026}
+  - component: {fileID: 1085677029}
   - component: {fileID: 1085677028}
+  - component: {fileID: 1085677026}
   m_Layer: 0
   m_Name: TileManager
   m_TagString: Untagged
@@ -1412,27 +1409,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 1085677025}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c7c6f4305b4fd2d49b2e34381532e092, type: 3}
+  m_Script: {fileID: 11500000, guid: dac6bd10ae120eb499a7ca4dac33b5a6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tilePrefabList:
-  - {fileID: 6516807413689093613, guid: 46543b452b5fcda4681698321c107cdb, type: 3}
-  - {fileID: 4493194168998398237, guid: 2419070d046bed644868edd5e12a27e3, type: 3}
-  - {fileID: 5910500255468588550, guid: ddfadd2f0e461eb47998977a395fa15a, type: 3}
-  - {fileID: 8040916357172726179, guid: e61a8924327ff2946b3b911975373c2d, type: 3}
-  - {fileID: 8953790233157782229, guid: cba311b24eb517d4cb79360325e7b37d, type: 3}
-  tilePrefab: {fileID: 3259815793017323733, guid: fd05ace00b9b5814ea7b3b4fb5aef137,
-    type: 3}
-  currentTile: {fileID: 1885398724}
-  listaPowerUps:
-  - {fileID: 1497693250638380075, guid: af741522857c2384bbd0f864f7b99c3e, type: 3}
-  - {fileID: 4248492358386756515, guid: 1bf85771b192b2441a56302817bf55d4, type: 3}
-  isFirst: 1
-  coca: 1
-  coca2: 1
-  gravedad: {x: 0, y: 0, z: 0}
-  index: 0
-  counter: 0
 --- !u!4 &1085677027
 Transform:
   m_ObjectHideFlags: 0
@@ -1456,9 +1435,26 @@ MonoBehaviour:
   m_GameObject: {fileID: 1085677025}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dac6bd10ae120eb499a7ca4dac33b5a6, type: 3}
+  m_Script: {fileID: 11500000, guid: c7c6f4305b4fd2d49b2e34381532e092, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  tilePrefabList:
+  - {fileID: 6516807413689093613, guid: 46543b452b5fcda4681698321c107cdb, type: 3}
+  - {fileID: 4493194168998398237, guid: 2419070d046bed644868edd5e12a27e3, type: 3}
+  - {fileID: 5910500255468588550, guid: ddfadd2f0e461eb47998977a395fa15a, type: 3}
+  - {fileID: 8040916357172726179, guid: e61a8924327ff2946b3b911975373c2d, type: 3}
+  - {fileID: 8953790233157782229, guid: cba311b24eb517d4cb79360325e7b37d, type: 3}
+  tilePrefab: {fileID: 1519198289}
+  currentTile: {fileID: 1519198289}
+  listaPowerUps:
+  - {fileID: 1497693250638380075, guid: af741522857c2384bbd0f864f7b99c3e, type: 3}
+  - {fileID: 4248492358386756515, guid: 1bf85771b192b2441a56302817bf55d4, type: 3}
+  isFirst: 1
+  coca: 1
+  coca2: 1
+  gravedad: {x: 0, y: 0, z: 0}
+  index: 0
+  counter: 0
 --- !u!114 &1085677029
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1845,6 +1841,36 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b3b8c87eb4881c844aceffaf93642d60, type: 3}
+--- !u!1 &1321143686
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1321143687}
+  m_Layer: 0
+  m_Name: Prueba
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1321143687
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1321143686}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 13
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1321999854
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2118,6 +2144,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fd05ace00b9b5814ea7b3b4fb5aef137, type: 3}
+--- !u!1 &1519198289 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3259815793017323733, guid: fd05ace00b9b5814ea7b3b4fb5aef137,
+    type: 3}
+  m_PrefabInstance: {fileID: 1519198288}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1548530075
 GameObject:
   m_ObjectHideFlags: 0
@@ -2417,7 +2449,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1678741207
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2444,7 +2476,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1678741206}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
   m_Name: 
@@ -2914,12 +2946,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b3b8c87eb4881c844aceffaf93642d60, type: 3}
---- !u!1 &1885398724 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3259815793017323733, guid: fd05ace00b9b5814ea7b3b4fb5aef137,
-    type: 3}
-  m_PrefabInstance: {fileID: 1519198288}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1901155474
 PrefabInstance:
   m_ObjectHideFlags: 0
