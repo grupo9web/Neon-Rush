@@ -38,7 +38,6 @@ public class scirp : generalManager
     AudioSource audioSourceJugador;
 
 
-
     public bool velocidadReducida = false;
     float scoreTxtCount = 5.0f;
 
@@ -50,10 +49,6 @@ public class scirp : generalManager
     private bool scoreSent;
 
     private PostProcessingProfile profileFinal;
-
-    bool jauja = false;
-
-    float intensidad = 1.0f;
 
     #endregion
 
@@ -95,22 +90,7 @@ public class scirp : generalManager
 
         //Debug.Log("speed: " + speed);
 
-        /*
-        if (jauja)
-        {
-            if (intensidad > 0.005)
-            {
-                intensidad -= 0.005f;
-                //juanpeAtiende[2].vignette.setIntensity(intensidad);
-            }
-            else if (intensidad <= 0.0f)
-            {
-                intensidad = 0.0f;
-                //juanpeAtiende[2].vignette.setIntensity(intensidad);
-            }
-
-
-        }*/
+   
 
 
         /*/
@@ -271,7 +251,6 @@ public class scirp : generalManager
         }
         else if (Vector3.Distance(pivot.transform.localPosition, cam.transform.localPosition) < 0.1f)
         {
-            //cam.GetComponent<PostProcessingBehaviour>().profile = juanpeAtiende[0];
             profileFinal.motionBlur.enabled = false;
             setWorldSpeed(1.0f);
         }
@@ -334,19 +313,8 @@ public class scirp : generalManager
         audioSourceJugador.clip = efectoSonidoCambioCamara;
         audioSourceJugador.Play();
 
+        // Motion blur + ralentizacion
         profileFinal.motionBlur.enabled = true;
-
-
-        //cam.GetComponent<PostProcessingBehaviour>().profile = juanpeAtiende[1];
-
-
-        // Ceguera xd
-        /*
-        cam.GetComponent<PostProcessingBehaviour>().profile = juanpeAtiende[2];
-        intensidad = 1.0f;
-        jauja = true;
-        */
-
 
         //Debug.Log("El jauja del scirp");
         stageMode = mode[key];

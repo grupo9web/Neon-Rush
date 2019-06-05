@@ -31,9 +31,12 @@ public class ceguera : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+        transform.Rotate(Vector3.up, 10.0f);
+
         if (activo)
         {
-            gameObject.GetComponent<BoxCollider>().enabled = false;
+            gameObject.GetComponent<SphereCollider>().enabled = false;
 
             tiempo += Time.deltaTime;
 

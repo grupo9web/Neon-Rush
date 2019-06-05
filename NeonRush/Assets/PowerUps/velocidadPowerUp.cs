@@ -33,6 +33,10 @@ public class velocidadPowerUp : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+        transform.Rotate(Vector3.up, 10.0f);
+
+
         if (activo)
         {
             ScriptPersonaje.speed = velocidadNormalPersonaje - 1;

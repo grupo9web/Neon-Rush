@@ -11,6 +11,8 @@ GameObject:
   - component: {fileID: 1884226272}
   - component: {fileID: 1884226271}
   - component: {fileID: 1884226270}
+  - component: {fileID: 7942512297597856822}
+  - component: {fileID: 3938293726867848624}
   m_Layer: 0
   m_Name: Blindness
   m_TagString: Untagged
@@ -77,3 +79,29 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!114 &7942512297597856822
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1884226269}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 994d8ade3209af3439c3a7c83f4fe000, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tiempoDuracion: 5
+--- !u!135 &3938293726867848624
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1884226269}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.19270813
+  m_Center: {x: 0.0010725036, y: -0.0029987693, z: -0.018420696}

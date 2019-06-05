@@ -40,9 +40,14 @@ public class saltoPowerUp : MonoBehaviour
         audioSourcePowerUP = GetComponent<AudioSource>();
 
     }
+
+
     // Update is called once per frame
     void Update()
     {
+
+        transform.Rotate(Vector3.up, 10.0f);
+
 
         //Si nos hemos saltado un powerup, se destruye
         //if (player.transform.position.z >= transform.position.z + 1.0f && saltando == false)

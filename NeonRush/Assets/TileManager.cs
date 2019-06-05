@@ -267,7 +267,7 @@ public class TileManager : generalManager
             //Con un 10% de probabilidad spawneamos el power up y nunca en el bloque en el que caemos
             if (Random.Range(0.0f, 1.0f) <= 0.1f && !currentTile.GetComponent<TileScript>().getLandTile())
             {
-                int aleatorio = Random.Range(0, 2);
+                int aleatorio = Random.Range(0, 3);
                 //aleatorio = 0;
                 if (aleatorio == 0) //PowerUp Salto
                 {
@@ -276,10 +276,14 @@ public class TileManager : generalManager
                     //Asociamos el game object de la pieza en la que esta el powerup
                     powerUP.GetComponent<saltoPowerUp>().tileAsociado = currentTile;
                 }
-                else //PowerUp disminuir velocidad
+                else if (aleatorio == 1) //PowerUp disminuir velocidad
                 {
                     if (GameObject.Find("Player").GetComponent<scirp>().velocidadReducida == false)
                         Instantiate(listaPowerUps[1], currentTile.transform.GetChild(9).transform.position, currentTile.transform.GetChild(9).transform.rotation);
+                }
+                else
+                {
+                    Instantiate(listaPowerUps[2], currentTile.transform.GetChild(9).transform.position, currentTile.transform.GetChild(9).transform.rotation);
                 }
             }
             
