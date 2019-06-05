@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 170076734}
-  m_IndirectSpecularColor: {r: 0.18028352, g: 0.22571376, b: 0.30692244, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -406,11 +406,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 4
-  speedBase: 0
+  speedAux: 0
   score: 0
   incrementoVelocidad: 0.0001
   scoreTxt: {fileID: 1513634462}
   gravedad: {x: 0, y: -9.81, z: 0}
+  velocidadReducida: 0
 --- !u!135 &406072877
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -608,6 +609,7 @@ GameObject:
   - component: {fileID: 1085677027}
   - component: {fileID: 1085677026}
   - component: {fileID: 1085677028}
+  - component: {fileID: 1085677029}
   m_Layer: 0
   m_Name: TileManager
   m_TagString: Untagged
@@ -645,13 +647,6 @@ MonoBehaviour:
   gravedad: {x: 0, y: 0, z: 0}
   index: 0
   counter: 0
-  cosmicTex:
-  - {fileID: 2800000, guid: 2e433026b50caac468a3d8597eade730, type: 3}
-  - {fileID: 2800000, guid: 6aa01fa91d410474a86d4477a37af2a6, type: 3}
-  - {fileID: 2800000, guid: b0ebf715a040e6e48a9e5e76737fc128, type: 3}
-  - {fileID: 2800000, guid: ca4b257243b33914bac990c7ddfaa9cf, type: 3}
-  - {fileID: 2800000, guid: 8971ec7d37a32064abcfeb9131f122ad, type: 3}
-  - {fileID: 2800000, guid: c84618a11547ab5449d9076843a113c2, type: 3}
 --- !u!4 &1085677027
 Transform:
   m_ObjectHideFlags: 0
@@ -678,6 +673,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dac6bd10ae120eb499a7ca4dac33b5a6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1085677029
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1085677025}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5281e1933c4b4bd40bd83066519c36a5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  neonTiles:
+  - {fileID: 4548006910091919159, guid: fa159893aefc26544bc8b8c75ef65f87, type: 3}
+  - {fileID: 4548006910091919159, guid: 6842a8aab1438694387b2dbaffc55743, type: 3}
+  - {fileID: 4548006910091919159, guid: 924f4aac3618fad4fb183a5ec2683703, type: 3}
+  - {fileID: 4548006910091919159, guid: ec8981ea835060a4e9735b50fd36a054, type: 3}
+  - {fileID: 4548006910091919159, guid: 1a76b0a491b7788478f50e53d0e55537, type: 3}
 --- !u!1 &1103841372
 GameObject:
   m_ObjectHideFlags: 0

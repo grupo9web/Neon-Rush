@@ -27,28 +27,34 @@ public class tileL
     private Vector3 localPowerUpPointScale = new Vector3(0.16f, 0.16f, 0.16f);
     private Vector3 localPowerUpPointRot = new Vector3(0.0f, 90.0f, 0.0f);
 
-
-    //
+    public Vector3 triggerSize = new Vector3(2,0.1f,3);
+    public Vector3 triggerCenter = new Vector3(-0.5f, 0.55f,1);
 
 
     public void buildL(Vector3 origin)
     {
+
+        tileBricks.Clear();
+        attachPoints.Clear();
+        powerUp.Clear();
+
+
         // Posiciones globales de cada bloque
-        tileBricks.Add(localL1pos + origin);
-        tileBricks.Add(localL2pos + origin);
-        tileBricks.Add(localL3pos + origin);
-        tileBricks.Add(localL4pos + origin);
+        tileBricks.Add(localL1pos);
+        tileBricks.Add(localL2pos);
+        tileBricks.Add(localL3pos);
+        tileBricks.Add(localL4pos);
 
         // Posiciones globales de cada attach
-        attachPoints.Add(localLeftAttachPointpos + origin);
-        attachPoints.Add(localForwardAttachPointpos + origin);
-        attachPoints.Add(localForward2AttachPointpos + origin);
-        attachPoints.Add(localLeftTopAttachPointpos + origin);
-        attachPoints.Add(localForwardTopAttachPointpos + origin);
-        attachPoints.Add(localForwardTop2AttachPointpos + origin);
+        attachPoints.Add(localLeftAttachPointpos);
+        attachPoints.Add(localForwardAttachPointpos);
+        attachPoints.Add(localForward2AttachPointpos);
+        attachPoints.Add(localLeftTopAttachPointpos);
+        attachPoints.Add(localForwardTopAttachPointpos);
+        attachPoints.Add(localForwardTop2AttachPointpos);
 
         // Datos del attach del powerUp ( pos/ scale/ rotation)
-        powerUp.Add(localPowerUpPointpos + origin);
+        powerUp.Add(localPowerUpPointpos);
         powerUp.Add(localPowerUpPointScale);
         powerUp.Add(localPowerUpPointRot);
     }
