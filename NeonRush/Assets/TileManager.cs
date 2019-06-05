@@ -22,6 +22,7 @@ public class TileManager : generalManager
     Queue<GameObject> tilesQue = new Queue<GameObject>();
 
 
+
     public int index = 0;                       // Esto era para ver el número de bloque y renombrarlo, da un poco igual
     [SerializeField]
     public int counter = 0;                     // Cada doce se genera un camChanger
@@ -260,7 +261,7 @@ public class TileManager : generalManager
             if (Random.Range(0.0f, 1.0f) <= 0.1f && !currentTile.GetComponent<TileScript>().getLandTile())
             {
                 int aleatorio = Random.Range(0, 2);
-                //aleatorio = 1;
+                //aleatorio = 0;
                 if (aleatorio == 0) //PowerUp Salto
                 {
                     GameObject powerUP = Instantiate(listaPowerUps[0], currentTile.transform.GetChild(9).transform.position, currentTile.transform.GetChild(9).transform.rotation);

@@ -16,12 +16,19 @@ public class velocidadPowerUp : MonoBehaviour
     private float velocidadNormalPersonaje;
 
 
+    //Efectos de sonido
+    public AudioClip efectoSonidoVelocidad;
+    AudioSource audioSourcePowerUP;
+
+
     // Start is called before the first frame update
     void Start()
     {
         player = GameObject.Find("Player");
         ScriptPersonaje = player.GetComponent<scirp>();
         tiempo = 0;
+
+        audioSourcePowerUP = GetComponent<AudioSource>();
     }
     // Update is called once per frame
     void Update()
@@ -54,6 +61,12 @@ public class velocidadPowerUp : MonoBehaviour
         //Si el jugador choca con el PowerUp
         if (col.gameObject.name == "Player")
         {
+
+            //Lanzamos el sonido de salto
+            audioSourcePowerUP.clip = efectoSonidoVelocidad;
+            audioSourcePowerUP.Play();
+
+
             GameObject.Find("CanvasTextoSalto").transform.GetChild(0).gameObject.SetActive(true);
             GameObject.Find("CanvasTextoSalto").transform.GetChild(0).gameObject.GetComponent<UnityEngine.UI.Text>().text = "¡ SLOW DOWN !";
 
