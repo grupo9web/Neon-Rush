@@ -230,14 +230,14 @@ public class TileManager : generalManager
             // AL generar varias de golpe obviamos la caída y las generamos en su sitio directamente
             if (isFirst)
             {
-                coroutineGO = new CoroutineWithData(this, tileGen.BuildI(posOriginInsta, stageMode));
+                coroutineGO = new CoroutineWithData(this, tileGen.BuildS(posOriginInsta, stageMode));
                 currentTile = (GameObject)coroutineGO.result;
 
                 //currentTile = (GameObject)Instantiate(tilesQue.Dequeue(), posOriginInsta, Quaternion.Euler(stageMode.getBO()));
             }
             else
             {
-                coroutineGO = new CoroutineWithData(this, tileGen.BuildI(posOriginInsta, stageMode));
+                coroutineGO = new CoroutineWithData(this, tileGen.BuildS(posOriginInsta, stageMode));
                 currentTile = (GameObject)coroutineGO.result;
 
                 //currentTile = (GameObject)Instantiate(tilesQue.Dequeue(), posOrigin, Quaternion.Euler(stageMode.getBO()));
