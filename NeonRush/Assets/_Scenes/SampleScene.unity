@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 170076734}
-  m_IndirectSpecularColor: {r: 0.18028352, g: 0.22571376, b: 0.30692244, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -2405,7 +2405,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff26db721962cdf4a8edcdfa9a767d2a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  profile: {fileID: 11400000, guid: 022959cd2cdbc054a9eacad08644403d, type: 2}
+  profile: {fileID: 11400000, guid: 39766577ca6243d4b91d39e744236d77, type: 2}
 --- !u!1 &581831239
 GameObject:
   m_ObjectHideFlags: 0
@@ -3718,8 +3718,9 @@ MonoBehaviour:
   tilePrefab: {fileID: 1519198289}
   currentTile: {fileID: 1519198289}
   listaPowerUps:
-  - {fileID: 1497693250638380075, guid: af741522857c2384bbd0f864f7b99c3e, type: 3}
-  - {fileID: 3124048426731561445, guid: 08f4f3ae47420e741a45ebacb9c0be44, type: 3}
+  - {fileID: 4463654731639374331, guid: 2e0316944dac2104094897467643e280, type: 3}
+  - {fileID: 4298187159442064095, guid: c7f7fe9a9e0379246a90cb8cce2450a1, type: 3}
+  - {fileID: 1884226269, guid: b717faa0a8cbe504a8187f00075ade9e, type: 3}
   isFirst: 1
   coca: 1
   coca2: 1
