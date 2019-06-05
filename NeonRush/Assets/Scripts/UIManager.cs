@@ -230,6 +230,7 @@ public class UIManager : MonoBehaviour
 
     public void OnNewGameClick()
     {
+        Physics.gravity = new Vector3(0, -9.8f, 0);
         UnityEngine.SceneManagement.SceneManager.LoadScene("SampleScene");
     }
 
@@ -330,13 +331,19 @@ public class UIManager : MonoBehaviour
     private void UpdateLeaderBoard()
     {
         Debug.Log("Entro en UpdateLeaderBoard");
-        string pruebaLeader = "Kokebr%450|Nantorz%403|JoderMacho%53241|PepeLui%536|PepeLui%536|Maricarmen%132|JoderMacho%53242|PutoAmo%3154|Peasd%123|qwdqw%2356|fweg%4536|PepeLui%5384|gw4ef%345";
-        string[] leadersArray = pruebaLeader/*PlayerPrefs.GetString("LEADERBOARD")*/.Split('|');
+
+        //string pruebaLeader = "Kokebr%450|Nantorz%403|JoderMacho%53241|PepeLui%536|PepeLui%536|Maricarmen%132|JoderMacho%53242|PutoAmo%3154|Peasd%123|qwdqw%2356|fweg%4536|PepeLui%5384|gw4ef%345";
+        string[] leadersArray = PlayerPrefs.GetString("LEADERBOARD").Split('|');
 
         string finalLeaders = "";
 
         // Recorremos el array de jugadores en la lista de marcadores y los metemos en la lista de jugadores
-        for(int i = 0; i < leadersArray.Length; i++)
+        Debug.Log(leadersArray[0]);
+
+        if (leadersArray[0] == "")
+            return;
+
+        for (int i = 0; i < leadersArray.Length; i++)
         {
             string[] currentLeader = leadersArray[i].Split('%');
             playersList.Add(new Player(currentLeader[0], int.Parse(currentLeader[1])));
