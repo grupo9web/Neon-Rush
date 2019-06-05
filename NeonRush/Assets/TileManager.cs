@@ -83,8 +83,6 @@ public class TileManager : generalManager
 
     public void Spawner(){
 
-        print("Hola");
-
         while (semaforoCutre == true);
 
         semaforoCutre = true;

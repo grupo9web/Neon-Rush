@@ -152,7 +152,6 @@ public class saltoPowerUp : MonoBehaviour
     {
 
         scirp ScriptPersonaje = player.GetComponent<scirp>();
-        Debug.Log(ScriptPersonaje.getDirection());
 
         if (!saltando)
         {
