@@ -331,6 +331,7 @@ public class UIManager : MonoBehaviour
     private void UpdateLeaderBoard()
     {
         Debug.Log("Entro en UpdateLeaderBoard");
+
         //string pruebaLeader = "Kokebr%450|Nantorz%403|JoderMacho%53241|PepeLui%536|PepeLui%536|Maricarmen%132|JoderMacho%53242|PutoAmo%3154|Peasd%123|qwdqw%2356|fweg%4536|PepeLui%5384|gw4ef%345";
         string[] leadersArray = PlayerPrefs.GetString("LEADERBOARD").Split('|');
 
