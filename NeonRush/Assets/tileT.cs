@@ -16,10 +16,10 @@ public class tileT
     private Vector3 localL4pos = new Vector3(-1.0f, 0.0f, 1.0f);
 
     // Attach y powerUp pos
-    private Vector3 localLeftAttachPointpos = new Vector3(-1.0f, 0.0f, 2.0f);
+    private Vector3 localLeftAttachPointpos = new Vector3(-2.0f, 0.0f, 1.0f);
     private Vector3 localForwardAttachPointpos = new Vector3(0.0f, 0.0f, 3.0f);
     private Vector3 localForward2AttachPointpos = new Vector3(0.0f, 0.0f, 3.0f);       // No lo pongo a la derecha que si salen pa la izquierda rip
-    private Vector3 localLeftTopAttachPointpos = new Vector3(-1.0f, 1.0f, 2.0f);
+    private Vector3 localLeftTopAttachPointpos = new Vector3(-2.0f, 1.0f, 1.0f);
     private Vector3 localForwardTopAttachPointpos = new Vector3(0.0f, 1.0f, 3.0f);
     private Vector3 localForwardTop2AttachPointpos = new Vector3(0.0f, 1.0f, 3.0f);
 
@@ -27,8 +27,8 @@ public class tileT
     private Vector3 localPowerUpPointScale = new Vector3(0.16f, 0.16f, 0.16f);
     private Vector3 localPowerUpPointRot = new Vector3(0.0f, 90.0f, 0.0f);
 
-    public Vector3 triggerSize = new Vector3(1,0.1f,3);
-    public Vector3 triggerCenter = new Vector3(0, 0.55f, 1);
+    public Vector3 triggerSize = new Vector3( 2, 0.1f, 3);
+    public Vector3 triggerCenter = new Vector3(-0.5f, 0.55f, 1);
 
 
     public void buildT()
