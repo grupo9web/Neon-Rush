@@ -28,7 +28,7 @@ public class generalManager : MonoBehaviour
     private float worldSpeed = 1.0f;
     public void setWorldSpeed(float f) { this.worldSpeed = f; }
     public float getWS() { return this.worldSpeed; }
-
+    
 
     // Start is called before the first frame update
     void Awake()

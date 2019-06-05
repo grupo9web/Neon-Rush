@@ -3,10 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using UnityEngine.EventSystems;
 
 public class scirp : generalManager
 {
     #region Variables
+
 
     private tileManagerMode stageMode;          // Ref. para pillar los valores del mundo
     private bool updateWorld = false;           // AL cambiar de modo actualizar valores
@@ -20,7 +22,7 @@ public class scirp : generalManager
     private saltoPowerUp auxSaltoScript;
 
     //We tell the script more about canvas and text 
-    public Text scoreTxt;
+    public TMPro.TextMeshProUGUI scoreTxt;
 
     private Vector3 direccion;
 
@@ -34,13 +36,19 @@ public class scirp : generalManager
     public bool velocidadReducida = false;
     float scoreTxtCount = 5.0f;
 
-   
-
-
+    private int language;
+    private string preScore;
+    private bool scoreSent;
+    
     #endregion
 
     void Start()
     {
+        language = PlayerPrefs.GetInt("LANGUAGE");
+        scoreSent = false;
+
+        SetLanguage(language);
+
         if (mode.ContainsKey("dirZpositiva"))
             stageMode = mode["dirZpositiva"];
 
@@ -146,14 +154,19 @@ public class scirp : generalManager
         
         //Soy retrasado y se podia condensar en esto:
          if(Vector3.Distance(playerHeightPos, referencePosition) > 15f) {
-            SceneManager.LoadScene("SampleScene");
-            Physics.gravity = new Vector3(0, -9.8f, 0);
+            if (!scoreSent)
+            {
+                UIManagerInGame.Instance.OnDeath(score.ToString());
+                string leaderBoard = PlayerPrefs.GetString("LEADERBOARD");
+                leaderBoard += "|" + PlayerPrefs.GetString("USERNAME") + "%" + score.ToString();
+                PlayerPrefs.SetString("LEADERBOARD", leaderBoard);
+                Debug.Log("La tabla esta así: " + leaderBoard);
+                Debug.Log(PlayerPrefs.GetString("LEADERBOARD"));
+                scoreSent = true;
+            }
         }
         
         
-
-
-
         if (updateWorld)
         {
             Physics.gravity = stageMode.getGravity();
@@ -169,6 +182,8 @@ public class scirp : generalManager
 
         if (Input.GetMouseButtonDown(0) || Input.GetKeyDown("e"))
         {
+            if (EventSystem.current.IsPointerOverGameObject())
+                return;
             if (direccion == stageMode.getDC()[0])
             {
                 direccion = stageMode.getDC()[1];
@@ -201,6 +216,19 @@ public class scirp : generalManager
 
     }
 
+    private void SetLanguage(int lang)
+    {
+        switch (lang)
+        {
+            case 0: preScore = "PUNTUACIÓN: ";
+                break;
+            case 1: preScore = "SCORE: ";
+                break;
+            case 2: preScore = "SCORE: ";
+                break;
+        }
+    }
+
     public void ScoreUpdate()
     {
         score += 10;
@@ -210,10 +238,14 @@ public class scirp : generalManager
 
     void setScoretxt()
     {
-        scoreTxt.text = "Puntuación: " + score.ToString();
+        scoreTxt.text = preScore + score.ToString();
     }
 
-
+    public string getScoretxt()
+    {
+        return score.ToString();
+    }
+    
      IEnumerator Example()
     {
         //print(Time.time);
