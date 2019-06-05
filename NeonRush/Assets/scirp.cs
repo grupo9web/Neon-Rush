@@ -282,7 +282,7 @@ public class scirp : generalManager
     }
 
 
-    IEnumerator Example()
+    
     public string getScoretxt()
     {
         return score.ToString();
