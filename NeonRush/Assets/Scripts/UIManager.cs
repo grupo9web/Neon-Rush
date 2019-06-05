@@ -44,7 +44,6 @@ public class UIManager : MonoBehaviour
     
     void Update()
     {
-        Debug.Log(PlayerPrefs.GetString("USERNAME"));
     }
     
     private void setLanguageStart()
@@ -108,7 +107,7 @@ public class UIManager : MonoBehaviour
 
                 // Leaderboard
                 leaderboardMenu.GetComponentsInChildren<Text>()[0].text = "MARCADORES";
-                leaderboardMenu.GetComponentsInChildren<Text>()[21].text = "VOLVER";
+                leaderboardMenu.GetComponentsInChildren<Text>()[31].text = "VOLVER";
 
                 // Credits Menu
                 creditsMenu.GetComponentsInChildren<Text>()[0].text = "CRÉDITOS";
@@ -143,7 +142,7 @@ public class UIManager : MonoBehaviour
 
                 // Leaderboard
                 leaderboardMenu.GetComponentsInChildren<Text>()[0].text = "LEADERBOARD";
-                leaderboardMenu.GetComponentsInChildren<Text>()[21].text = "BACK";
+                leaderboardMenu.GetComponentsInChildren<Text>()[31].text = "BACK";
 
                 // Credits Menu
                 creditsMenu.GetComponentsInChildren<Text>()[0].text = "CREDITS";
@@ -178,7 +177,7 @@ public class UIManager : MonoBehaviour
 
                 // Leaderboard
                 leaderboardMenu.GetComponentsInChildren<Text>()[0].text = "CLASSEMENT";
-                leaderboardMenu.GetComponentsInChildren<Text>()[21].text = "REVENIR";
+                leaderboardMenu.GetComponentsInChildren<Text>()[31].text = "REVENIR";
 
                 // Credits Menu
                 creditsMenu.GetComponentsInChildren<Text>()[0].text = "CRÉDITS";
@@ -299,8 +298,19 @@ public class UIManager : MonoBehaviour
         setLanguage(languageIndex);
     }
 
-    public void OnChangeNameClick()
+    public void OnGithubButtonClick(int githubNum)
     {
+        switch (githubNum)
+        {
+            case 0: Application.OpenURL("https://github.com/jpguirado");
+                break;
+            case 1: Application.OpenURL("https://github.com/ularrarte"); 
+                break;
+            case 2: Application.OpenURL("https://github.com/JorgeMS05");
+                break;
+            case 3: Application.OpenURL("https://github.com/jmorenomorales");
+                break;
+        }
     }
 
     private void RefreshLeaderboard()
@@ -311,8 +321,8 @@ public class UIManager : MonoBehaviour
             for(int i = 0; i < leaders.Length; i++)
             {
                 string[] currentLeader = leaders[i].Split('%');
-                leaderboardMenu.GetComponentsInChildren<Text>()[i * 2 + 1].text = currentLeader[0];
-                leaderboardMenu.GetComponentsInChildren<Text>()[i * 2 + 2].text = currentLeader[1];
+                leaderboardMenu.GetComponentsInChildren<Text>()[i * 3 + 2].text = currentLeader[0];
+                leaderboardMenu.GetComponentsInChildren<Text>()[i * 3 + 3].text = currentLeader[1];
             }
         }
     }
@@ -320,7 +330,7 @@ public class UIManager : MonoBehaviour
     private void UpdateLeaderBoard()
     {
         Debug.Log("Entro en UpdateLeaderBoard");
-        string pruebaLeader = "Kokebr%450|Nantorz%403|PepeLui%536";
+        string pruebaLeader = "Kokebr%450|Nantorz%403|JoderMacho%53241|PepeLui%536|PepeLui%536|Maricarmen%132|JoderMacho%53242|PutoAmo%3154|Peasd%123|qwdqw%2356|fweg%4536|PepeLui%5384|gw4ef%345";
         string[] leadersArray = pruebaLeader/*PlayerPrefs.GetString("LEADERBOARD")*/.Split('|');
 
         string finalLeaders = "";
@@ -348,11 +358,24 @@ public class UIManager : MonoBehaviour
             }
         }
 
+        for (int i = 0; i < playersList.Count; i++)
+        {
+            for(int j = i + 1; j < playersList.Count; j++)
+            {
+                if(playersList[i].getPlayerName() == playersList[j].getPlayerName())
+                {
+                    playersList.RemoveAt(j);
+                }
+            }
+        }
+
         // Limitamos la lista a 10 elementos tras la ordenación
-        while(playersList.Count > 10)
+        while (playersList.Count > 10)
         {
             playersList.RemoveAt(playersList.Count - 1);
         }
+
+        Debug.Log(playersList.Count);
 
         // Recorremos la lista y metemos los jugadores en el string de PlayerPrefs
         for (int i = 0; i < playersList.Count; i++)
