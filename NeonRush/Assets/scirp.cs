@@ -177,24 +177,9 @@ public class scirp : generalManager
             audioSourceJugador.clip = efectoSonidoMuerte;
             audioSourceJugador.Play();
             noReproducido = false;
-
-            GameObject.Find("CanvasTextoSalto").transform.GetChild(0).gameObject.SetActive(true);
-            GameObject.Find("CanvasTextoSalto").transform.GetChild(0).gameObject.GetComponent<UnityEngine.UI.Text>().text = "¡ GAME OVER !";
-
         }
 
         //Soy retrasado y se podia condensar en esto:
-        if (Vector3.Distance(playerHeightPos, referencePosition) > 30f)
-        {
-            noReproducido = true;
-            SceneManager.LoadScene("SampleScene");
-            Physics.gravity = new Vector3(0, -9.8f, 0);
-        }
-
-
-
-
-
         if (Vector3.Distance(playerHeightPos, referencePosition) > 15f)
         {
             if (!scoreSent)
