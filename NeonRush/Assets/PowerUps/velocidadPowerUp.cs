@@ -30,6 +30,7 @@ public class velocidadPowerUp : MonoBehaviour
 
         audioSourcePowerUP = GetComponent<AudioSource>();
     }
+
     // Update is called once per frame
     void Update()
     {
@@ -57,13 +58,12 @@ public class velocidadPowerUp : MonoBehaviour
         
     }
 
-
-    void OnCollisionEnter(Collision col)
+    private void OnTriggerEnter(Collider other)
     {
         print("Debugito");
 
         //Si el jugador choca con el PowerUp
-        if (col.gameObject.name == "Player")
+        if (other.gameObject.name == "Player")
         {
 
             //Lanzamos el sonido de salto
@@ -78,8 +78,10 @@ public class velocidadPowerUp : MonoBehaviour
             velocidadNormalPersonaje = ScriptPersonaje.speedAux;
             activo = true;
 
-            
+
         }
     }
+
+
 }
 

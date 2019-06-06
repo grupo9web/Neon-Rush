@@ -88,10 +88,8 @@ public class saltoPowerUp : MonoBehaviour
     }
 
 
-    void OnCollisionEnter(Collision col)
+    private void OnTriggerEnter(Collider col)
     {
-        //print("Debugito");
-
         //Si el jugador choca con el PowerUp
         if (col.gameObject.name == "Player")
         {
@@ -150,10 +148,10 @@ public class saltoPowerUp : MonoBehaviour
                 //scriptBloque.GameControl();
                 scriptBloque.GravityControl();
 
-                
+
                 if (ListaHijos.transform.childCount < 5)
                     tileMang.reSpawnTiles();
-                
+
             }
 
 
@@ -162,9 +160,9 @@ public class saltoPowerUp : MonoBehaviour
             //Destroy(gameObject);
 
         }
-
     }
 
+    
 
     public void checkDestruirPowerUp()
     {

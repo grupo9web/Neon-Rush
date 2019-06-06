@@ -283,7 +283,8 @@ public class TileManager : generalManager
                 }
                 else
                 {
-                    Instantiate(listaPowerUps[2], currentTile.transform.GetChild(9).transform.position, currentTile.transform.GetChild(9).transform.rotation);
+                    if (GameObject.Find("Player").GetComponent<scirp>().cegado == false)
+                        Instantiate(listaPowerUps[2], currentTile.transform.GetChild(9).transform.position, currentTile.transform.GetChild(9).transform.rotation);
                 }
             }
             

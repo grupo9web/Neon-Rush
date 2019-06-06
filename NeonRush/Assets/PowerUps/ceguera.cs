@@ -60,23 +60,23 @@ public class ceguera : MonoBehaviour
             {
                 intensidad = 0.0f;
                 finalProfile.vignette.Reset();
+                ScriptPersonaje.cegado = false;
                 Destroy(gameObject);
             }
         }
     }
 
 
-    void OnCollisionEnter(Collision col)
+    private void OnTriggerEnter(Collider col)
     {
-        print("Debugito");
-
         //Si el jugador choca con el PowerUp
         if (col.gameObject.name == "Player")
         {
+            ScriptPersonaje.cegado = true;
 
             intensidad = 1.0f;
 
-           // sonido
+            // sonido
 
 
             GameObject.Find("CanvasTextoSalto").transform.GetChild(0).gameObject.SetActive(true);
@@ -89,5 +89,7 @@ public class ceguera : MonoBehaviour
             activo = true;
         }
     }
+
+   
 
 }

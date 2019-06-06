@@ -39,6 +39,8 @@ public class scirp : generalManager
 
 
     public bool velocidadReducida = false;
+    public bool cegado = false;
+
     float scoreTxtCount = 5.0f;
 
     bool noReproducido = true;
