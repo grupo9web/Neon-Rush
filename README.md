@@ -15,19 +15,36 @@
 
 ## 1. Introducción
 
-Puedes acceder a nuestra web mediante este enlace https://grupo9web.github.io/WebHulioEntertainment/
+A continuación se presenta el documento de diseño de **Neon Rush**, videojuego desarrollado en Unity como práctica final de la asignatura _Juegos Para Web y Redes Sociales_ del _Grado de Diseño y Desarrollo de Videojuegos_ de la _Universidad Rey Juan Carlos_.
+
+- Puedes jugar  a Neon Rush haciendo click en este enlace:
+
+- Puedes acceder a nuestra web mediante este enlace: https://grupo9web.github.io/WebHulioEntertainment/
+
+- Consulta nuestro repositorio en GitHub: https://github.com/grupo9web/ZizZagZio
 
 ### 1.1 Concepto del juego
 
+Neon Rush es un videojuego 3D del género arcade que posee la jugabilidad clásica de los juegos infinite runner. El jugador esta representado por una esfera que avanza constantemente hacia delante o hacia la izquierda y nuestro objetivo será aguantar el máximo tiempo posible.
 
 ### 1.2 Características principales. 
 
 
+El juego se basa en 3 principios básicos:
+
+- **Mecánica sencilla:** la mecánica del juego es muy simple, el jugador tendrá que conseguir sobrevivir el máximo tiempo posible sin caerse del recorrido, la velocidad del jugador irá aumentando progresivamente para hacer la tarea mas compleja.
+- **Juego infinito:** A medida que consigamos mantenernos sobre el camino el jugo irá generando piezas por las que poder avanzar.
+- **Dificultad progresiva:** Puesto que el juego es infinito, el objetivo será aguantar el máximo tiempo posible, para hacer esta tarea más compleja se irá aumentando la velocidad de manera progresiva e intentar hacer caer al jugador con power-ups. 
+
+
 ### 1.3 Género
+
+Se podría encasillar en un juego perteneciente al género de plataformas con una estética arcade.
 
 
 ### 1.4 Propósito y público objetivo
 
+El propósito de Neon Rush consiste en hacer entretener a los usuarios en cualquier rato de ocio disponible, que busquén una experiencia corta pero frenética. El juego está destinado a todo tipo de público indiferentemente de su sexo o edad. 
 
 ## 2. Mecánicas del juego
 
