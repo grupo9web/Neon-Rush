@@ -137,4 +137,5 @@ Para la generacion de efectos de sonido hemos empleado el programa BFXR. Este pr
 Se han incluido efectos de sonido para la muerte del jugador y para el cambio de eje.
 
 ![Captura Reaper](https://i.imgur.com/0CCJtUK.jpg)
+
 Por otro lado se han incluido efectos de sonido en el power up de salto y de reducción de velocidad. Para ello hemos usado nuestra voz aplicando efectos de corrección de tono también en el DAW Reaper.
