@@ -83,34 +83,92 @@ En Neon Rush no existen personajes como tal, el jugador es simplemente represent
 
 ## 3. Interfaz
 
+En este apartado se explicarán los diferentes __flujos de actividades__ que componen la interfaz del videojuego *Neon Rush*, así como una ejemplificación de algunas de las secciones por medio de __imágenes__.
 
-  
- 
 ### 3.1 Diagrama de flujo
 
+El siguiente diagrama de flujo describe los estados en los que se puede encontrar nuestro juego *Neon Rush* y las posibles transiciones entre los mismos según las acciones del usuario.
+
+![Error en carga de Diagrama de Flujo](https://i.imgur.com/QREcMHD.png)
+
+A continuación se muestra también un diagrama de estados adicional que describe las posibilidades y situaciones que pueden suceder durante el estado de **Juego**:
+
+![Error en carga de Diagrama de Flujo, Juego](https://i.imgur.com/VbgazgT.png)
 
 
-### 3.2 Menú de Inicio
+### 3.2 Menú de Selección de Nombre
+
+Si el usuario abre por primera vez el juego o tiene un nombre aleatorio le aparecerá esta pantalla. La idea es que sirva para dar la bienvenida y como método de introducción al juego, permitiendo al jugador escoger un nombre personalizado.
+
+![Error en carga de Selector de Nombre](https://i.imgur.com/fHoZtTa.png)
 
 
-
-### 3.3 Nivel
-
-
-
-### 3.4 Menú de Opciones
+ **1. Introducir nombre**: espacio en blanco para que el usuario introduzca el nombre con el que quiere aparecer reflejado en el juego. En caso de dejarlo vacío se le asignará un nombre aleatorio.
+ **2.  Botón de continuar**: da acceso al Menú Principal. Si el campo anterior está vacío se le preguntará al usuario si realmente no quiere introducir un nombre.
 
 
+### 3.3 Menú Principal
 
-### 3.5 Contáctanos
+En caso de que el usuario haya escogido nombre o rechace el elegir uno se le llevará al Menú Principal, que finalmente tiene esta estética:
 
+![Error en carga de Menu Principal](https://i.imgur.com/cCcSFwU.png)
+**1. Nueva Partida**: permite al usuario iniciar una nueva partida.
+**2. Ajustes**: acceso al menú de ajustes, donde se pueden cambiar algunas opciones de juego.
+**3. Marcadores**: muestra al usuario el nombre y puntuación de los 10 mejores jugadores que han abierto el juego en el navegador.
+**4. Créditos**: da visibilidad a los desarrolladores del videojuego, permitiendo acceder al github de cada uno de ellos.
 
+### 3.4 Pantalla de Juego
 
-### 3.6 Pantalla de Juego
+Si el jugador decide empezar una partida tendrá la siguiente información en pantalla en cuanto a interfaz se refiere:
 
+![Error en carga de Pantalla de Juego](https://i.imgur.com/a1NXmqN.png)
 
+ **1. Puntuación**: informa al usuario de la puntuación que lleva en la partida.
+ **2. Botón de Pausa**:  da la posibilidad de detener el juego y cambiar el volumen, continuar o volver al Menú Principal.
+ 
 
-### 3.7 Game Over
+### 3.5 Game Over
+
+Cuando el usuario cae por alguno de los lados intentando avanzar la partida llegará a su fin y se abrirá el siguiente menú:
+
+![Error en carga de Game Over](https://i.imgur.com/CpMSodT.png)
+
+ **1. Puntuación**: permite ver la puntuación final obtenida en la partida.
+ **2. Top**: da al usuario la información del mejor jugador.
+ **3. Reintentar**: vuelve a cargar la escena y reinicia la partida.
+ **4. Menú Principal**: devuelve al usuario al Menú Principal.
+ 
+### 3.6 Menú de Ajustes
+
+Accesible desde el Menú Principal, permite cambiar ajustes de juego para que el jugador se encuentre lo más cómodo posible:
+
+![Error en carga de Menú de Ajustes](https://i.imgur.com/BIJwiwv.png)
+
+ **1. Botones de Idioma**: permite al usuario cambiar entre los idiomas disponibles (español, inglés y francés).
+ **2. Barra de Volumen**: habilita la posibilidad de cambiar el volumen de los sonidos del juego.
+ **3. Botón de Cambiar el Nombre**: acceso al Menú de Cambiar Nombre.
+ **4. Volver**: forma de acceder al Menú Principal.
+ 
+### 3.7 Marcadores
+
+Este menú tiene la siguiente estética:
+
+![Error en carga de Marcadores](https://i.imgur.com/aSKAzh7.png)
+
+ **1. Lista de jugadores**: proporciona una lista ordenada de mayor a menor puntuación de los 10 mejores jugadores.
+ **2. Volver**: acceso al menú principal.
+
+Como se ha descrito anteriormente, el juego no dispone de un menú de selección de dificultad dado que esta se incrementará de manera progresiva a medida que derrote a los enemigos.
+
+### 3.8 Créditos
+
+Finalmente se reserva un apartado para dar créditos a los autores:
+
+![Error en carga de Créditos](https://i.imgur.com/dKK2OQd.png)
+
+ **1. Lista de desarrolladores**: proporciona al usuario la lista de los desarrolladores del videojuego.
+ **2. Botón de Github**: permite acceder a los Githubs de los desarrolladores.
+ **3. Volver**: acceso al menú principal.
 
 
 
