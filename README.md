@@ -158,8 +158,6 @@ Este menú tiene la siguiente estética:
 - **1. Lista de jugadores**: proporciona una lista ordenada de mayor a menor puntuación de los 10 mejores jugadores.
 - **2. Volver**: acceso al menú principal.
 
-Como se ha descrito anteriormente, el juego no dispone de un menú de selección de dificultad dado que esta se incrementará de manera progresiva a medida que derrote a los enemigos.
-
 ### 3.8 Créditos
 
 Finalmente se reserva un apartado para dar créditos a los autores:
