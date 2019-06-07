@@ -170,11 +170,42 @@ Finalmente se reserva un apartado para dar créditos a los autores:
 - **2. Botón de Github**: permite acceder a los Githubs de los desarrolladores.
 - **3. Volver**: acceso al menú principal.
 
-
 ## 4. Arte y Música
 
-### Musica y efectos de sonido
-#### Musica
+### 4.1 Arte
+
+##### 4.1.1 Interfaz
+
+Los elementos de la interfaz son completamente originales, inspirados en la estética conocida como _"Vaporwave"_ junto a la tendencia de usar neones en zonas de _Japón_, las cuales se han considerado idóneas para incluir en el proyecto.
+
+Los colores predominantes en la misma son un naranja (#fa9606) y un rosa (#f04ff0), elegidos por su sinergia. Con estos colores en mente el título del juego quedó de la siguiente manera:
+
+![Error en carga de Titulo del Juego](https://i.imgur.com/LmGQ4Aa.png)
+
+El resto de elementos en la interfaz se pueden ver en el Apartado 3, relacionado con la misma. Aquí se pretendía explicar la lógica de la estética de esta y el por qué se ha elegido como tal.
+
+##### 4.1.2 Modelos 3D
+
+En cuanto a los Modelos 3D se refieren, son originales y creados en el programa gratuito _Blender_. Las texturas han sido desarrolladas directamente en Unity, debido al uso tanto de materiales básicos como emisivos.
+
+Para hacer las piezas se han usado como base cubos con dos materiales, el base y el emisivo, de modo que de la impresión de que las aristas están rodeadas de neones iluminando la escena. Con este cubo se han podido crear estructuras similares a las piezas del videojuego _Tetris_, dándole más juego a las mecánicas del mismo. Juntando varias piezas quedaría así:
+
+![Error en carga de Cubo](https://i.imgur.com/kZmvkW5.png)
+
+En la imagen anterior se aprecia una bola blanca emisiva que hará las funciones del personaje. Será interactiva y responderá a las acciones del jugador.
+
+Si nos centramos en los _Power Ups_ se han creado 3, uno para la _"Ceguera"_, otro para el _"Salto"_ y finalmente el de _"Ralentización"_. De modo que los modelos son así finalmente:
+
+![Error en carga de Power Ups](https://i.imgur.com/aMgOd0p.png)
+
+
+##### 4.1.3 Post Processing
+
+Debido a la limitación que pone _Unity_ referente a los materiales emisivos, esto es, que solo se pueden aplicar a objetos estáticos, se ha decidido incluir el asset de _Post Processing_, que nos permite dotar de _bloom_ a los materiales emisivos.
+
+### 4.2 Musica y efectos de sonido
+
+##### 4.2.1 Musica
 Las partituras de las melodías usadas en el menu y durante la partida son procedentes del usuario Dekkadeci de Musescore compartidas mediante la licencia Attribution 4.0 International (CC BY 4.0).
 
 - **Partitura menú**: https://musescore.com/user/9996931/scores/2301611
@@ -187,7 +218,7 @@ Posteriormente, usando los midis de las partituras hemos aplicado el VSTi gratui
 Hemos aplicado este VSTi a los midis de las partituras usando el DAW Reaper.
  
 ![Captura Reaper](https://i.imgur.com/zRQbGzO.jpg)
-#### Efectos sonido
+##### 4.2.2 Efectos sonido
 
 Para la generacion de efectos de sonido hemos empleado el programa BFXR. Este programa es un generador de efectos de sonidos para juegos retro y es gratuito.  https://www.bfxr.net/
 
