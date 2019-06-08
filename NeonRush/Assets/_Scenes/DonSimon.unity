@@ -3662,9 +3662,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1085677027}
   - component: {fileID: 1085677029}
-  - component: {fileID: 1085677028}
   - component: {fileID: 1085677026}
   - component: {fileID: 1085677030}
+  - component: {fileID: 1085677031}
   m_Layer: 0
   m_Name: TileManager
   m_TagString: Untagged
@@ -3698,36 +3698,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1085677028
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1085677025}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c7c6f4305b4fd2d49b2e34381532e092, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  tilePrefabList:
-  - {fileID: 6516807413689093613, guid: 46543b452b5fcda4681698321c107cdb, type: 3}
-  - {fileID: 4493194168998398237, guid: 2419070d046bed644868edd5e12a27e3, type: 3}
-  - {fileID: 5910500255468588550, guid: ddfadd2f0e461eb47998977a395fa15a, type: 3}
-  - {fileID: 8040916357172726179, guid: e61a8924327ff2946b3b911975373c2d, type: 3}
-  - {fileID: 8953790233157782229, guid: cba311b24eb517d4cb79360325e7b37d, type: 3}
-  tilePrefab: {fileID: 1519198289}
-  currentTile: {fileID: 1519198289}
-  listaPowerUps:
-  - {fileID: 4463654731639374331, guid: 2e0316944dac2104094897467643e280, type: 3}
-  - {fileID: 4298187159442064095, guid: c7f7fe9a9e0379246a90cb8cce2450a1, type: 3}
-  - {fileID: 1884226269, guid: b717faa0a8cbe504a8187f00075ade9e, type: 3}
-  isFirst: 1
-  coca: 1
-  coca2: 1
-  gravedad: {x: 0, y: 0, z: 0}
-  index: 0
-  counter: 0
 --- !u!114 &1085677029
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3842,6 +3812,23 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &1085677031
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1085677025}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f6e8c9f90e246f64b89bf8abcd323c5d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isFirst: 1
+  gravedad: {x: 0, y: -9.81, z: 0}
+  currentTile: {fileID: 1519198289}
+  index: 0
+  counter: 0
 --- !u!1 &1103841372
 GameObject:
   m_ObjectHideFlags: 0

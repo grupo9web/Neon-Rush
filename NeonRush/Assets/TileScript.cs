@@ -1,10 +1,15 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class TileScript : generalManager
 {
+
+    #region Variables
+
     TileManager instanceOfB;
+    SimonManager simonMode;
     scirp instanceOfC;
     generalManager generalMang;
 
@@ -28,10 +33,20 @@ public class TileScript : generalManager
 
     private bool landTile;                                                       // Marcamos si el bloque es donde aterriza la bola después powerUp del salto
 
+    [SerializeField]
+    private bool simonBifurcado = false;                                         // Sólo las piezas marcadas como simonBifurcado podrán generar dos caminos simultáneos
+    private bool soyUnaT;
+
+    private List<int> coloresMagicos = new List<int>();
+
+
+    #endregion
+
 
     // Start is called before the first frame update
     void Start()
     {
+        simonMode = GameObject.Find("TileManager").GetComponent<SimonManager>();
         instanceOfB = GameObject.Find("TileManager").GetComponent<TileManager>();
         generalMang = GameObject.Find("TileManager").GetComponent<generalManager>();
         instanceOfC = GameObject.Find("Player").GetComponent<scirp>();
@@ -83,7 +98,24 @@ public class TileScript : generalManager
     public void GameControl()
     {
         //Generamos una nueva plataforma
-        instanceOfB.Spawner();
+        if (instanceOfB != null)
+            instanceOfB.Spawner();
+        else
+        {
+
+            Debug.Log("Pero hijo de putaaaaaa " + soyUnaT);
+
+            // Hay que hacer una criba, y cuando hay dos caminos no generar más
+            if (!simonBifurcado)     
+                simonMode.Spawnerv4();
+            
+            if (soyUnaT)
+                simonMode.RemoveWrongWay();
+
+
+            //simonMode.conSpawner(isMyParentAFuckingT, null);
+            //StartCoroutine(simonMode.concurrentSpawner(isMyParentAFuckingT));
+        }
         //Actualizamos la puntuación
         instanceOfC.ScoreUpdate();
     }
@@ -99,7 +131,8 @@ public class TileScript : generalManager
 
         GameObject tileQuitado;
 
-        GameObject.Find("TileManager").GetComponent<TileManager>().colaTilesActivos.TryDequeue(out tileQuitado);
+        if (instanceOfB != null)
+            GameObject.Find("TileManager").GetComponent<TileManager>().colaTilesActivos.TryDequeue(out tileQuitado);
 
 
 
@@ -123,4 +156,19 @@ public class TileScript : generalManager
     public void setMode(string key) { this.modeChanger = key; }
 
     public void setLandState(bool a) { this.landed = a; }
+
+    public bool getSimonBifurcado() { return this.simonBifurcado; }
+    public void setSimonBifurcado(bool b) { this.simonBifurcado = b; }
+
+    public bool getSoyUnaT() { return this.soyUnaT; }
+    public void setSoyUnaT(bool b) { this.soyUnaT = b; }
+
+    public List<int> getColores() { return this.coloresMagicos; }
+
+    public void setColores(Queue<int> b) {
+        foreach (int i in b)
+        {
+            this.coloresMagicos.Add(i);
+        }
+    }
 }

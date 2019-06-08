@@ -21,8 +21,10 @@ public class generalManager : MonoBehaviour
     protected Dictionary<string, tileManagerMode> mode = new Dictionary<string, tileManagerMode>();
 
     // Referencias a cada uno de los elementos estáticos del mundo
+    private SimonManager simonManager;
     private TileManager tileManager;
     private scirp player;
+
 
     // Una velocidad global nos permite marcar ciertas pausas en todo el universo
     private float worldSpeed = 1.0f;
@@ -218,14 +220,9 @@ public class generalManager : MonoBehaviour
         mode["Ynegativa3"].setCollindantModes(mode["dirYnegativa"]);    // bien
         mode["Ynegativa3"].setCollindantModes(mode["dirZpositiva"]);    // bien
 
-
-
-
-
-
         tileManager = gameObject.GetComponent<TileManager>();
+        simonManager = gameObject.GetComponent<SimonManager>();
         
-        print("Debugito");
     }
 
 

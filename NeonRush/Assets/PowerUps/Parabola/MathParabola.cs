@@ -21,7 +21,7 @@ public class MathParabola
             else
                 return new Vector3(mid.x,  mid.y, f(t) + Mathf.Lerp(start.z, end.z, t));
         }else {
-            Debug.Log("La gravedad es NEGATIVA: " + gravedad);            
+            //Debug.Log("La gravedad es NEGATIVA: " + gravedad);            
             height = - height;
 
             Func<float, float> f = x => -4 * height * x * x + 4 * height * x;

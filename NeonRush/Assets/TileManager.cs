@@ -48,7 +48,7 @@ public class TileManager : generalManager
         if (mode.ContainsKey("dirZpositiva"))
             stageMode = mode["dirZpositiva"];
 
-        for(int i = 0; i < 5; i++) Spawner();
+        for (int i = 0; i < 5; i++) Spawner();
 
         semaforoCutre = false;
 
@@ -83,19 +83,20 @@ public class TileManager : generalManager
 
 
 
-    public void Spawner(){
+    public void Spawner()
+    {
 
-        while (semaforoCutre == true);
+        while (semaforoCutre == true) ;
 
         semaforoCutre = true;
 
         int rndPrefab = Random.Range(0, tilePrefabList.Length);
-        
+
         //Probamos a meter una pila intermedia que contenga todos los GameObjects que se deben ir spawneando
         //  -La diferencia ahora es que el Instantiate pilla el primero de la cola así no se turbia con las posiciones al mezclar con el salto.
         //  -Sigue fallando xd
         //  -Para revertir cambios únicamente cambiar tilesQue.Dequeue() por tilePrefabList[rndPrefab]
-        
+
         tilesQue.Enqueue(tilePrefabList[rndPrefab]);
 
         index++;
@@ -103,7 +104,7 @@ public class TileManager : generalManager
 
         GameObject aux = currentTile;
 
-        int randomBuilder = Random.Range(0,5);
+        int randomBuilder = Random.Range(0, 5);
 
         #region Debug
         // Esto es a modo de debug para generar la que queremos
@@ -223,7 +224,7 @@ public class TileManager : generalManager
 
             //Metemos los tiles que vamos creando en una lista para saber cual es el ultimo hijo para teletransportar al jugador alli con el powerup
             //aux.transform.SetParent(GameObject.Find("ListaHijos").transform);
-            
+
 
             int rnd = Random.Range(0, 3);
             //int rndTex = Random.Range(0, 6);
@@ -237,18 +238,29 @@ public class TileManager : generalManager
             {
                 /*coroutineGO = new CoroutineWithData(this, tileGen.BuildS(posOriginInsta, stageMode));
                 currentTile = (GameObject)coroutineGO.result;
+                
+                //currentTile = tileGen.MasterBuilder(posOriginInsta, stageMode, randomBuilder);
+
+                coroutineGO = new CoroutineWithData(this, tileGen.tileBuilder(posOriginInsta, stageMode, randomBuilder, index));
+                currentTile = (GameObject)coroutineGO.result;
                 */
-                currentTile = tileGen.MasterBuilder(posOriginInsta, stageMode, randomBuilder);
-                //currentTile = (GameObject)Instantiate(tilesQue.Dequeue(), posOriginInsta, Quaternion.Euler(stageMode.getBO()));
+
+
+                currentTile = (GameObject)Instantiate(tilesQue.Dequeue(), posOriginInsta, Quaternion.Euler(stageMode.getBO()));
             }
             else
             {
                 /*coroutineGO = new CoroutineWithData(this, tileGen.BuildS(posOriginInsta, stageMode));
                 currentTile = (GameObject)coroutineGO.result;
-                */
-                currentTile = tileGen.MasterBuilder(posOriginInsta, stageMode, randomBuilder);
+                
+                //currentTile = tileGen.MasterBuilder(posOriginInsta, stageMode, randomBuilder);
 
-                //currentTile = (GameObject)Instantiate(tilesQue.Dequeue(), posOrigin, Quaternion.Euler(stageMode.getBO()));
+                coroutineGO = new CoroutineWithData(this, tileGen.tileBuilder(posOriginInsta, stageMode, randomBuilder, index));
+                currentTile = (GameObject)coroutineGO.result;
+                */
+
+
+                currentTile = (GameObject)Instantiate(tilesQue.Dequeue(), posOrigin, Quaternion.Euler(stageMode.getBO()));
             }
 
             //
@@ -263,7 +275,7 @@ public class TileManager : generalManager
             currentTile.GetComponent<TileScript>().setAttachIndex(rnd);
 
 
-             
+
             //Con un 10% de probabilidad spawneamos el power up y nunca en el bloque en el que caemos
             if (Random.Range(0.0f, 1.0f) <= 0.1f && !currentTile.GetComponent<TileScript>().getLandTile())
             {
@@ -287,9 +299,9 @@ public class TileManager : generalManager
                         Instantiate(listaPowerUps[2], currentTile.transform.GetChild(9).transform.position, currentTile.transform.GetChild(9).transform.rotation);
                 }
             }
-            
-            
-        } 
+
+
+        }
         else if (counter >= 8)
         {
             int attachPos;
@@ -304,10 +316,13 @@ public class TileManager : generalManager
 
                 /*coroutineGO = new CoroutineWithData(this, tileGen.BuildL(posOrigin, stageMode.getCollindantModes()[0]));
                 currentTile = (GameObject)coroutineGO.result;
-                */
-                currentTile = tileGen.MasterBuilder(posOrigin, stageMode.getCollindantModes()[0], randomBuilder);
+                //currentTile = tileGen.MasterBuilder(posOrigin, stageMode.getCollindantModes()[0], randomBuilder);
 
-                //currentTile = (GameObject)Instantiate(tilesQue.Dequeue(), posOrigin, Quaternion.Euler(stageMode.getCollindantModes()[0].getBO()));
+                coroutineGO = new CoroutineWithData(this, tileGen.tileBuilder(posOrigin, stageMode.getCollindantModes()[0], randomBuilder,index));
+                currentTile = (GameObject)coroutineGO.result;
+                */
+
+                currentTile = (GameObject)Instantiate(tilesQue.Dequeue(), posOrigin, Quaternion.Euler(stageMode.getCollindantModes()[0].getBO()));
                 currentTile.GetComponent<TileScript>().setMode(stageMode.getCollindantModes()[0].getNameAndKey());
                 updateStageMode(stageMode.getCollindantModes()[0].getNameAndKey());
 
@@ -322,10 +337,16 @@ public class TileManager : generalManager
                 if (attachPos == 3)
                 {
                     /*coroutineGO = new CoroutineWithData(this, tileGen.BuildL(posOrigin, stageMode.getCollindantModes()[0]));
-                    currentTile = (GameObject)coroutineGO.result;*/
-                    currentTile = tileGen.MasterBuilder(posOrigin, stageMode.getCollindantModes()[0], randomBuilder);
+                    currentTile = (GameObject)coroutineGO.result;
 
-                    //currentTile = (GameObject)Instantiate(tilesQue.Dequeue(), posOrigin, Quaternion.Euler(stageMode.getCollindantModes()[0].getBO()));
+                    //currentTile = tileGen.MasterBuilder(posOrigin, stageMode.getCollindantModes()[0], randomBuilder);
+
+                    coroutineGO = new CoroutineWithData(this, tileGen.tileBuilder(posOrigin, stageMode.getCollindantModes()[0], randomBuilder, index));
+                    currentTile = (GameObject)coroutineGO.result;
+                    */
+
+
+                    currentTile = (GameObject)Instantiate(tilesQue.Dequeue(), posOrigin, Quaternion.Euler(stageMode.getCollindantModes()[0].getBO()));
                     currentTile.GetComponent<TileScript>().setMode(stageMode.getCollindantModes()[0].getNameAndKey());
                     updateStageMode(stageMode.getCollindantModes()[0].getNameAndKey());
                 }
@@ -333,10 +354,15 @@ public class TileManager : generalManager
                 {
                     /*coroutineGO = new CoroutineWithData(this, tileGen.BuildL(posOrigin, stageMode.getCollindantModes()[1]));
                     currentTile = (GameObject)coroutineGO.result;
-                    */
-                    currentTile = tileGen.MasterBuilder(posOrigin, stageMode.getCollindantModes()[1], randomBuilder);
+                    
+                    //currentTile = tileGen.MasterBuilder(posOrigin, stageMode.getCollindantModes()[1], randomBuilder);
 
-                    //currentTile = (GameObject)Instantiate(tilesQue.Dequeue(), posOrigin, Quaternion.Euler(stageMode.getCollindantModes()[1].getBO()));
+                    coroutineGO = new CoroutineWithData(this, tileGen.tileBuilder(posOrigin, stageMode.getCollindantModes()[1], randomBuilder, index));
+                    currentTile = (GameObject)coroutineGO.result;
+                    */
+
+
+                    currentTile = (GameObject)Instantiate(tilesQue.Dequeue(), posOrigin, Quaternion.Euler(stageMode.getCollindantModes()[1].getBO()));
                     currentTile.GetComponent<TileScript>().setMode(stageMode.getCollindantModes()[1].getNameAndKey());
                     updateStageMode(stageMode.getCollindantModes()[1].getNameAndKey());
                 }
@@ -364,7 +390,8 @@ public class TileManager : generalManager
 
     }
 
-    public Vector3 getGrabity(){
+    public Vector3 getGrabity()
+    {
         return stageMode.getGravity();
     }
 

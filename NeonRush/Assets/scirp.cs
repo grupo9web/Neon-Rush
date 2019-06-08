@@ -81,6 +81,7 @@ public class scirp : generalManager
         setScoretxt();
     }
 
+
     void Update()
     {
         gravedad = Physics.gravity;
@@ -305,7 +306,6 @@ public class scirp : generalManager
 
         //Debug.Log("El jauja del scirp");
         stageMode = mode[key];
-        print("Debugito");
         updateWorld = true;
     }
 
