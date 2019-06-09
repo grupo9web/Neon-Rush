@@ -1,13 +1,16 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class UIManagerInGame : MonoBehaviour
 {
     public GameObject pauseMenu, gameOverMenu;
     public static UIManagerInGame Instance { set; get; }
+    public Slider volumeSlider;
 
     private static int language;
+    private float mainVolume;
 
     // Start is called before the first frame update
     void Start()
@@ -16,7 +19,32 @@ public class UIManagerInGame : MonoBehaviour
         Time.timeScale = 1f;
         language = PlayerPrefs.GetInt("LANGUAGE");
 
+        volumeSlider.onValueChanged.AddListener(delegate { ValueChangeCheck(); });
+        SetVolumeStart();
         SetLanguage(language);
+    }
+
+    public void ValueChangeCheck()
+    {
+        PlayerPrefs.SetFloat("VOLUME", volumeSlider.value);
+        AudioListener.volume = PlayerPrefs.GetFloat("VOLUME");
+    }
+
+    private void SetVolumeStart()
+    {
+        if (PlayerPrefs.GetFloat("VOLUME", -1) == -1)
+        {
+            PlayerPrefs.SetFloat("VOLUME", 0.75f);
+            volumeSlider.value = 0.75f;
+            mainVolume = PlayerPrefs.GetFloat("VOLUME");
+        }
+        else
+        {
+            mainVolume = PlayerPrefs.GetFloat("VOLUME");
+            volumeSlider.value = mainVolume;
+        }
+        volumeSlider.onValueChanged.AddListener(delegate { ValueChangeCheck(); });
+        AudioListener.volume = PlayerPrefs.GetFloat("VOLUME");
     }
 
     private void SetLanguage(int language)

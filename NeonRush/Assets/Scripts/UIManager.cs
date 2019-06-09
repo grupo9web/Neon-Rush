@@ -30,23 +30,49 @@ public class UIManager : MonoBehaviour
     public GameObject setNameMenu, confirmAnon, mainMenu, settingsMenu, leaderboardMenu, creditsMenu;
     public InputField nameInputField;
     public Button confirmNameButton;
+    public Slider volumeSlider;
 
     private int languageIndex, maxLanguageIndex = 2;
     private string[] languages = { "ESPAÑOL", "ENGLISH", "FRANÇAIS" };
+    private float mainVolume;
 
     private List<Player> playersList = new List<Player>();
     
     void Start()
     {
-        setLanguageStart();
-        setUserNameStart();
+        volumeSlider.onValueChanged.AddListener(delegate { ValueChangeCheck(); });
+        SetVolumeStart();
+        SetLanguageStart();
+        SetUserNameStart();
     }
     
     void Update()
     {
     }
-    
-    private void setLanguageStart()
+
+    public void ValueChangeCheck()
+    {
+        PlayerPrefs.SetFloat("VOLUME", volumeSlider.value);
+        AudioListener.volume = PlayerPrefs.GetFloat("VOLUME");
+    }
+
+    private void SetVolumeStart()
+    {
+        if (PlayerPrefs.GetFloat("VOLUME", -1) == -1)
+        {
+            PlayerPrefs.SetFloat("VOLUME", 0.75f);
+            volumeSlider.value = 0.75f;
+            mainVolume = PlayerPrefs.GetFloat("VOLUME");
+        }
+        else
+        {
+            mainVolume = PlayerPrefs.GetFloat("VOLUME");
+            volumeSlider.value = mainVolume;
+        }
+        volumeSlider.onValueChanged.AddListener(delegate { ValueChangeCheck(); });
+        AudioListener.volume = PlayerPrefs.GetFloat("VOLUME");
+    }
+    private void SetLanguageStart()
     {
         // SI ES LA PRIMERA VEZ QUE SE ABRE EL JUEGO
         if (PlayerPrefs.GetInt("LANGUAGE", 100) == 100)
@@ -62,7 +88,7 @@ public class UIManager : MonoBehaviour
         
         settingsMenu.GetComponentsInChildren<TMPro.TextMeshProUGUI>()[2].text = languages[languageIndex];
     }
-    private void setUserNameStart()
+    private void SetUserNameStart()
     {
         // SI EL USUARIO NO HA INTRODUCIDO NOMBRE O LO ABRE POR PRIMERA VEZ
         if (PlayerPrefs.GetString("USERNAME").StartsWith("Hulio-") || (PlayerPrefs.GetString("USERNAME", "USERNAME_IS_EMPTY") == "USERNAME_IS_EMPTY"))
@@ -74,7 +100,7 @@ public class UIManager : MonoBehaviour
             mainMenu.SetActive(true);
         }
     }
-
+    
     private void setLanguage(int language)
     {
         switch (languageIndex)
