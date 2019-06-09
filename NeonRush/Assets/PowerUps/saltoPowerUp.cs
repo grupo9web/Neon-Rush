@@ -12,6 +12,8 @@ public class saltoPowerUp : MonoBehaviour
 
     Vector3 posicionSalto;
 
+    int numeroHijos;
+
 
     //Efectos de sonido
     public AudioClip efectoSonidoSalto;
@@ -46,12 +48,10 @@ public class saltoPowerUp : MonoBehaviour
     void Update()
     {
 
+        numeroHijos = GameObject.Find("ListaHijos").transform.childCount;
+
         transform.Rotate(Vector3.up, 10.0f);
 
-
-        //Si nos hemos saltado un powerup, se destruye
-        //if (player.transform.position.z >= transform.position.z + 1.0f && saltando == false)
-        //Destroy(gameObject);
 
         //Comprobamos si nos hemos saltado el powerup para destruirlo
         checkDestruirPowerUp();
@@ -112,8 +112,9 @@ public class saltoPowerUp : MonoBehaviour
 
             int indiceBloqueASaltar = 0;
 
-            for (int i = 2; i < ListaHijos.transform.childCount; i++)
+            for (int i = 0; i < ListaHijos.transform.childCount; i++)
             {
+                Debug.Log("Número de hijos: " + numeroHijos);
                 if (ListaHijos.transform.GetChild(i).tag == "Changer")
                 {
                     indiceBloqueASaltar = i - 1;
@@ -148,16 +149,12 @@ public class saltoPowerUp : MonoBehaviour
                 //scriptBloque.GameControl();
                 scriptBloque.GravityControl();
 
+                Debug.Log("Eeeeey creo dos loco: " + numeroHijos);
 
-                if (ListaHijos.transform.childCount < 5)
-                    tileMang.reSpawnTiles();
+                tileMang.reSpawnTiles();
+                
 
             }
-
-
-
-            //Destruye el PowerUp
-            //Destroy(gameObject);
 
         }
     }

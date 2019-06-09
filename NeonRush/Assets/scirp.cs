@@ -76,7 +76,6 @@ public class scirp : generalManager
 
         audioSourceJugador = GetComponent<AudioSource>();
 
-
         //Actualizamos el txt de la puntuación
         setScoretxt();
     }
@@ -90,39 +89,7 @@ public class scirp : generalManager
         Vector3 referencePosition = GameObject.Find("ListaHijos").transform.GetChild(1).transform.position;
 
         speed = speed + incrementoVelocidad;
-
-        //Debug.Log("speed: " + speed);
-
-   
-
-
-        /*/
-        if (speed > 4.02f  && scoreTxtCount == 0) {
-            Debug.Log("chispitas rompe el saque y 40 iguales");
-            //Activa el texto de salto
-            GameObject.Find("CanvasTextoSalto").transform.GetChild(0).gameObject.SetActive(true);
-            GameObject.Find("CanvasTextoSalto").transform.GetChild(0).gameObject.GetComponent<UnityEngine.UI.Text>().text = "Speed LVL: " + Mathf.Round(speed);
-            StartCoroutine(Example());
-            timeLeft = 2.0f;
-            scoreTxtCount++;            
-        }else if (speed > 4.08 && scoreTxtCount == 1){
-            Debug.Log("warwinka");
-            //Activa el texto de salto
-            GameObject.Find("CanvasTextoSalto").transform.GetChild(0).gameObject.SetActive(true);
-            GameObject.Find("CanvasTextoSalto").transform.GetChild(0).gameObject.GetComponent<UnityEngine.UI.Text>().text = "Speed LVL: " + Mathf.Round(speed);
-            StartCoroutine(Example());
-            timeLeft = 2.0f;
-            scoreTxtCount++;         
-        }else if (speed > 4.12 && scoreTxtCount == 2){
-            Debug.Log("juan pedro comitea y el codigo perrea");
-            //Activa el texto de salto
-            GameObject.Find("CanvasTextoSalto").transform.GetChild(0).gameObject.SetActive(true);
-            GameObject.Find("CanvasTextoSalto").transform.GetChild(0).gameObject.GetComponent<UnityEngine.UI.Text>().text = "Speed LVL: " + Mathf.Round(speed);
-            StartCoroutine(Example());
-            timeLeft = 2.0f;
-            scoreTxtCount++;         
-        }
-        */
+    
         if (Mathf.FloorToInt(speed) % scoreTxtCount == 0)
         {
             //Activa el texto de salto
@@ -137,39 +104,6 @@ public class scirp : generalManager
         {
             speedAux = speed;
         }
-
-        /*/
-        if (gravedad.x == -9.8f || gravedad.y == -9.8f || gravedad.z == -9.8f || gravedad.y == -9.81f){
-            //Debug.Log("Willyrex");
-            if (gravedad.x != 0){
-                Debug.Log("Willyrex1"); //Funciona
-                if(Vector3.Distance(playerHeightPos, referencePosition) < f)
-                    SceneManager.LoadScene("SampleScene");
-            }else if (gravedad.y != 0) {  //Gravedad y = -9.8
-                Debug.Log("Willyrex2"); //Funciona
-                if(Vector3.Distance(playerHeightPos, new Vector3(playerHeightPos.x, playerHeightPos.y -7, playerHeightPos.z)) < 7f)
-                    SceneManager.LoadScene("SampleScene");
-            }else{
-                Debug.Log("Willyrex3");
-                if(Vector3.Distance(playerHeightPos, new Vector3(playerHeightPos.x, playerHeightPos.y, playerHeightPos.z - 5)) < 7f)
-                    SceneManager.LoadScene("SampleScene");
-                }
-        }else {                    
-            if (gravedad.x != 0){
-                Debug.Log("Willyrex4"); //Funciona
-                if(Vector3.Distance(playerHeightPos, new Vector3(playerHeightPos.x - 7, playerHeightPos.y, playerHeightPos.z)) < 7f)
-                    SceneManager.LoadScene("SampleScene");
-            }else if (gravedad.y != 0){
-                Debug.Log("Willyrex5"); //Funciona
-                if(Vector3.Distance(playerHeightPos, new Vector3(playerHeightPos.x, playerHeightPos.y + 7, playerHeightPos.z)) < 7f)
-                    SceneManager.LoadScene("SampleScene");
-            }else{
-                Debug.Log("Willyrex6");
-                if(Vector3.Distance(playerHeightPos, new Vector3(playerHeightPos.x, playerHeightPos.y, playerHeightPos.z + 7)) < 7f)
-                    SceneManager.LoadScene("SampleScene");
-                }
-        } 
-        */
 
 
         if (Vector3.Distance(playerHeightPos, referencePosition) > 15f && noReproducido)

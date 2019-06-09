@@ -54,28 +54,7 @@ public class TileScript : generalManager
 
         this.landedAxis = 1;                    // Se parará en el eje Y
 
-        //landedPos = parentTile.transform.GetChild(attachIndex).transform.position;
-    }
-
-
-
-    // Update is called once per frame
-    void FixedUpdate()
-    {
-        /*
-        if (!landed && Vector3.Distance(transform.position, landedPos) > 0.001f)
-            transform.position = Vector3.MoveTowards(transform.position, landedPos, (8 * getWS()) * Time.fixedDeltaTime);
-
-        if (parentTile != null)
-        {
-            if (!landed && transform.position[landedAxis] != parentTile.transform.GetChild(attachIndex).transform.position[landedAxis])
-                transform.position = Vector3.MoveTowards(transform.position, parentTile.transform.GetChild(attachIndex).transform.position, (18 * getWS()) * Time.fixedDeltaTime);
-        }
-
-        if (transform.position[landedAxis] == landedPos[landedAxis])
-            landed = true;
-            */
-    }
+    } 
 
 
 
@@ -123,9 +102,6 @@ public class TileScript : generalManager
 
     public void GravityControl()
     {
-
-        //Physics.gravity = stageMode.getGravity();
-
         GetComponent<Rigidbody>().useGravity = true;
         GetComponent<Rigidbody>().isKinematic = false;
 
@@ -136,7 +112,7 @@ public class TileScript : generalManager
 
 
 
-        Destroy(this.gameObject, 1);
+        Destroy(this.gameObject);
     }
 
 

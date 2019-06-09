@@ -12,6 +12,7 @@ public class TileManager : generalManager
     public GameObject currentTile;              // Ref. Clones de MasterTile 
     //public GameObject powerUpSalto;
     public GameObject[] listaPowerUps;
+    public int numeroHijos;
 
     public bool isFirst = true;
     public bool coca = true;
@@ -69,6 +70,8 @@ public class TileManager : generalManager
 
         //gravedad = stageMode.getGravity();
         gravedad = Physics.gravity;
+        //Debug.Log("Número: " + GameObject.Find("ListaHijos").transform.childCount);
+        numeroHijos = GameObject.Find("ListaHijos").transform.childCount;
     }
 
 
@@ -280,6 +283,7 @@ public class TileManager : generalManager
             if (Random.Range(0.0f, 1.0f) <= 0.1f && !currentTile.GetComponent<TileScript>().getLandTile())
             {
                 int aleatorio = Random.Range(0, 3);
+                aleatorio = 0;
                 //aleatorio = 0;
                 if (aleatorio == 0) //PowerUp Salto
                 {
