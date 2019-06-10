@@ -115,7 +115,7 @@ public class saltoPowerUp : MonoBehaviour
             for (int i = 0; i < ListaHijos.transform.childCount; i++)
             {
                 Debug.Log("Número de hijos: " + numeroHijos);
-                if (ListaHijos.transform.GetChild(i).tag == "Changer")
+                if (ListaHijos.transform.GetChild(i).tag == "Changer" && i > 0)
                 {
                     indiceBloqueASaltar = i - 1;
                     break;

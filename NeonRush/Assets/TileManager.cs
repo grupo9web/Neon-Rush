@@ -30,6 +30,8 @@ public class TileManager : generalManager
     [SerializeField]
     public int counter = 0;                     // Cada doce se genera un camChanger
 
+    int previousNumber = -1;
+
     private tileManagerMode stageMode;          // Ref. para pillar los valores del mundo
 
     private tileGenerator tileGen;              // Ref. al tileGenerator
@@ -282,25 +284,31 @@ public class TileManager : generalManager
             //Con un 10% de probabilidad spawneamos el power up y nunca en el bloque en el que caemos
             if (Random.Range(0.0f, 1.0f) <= 0.1f && !currentTile.GetComponent<TileScript>().getLandTile())
             {
-                int aleatorio = Random.Range(0, 3);
-                aleatorio = 0;
-                //aleatorio = 0;
-                if (aleatorio == 0) //PowerUp Salto
+                int aleatorio = Random.Range(0, 3);  
+                if (aleatorio == 0 && previousNumber != 0) //PowerUp Salto
                 {
                     GameObject powerUP = Instantiate(listaPowerUps[0], currentTile.transform.GetChild(9).transform.position, currentTile.transform.GetChild(9).transform.rotation);
                     //powerUP.transform.SetParent(currentTile.transform);
                     //Asociamos el game object de la pieza en la que esta el powerup
                     powerUP.GetComponent<saltoPowerUp>().tileAsociado = currentTile;
+
+                    //Generamos un número aleatorio entre 1 y 2 para seleccionar cual será el próximo power up
+                    previousNumber = Random.Range(1,3);
                 }
-                else if (aleatorio == 1) //PowerUp disminuir velocidad
+                else if (aleatorio == 1 && previousNumber != 1) //PowerUp disminuir velocidad
                 {
                     if (GameObject.Find("Player").GetComponent<scirp>().velocidadReducida == false)
                         Instantiate(listaPowerUps[1], currentTile.transform.GetChild(9).transform.position, currentTile.transform.GetChild(9).transform.rotation);
+                    
+                    
+                    previousNumber = Random.Range(1,3);
+                    if (previousNumber == 1) previousNumber = 0;
                 }
-                else
+                else if (previousNumber != 2)
                 {
                     if (GameObject.Find("Player").GetComponent<scirp>().cegado == false)
                         Instantiate(listaPowerUps[2], currentTile.transform.GetChild(9).transform.position, currentTile.transform.GetChild(9).transform.rotation);
+                    previousNumber = Random.Range(0,2);
                 }
             }
 

@@ -16,7 +16,7 @@ public class scirp : generalManager
     public float speed;
     public float speedAux;
     public float score = 0;
-    public float incrementoVelocidad = 0.001f;
+    public float incrementoVelocidad = 1f;
     float timeLeft = 2.0f;
 
     private saltoPowerUp auxSaltoScript;
