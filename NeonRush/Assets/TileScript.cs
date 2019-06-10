@@ -51,9 +51,7 @@ public class TileScript : generalManager
         generalMang = GameObject.Find("TileManager").GetComponent<generalManager>();
         instanceOfC = GameObject.Find("Player").GetComponent<scirp>();
 
-
         this.landedAxis = 1;                    // Se parará en el eje Y
-
     } 
 
 
@@ -88,9 +86,8 @@ public class TileScript : generalManager
             if (soyUnaT)
                 simonMode.RemoveWrongWay();
 
-            //simonMode.conSpawner(isMyParentAFuckingT, null);
-            //StartCoroutine(simonMode.concurrentSpawner(isMyParentAFuckingT));
         }
+
         //Actualizamos la puntuación
         instanceOfC.ScoreUpdate();
     }
@@ -116,7 +113,6 @@ public class TileScript : generalManager
     // Getters & Setters
     public void setParent(Vector3 pos) { this.parentPos = pos; }
     public void setPos(Vector3 pos) { this.landedPos = pos; }
-
 
     public void setTile(GameObject tile) { this.parentTile = tile; }
     public void setAttachIndex(int index) { this.attachIndex = index; }
@@ -171,11 +167,11 @@ public class TileScript : generalManager
 
     public void inicioSimon()
     {
-        // Aqui la ide es darle feedback al jugador para que se empiece a pispar un poco más de los colores.
-        // NO quiero poner carteles vaya. Hmmm a lo mejor habria que cambiar el color de las tiles para que sean 
-        // más pim pam reconocibles. yo m entiendo. aunque son las seis d la mañana y deberia irme a sobar y mañana a saber q tal
-        Debug.Log("El simon ha empezado en la ficha " + gameObject.name + " + 1 xd");
-
-
+        // Recogemos la forma de la pieza y en cada bloque le añadimos partículas
+        // parent 6 7 8
+        gameObject.GetComponent<ParticleSystem>().Play();
+        gameObject.transform.GetChild(6).GetComponent<ParticleSystem>().Play();
+        gameObject.transform.GetChild(7).GetComponent<ParticleSystem>().Play();
+        gameObject.transform.GetChild(8).GetComponent<ParticleSystem>().Play();
     }
 }
