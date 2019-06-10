@@ -6,6 +6,9 @@ using UnityEngine.PostProcessing;
 public class ceguera : MonoBehaviour
 {
 
+    public AudioClip efectoSonidoCeguera;
+    AudioSource audioSourcePowerUP;
+    
     GameObject player;
     scirp ScriptPersonaje;
     bool activo = false;
@@ -24,6 +27,8 @@ public class ceguera : MonoBehaviour
         ScriptPersonaje = player.GetComponent<scirp>();
 
         finalProfile = player.GetComponentInChildren<PostProcessingBehaviour>().profile;
+        audioSourcePowerUP = GetComponent<AudioSource>();
+
 
         tiempo = 0;
     }
@@ -81,6 +86,8 @@ public class ceguera : MonoBehaviour
             intensidad = 1.0f;
 
             // sonido
+            audioSourcePowerUP.clip = efectoSonidoCeguera;
+            audioSourcePowerUP.Play();
 
 
             GameObject.Find("CanvasTextoSalto").transform.GetChild(0).gameObject.SetActive(true);
