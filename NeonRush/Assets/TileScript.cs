@@ -105,7 +105,7 @@ public class TileScript : generalManager
 
 
 
-        Destroy(this.gameObject, 1);
+        Destroy(this.gameObject);
     }
 
 

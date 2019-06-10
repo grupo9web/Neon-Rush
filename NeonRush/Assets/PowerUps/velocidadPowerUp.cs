@@ -38,6 +38,10 @@ public class velocidadPowerUp : MonoBehaviour
         transform.Rotate(Vector3.up, 10.0f);
 
 
+        //Comprobamos si nos hemos saltado el powerup para destruirlo
+        checkDestruirPowerUp();
+
+
         if (activo)
         {
             ScriptPersonaje.speed = velocidadNormalPersonaje - 1;
@@ -82,6 +86,44 @@ public class velocidadPowerUp : MonoBehaviour
         }
     }
 
+    public void checkDestruirPowerUp()
+    {
 
+        scirp ScriptPersonaje = player.GetComponent<scirp>();
+
+        if (!activo)
+        {
+            if (ScriptPersonaje.getDirection().x == 1.0f)
+            {
+                if (player.transform.position.x >= transform.position.x + 1)
+                    Destroy(gameObject);
+            }
+            else if (ScriptPersonaje.getDirection().y == 1.0f)
+            {
+                if (player.transform.position.y >= transform.position.y + 1)
+                    Destroy(gameObject);
+            }
+            else if (ScriptPersonaje.getDirection().z == 1.0f)
+            {
+                if (player.transform.position.z >= transform.position.z + 1)
+                    Destroy(gameObject);
+            }
+            else if (ScriptPersonaje.getDirection().x == -1.0f)
+            {
+                if (player.transform.position.x <= transform.position.x - 1)
+                    Destroy(gameObject);
+            }
+            else if (ScriptPersonaje.getDirection().y == -1.0f)
+            {
+                if (player.transform.position.y <= transform.position.y - 1)
+                    Destroy(gameObject);
+            }
+            else if (ScriptPersonaje.getDirection().z == -1.0f)
+            {
+                if (player.transform.position.z <= transform.position.z - 1)
+                    Destroy(gameObject);
+            }
+        }
+    }
 }
 

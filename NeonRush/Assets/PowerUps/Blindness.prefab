@@ -91,6 +91,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 994d8ade3209af3439c3a7c83f4fe000, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  efectoSonidoCeguera: {fileID: 8300000, guid: 8ded8c993f71416429d657b15e05f6f4, type: 3}
   tiempoDuracion: 5
 --- !u!135 &3938293726867848624
 SphereCollider:

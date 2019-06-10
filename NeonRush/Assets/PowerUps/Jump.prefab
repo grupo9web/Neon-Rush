@@ -101,7 +101,7 @@ AudioSource:
   Priority: 128
   DopplerLevel: 1
   MinDistance: 1
-  MaxDistance: 500
+  MaxDistance: 9881.9375
   Pan2D: 0
   rolloffMode: 0
   BypassEffects: 0
@@ -186,10 +186,10 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_Enabled: 1
-  m_Radius: 0.67671067
-  m_Height: 2.54
+  m_Radius: 0.23458712
+  m_Height: 0.6874473
   m_Direction: 1
-  m_Center: {x: 0, y: -0.0000000018637891, z: -0.01}
+  m_Center: {x: 0.010997847, y: -0.01927638, z: -0.00999999}
 --- !u!114 &1259776184092671643
 MonoBehaviour:
   m_ObjectHideFlags: 0

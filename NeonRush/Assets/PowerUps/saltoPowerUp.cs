@@ -78,7 +78,7 @@ public class saltoPowerUp : MonoBehaviour
             //Para que la animación del salto vaya bien, tendríamos que añadir en la parabola las coordenadas según el sistema de gravedad.
             player.transform.position = MathParabola.Parabola(startPosition, posicionSalto, 3f, Animation / velocidadSalto);
 
-            if (Vector3.Distance(player.transform.position, posicionSalto) <= 0.25f)// Si hemos llegado a la posicion que queremos
+            if (Vector3.Distance(player.transform.position, posicionSalto) <= 0.35f)// Si hemos llegado a la posicion que queremos
             {
                 saltando = false;
                 GameObject.Find("CanvasTextoSalto").transform.GetChild(0).gameObject.SetActive(false);
@@ -115,7 +115,7 @@ public class saltoPowerUp : MonoBehaviour
             for (int i = 0; i < ListaHijos.transform.childCount; i++)
             {
                 Debug.Log("Número de hijos: " + numeroHijos);
-                if (ListaHijos.transform.GetChild(i).tag == "Changer")
+                if (ListaHijos.transform.GetChild(i).tag == "Changer" && i > 0)
                 {
                     indiceBloqueASaltar = i - 1;
                     break;
@@ -128,6 +128,8 @@ public class saltoPowerUp : MonoBehaviour
                 indiceBloqueASaltar = i - 1;
             }
             startPosition = player.transform.position;
+
+            Debug.Log("El indice a saltar es: " + indiceBloqueASaltar);
 
             bloqueSalto = ListaHijos.transform.GetChild(indiceBloqueASaltar);
 
