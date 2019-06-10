@@ -280,7 +280,7 @@ public class TileManager : generalManager
 
 
             //Con un 10% de probabilidad spawneamos el power up y nunca en el bloque en el que caemos
-            if (Random.Range(0.0f, 1.0f) <= 0.1f && !currentTile.GetComponent<TileScript>().getLandTile())
+            if (Random.Range(0.0f, 1.0f) <= 1.0f && !currentTile.GetComponent<TileScript>().getLandTile())
             {
                 int aleatorio = Random.Range(0, 3);
                 aleatorio = 0;
