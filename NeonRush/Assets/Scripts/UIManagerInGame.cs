@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class UIManagerInGame : MonoBehaviour
@@ -100,9 +101,19 @@ public class UIManagerInGame : MonoBehaviour
     {
         gameOverMenu.SetActive(true);
         gameOverMenu.GetComponentsInChildren<TMPro.TextMeshProUGUI>()[1].text += score;
-        if(PlayerPrefs.GetString("LEADERBOARD") != "")
-            gameOverMenu.GetComponentsInChildren<TMPro.TextMeshProUGUI>()[2].text += " " + PlayerPrefs.GetString("LEADERBOARD").Split('|')[0].Split('%')[0] + " - " +
-                                                                                 PlayerPrefs.GetString("LEADERBOARD").Split('|')[0].Split('%')[1].ToString();
+        if(SceneManager.GetActiveScene().name == "DonSimon")
+        {
+            if (PlayerPrefs.GetString("LEADERBOARDDONSIMON") != "")
+                gameOverMenu.GetComponentsInChildren<TMPro.TextMeshProUGUI>()[2].text += " " + PlayerPrefs.GetString("LEADERBOARDDONSIMON").Split('|')[0].Split('%')[0] + " - " +
+                                                                                     PlayerPrefs.GetString("LEADERBOARDDONSIMON").Split('|')[0].Split('%')[1].ToString();
+        }
+        else
+        {
+            if (PlayerPrefs.GetString("LEADERBOARD") != "")
+                gameOverMenu.GetComponentsInChildren<TMPro.TextMeshProUGUI>()[2].text += " " + PlayerPrefs.GetString("LEADERBOARD").Split('|')[0].Split('%')[0] + " - " +
+                                                                                     PlayerPrefs.GetString("LEADERBOARD").Split('|')[0].Split('%')[1].ToString();
+        }
+        
 
     }
 
@@ -119,10 +130,13 @@ public class UIManagerInGame : MonoBehaviour
                 Time.timeScale = 1f;
                 break;
             case 2: //MainMenuButton
-                UnityEngine.SceneManagement.SceneManager.LoadScene("MainMenu");
+                SceneManager.LoadScene("MainMenu");
                 break;
             case 3: //RetryButton
-                UnityEngine.SceneManagement.SceneManager.LoadScene("SampleScene");
+                if(SceneManager.GetActiveScene().name == "DonSimon")
+                    SceneManager.LoadScene("DonSimon");
+                else
+                    SceneManager.LoadScene("SampleScene");
                 Physics.gravity = new Vector3(0, -9.8f, 0);
                 break;
         }

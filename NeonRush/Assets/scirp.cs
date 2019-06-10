@@ -120,14 +120,24 @@ public class scirp : generalManager
             if (!scoreSent)
             {
                 UIManagerInGame.Instance.OnDeath(score.ToString());
-                string leaderBoard = PlayerPrefs.GetString("LEADERBOARD");
-                if (leaderBoard != "")
-                    leaderBoard += "|" + PlayerPrefs.GetString("USERNAME") + "%" + score.ToString();
+                if (SceneManager.GetActiveScene().name == "DonSimon")
+                {
+                    string leaderBoard = PlayerPrefs.GetString("LEADERBOARDDONSIMON");
+                    if (leaderBoard != "")
+                        leaderBoard += "|" + PlayerPrefs.GetString("USERNAME") + "%" + score.ToString();
+                    else
+                        leaderBoard += PlayerPrefs.GetString("USERNAME") + "%" + score.ToString();
+                    PlayerPrefs.SetString("LEADERBOARDDONSIMON", leaderBoard);
+                }
                 else
-                    leaderBoard += PlayerPrefs.GetString("USERNAME") + "%" + score.ToString();
-                PlayerPrefs.SetString("LEADERBOARD", leaderBoard);
-                Debug.Log("La tabla esta así: " + leaderBoard);
-                Debug.Log(PlayerPrefs.GetString("LEADERBOARD"));
+                {
+                    string leaderBoard = PlayerPrefs.GetString("LEADERBOARD");
+                    if (leaderBoard != "")
+                        leaderBoard += "|" + PlayerPrefs.GetString("USERNAME") + "%" + score.ToString();
+                    else
+                        leaderBoard += PlayerPrefs.GetString("USERNAME") + "%" + score.ToString();
+                    PlayerPrefs.SetString("LEADERBOARD", leaderBoard);
+                }
                 scoreSent = true;
             }
         }
