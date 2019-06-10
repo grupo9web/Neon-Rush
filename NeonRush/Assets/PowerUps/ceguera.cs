@@ -35,7 +35,7 @@ public class ceguera : MonoBehaviour
         transform.Rotate(Vector3.up, 10.0f);
 
         //Comprobamos si nos hemos saltado el powerup para destruirlo
-        //checkDestruirPowerUp();
+        checkDestruirPowerUp();
 
 
         if (activo)

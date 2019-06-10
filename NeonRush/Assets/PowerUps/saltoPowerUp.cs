@@ -78,7 +78,7 @@ public class saltoPowerUp : MonoBehaviour
             //Para que la animación del salto vaya bien, tendríamos que añadir en la parabola las coordenadas según el sistema de gravedad.
             player.transform.position = MathParabola.Parabola(startPosition, posicionSalto, 3f, Animation / velocidadSalto);
 
-            if (Vector3.Distance(player.transform.position, posicionSalto) <= 0.4f)// Si hemos llegado a la posicion que queremos
+            if (Vector3.Distance(player.transform.position, posicionSalto) <= 0.35f)// Si hemos llegado a la posicion que queremos
             {
                 saltando = false;
                 GameObject.Find("CanvasTextoSalto").transform.GetChild(0).gameObject.SetActive(false);

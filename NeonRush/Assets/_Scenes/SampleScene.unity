@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 170076734}
-  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028352, g: 0.22571376, b: 0.30692244, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1630,7 +1630,7 @@ MonoBehaviour:
   speed: 4
   speedAux: 0
   score: 0
-  incrementoVelocidad: 0.0001
+  incrementoVelocidad: 0.0005
   scoreTxt: {fileID: 1421512301}
   gravedad: {x: 0, y: -9.81, z: 0}
   efectoSonidoMuerte: {fileID: 8300000, guid: 61dffdd16f3692549993f00b45492da0, type: 3}
@@ -3639,6 +3639,7 @@ MonoBehaviour:
   - {fileID: 4463654731639374331, guid: 2e0316944dac2104094897467643e280, type: 3}
   - {fileID: 4298187159442064095, guid: c7f7fe9a9e0379246a90cb8cce2450a1, type: 3}
   - {fileID: 1884226269, guid: b717faa0a8cbe504a8187f00075ade9e, type: 3}
+  numeroHijos: 0
   isFirst: 1
   coca: 1
   coca2: 1
