@@ -37,8 +37,8 @@ public class TileScript : generalManager
     private bool simonBifurcado = false;                                         // Sólo las piezas marcadas como simonBifurcado podrán generar dos caminos simultáneos
     private bool soyUnaT;
 
-    private List<int> coloresMagicos = new List<int>();
-
+    private List<int> coloresDelPadre = new List<int>();
+    private Queue<int> coloresAux = new Queue<int>();
 
     #endregion
 
@@ -81,16 +81,12 @@ public class TileScript : generalManager
             instanceOfB.Spawner();
         else
         {
-
-            Debug.Log("Pero hijo de putaaaaaa " + soyUnaT);
-
             // Hay que hacer una criba, y cuando hay dos caminos no generar más
             if (!simonBifurcado)     
                 simonMode.Spawnerv4();
             
             if (soyUnaT)
                 simonMode.RemoveWrongWay();
-
 
             //simonMode.conSpawner(isMyParentAFuckingT, null);
             //StartCoroutine(simonMode.concurrentSpawner(isMyParentAFuckingT));
@@ -112,7 +108,7 @@ public class TileScript : generalManager
 
 
 
-        Destroy(this.gameObject);
+        Destroy(this.gameObject, 1);
     }
 
 
@@ -139,12 +135,47 @@ public class TileScript : generalManager
     public bool getSoyUnaT() { return this.soyUnaT; }
     public void setSoyUnaT(bool b) { this.soyUnaT = b; }
 
-    public List<int> getColores() { return this.coloresMagicos; }
 
-    public void setColores(Queue<int> b) {
+    public List<int> getColoresPadre() { return this.coloresDelPadre; }
+
+    public void setColoresPadre(Queue<int> b) {
         foreach (int i in b)
         {
-            this.coloresMagicos.Add(i);
+            this.coloresDelPadre.Add(i);
         }
+    }
+
+
+    public int getColorAuxSize() { return this.coloresAux.Count; }
+
+    public Queue<int> getColorAux() {
+
+        Queue<int> returnColors = new Queue<int>();
+
+        for (int i = 0; i < 4; i++)
+        {
+            returnColors.Enqueue(coloresAux.Dequeue());
+        }
+       
+        return returnColors;
+    }
+
+    public void setAuxColor(Queue<int> b)
+    {
+        foreach (int i in b)
+        {
+            this.coloresAux.Enqueue(i);
+        }
+    }
+
+
+    public void inicioSimon()
+    {
+        // Aqui la ide es darle feedback al jugador para que se empiece a pispar un poco más de los colores.
+        // NO quiero poner carteles vaya. Hmmm a lo mejor habria que cambiar el color de las tiles para que sean 
+        // más pim pam reconocibles. yo m entiendo. aunque son las seis d la mañana y deberia irme a sobar y mañana a saber q tal
+        Debug.Log("El simon ha empezado en la ficha " + gameObject.name + " + 1 xd");
+
+
     }
 }

@@ -66,7 +66,7 @@ public class SimonManager : generalManager
             currentTile.GetComponent<TileScript>().setSimonBifurcado(true);
     }
 
-
+    // A esto no se le llama en ningun lao xd al final no vale de na
     public void reSpawnTiles()
     {
         isFirst = true;
@@ -88,29 +88,25 @@ public class SimonManager : generalManager
     public void Spawnerv4()
     {
 
-        Debug.Log("Concurrent llamadas que me joden lo bailado");
         GameObject aux = currentTile;
 
         for (int i = 0; i < 4; i++)
             colores.Enqueue(Random.Range(0,5));
 
-
-        // Pieza aleatoria para construir (inlcuye la T)
-        int randomBuilder = UnityEngine.Random.Range(0, 5);
+        // Pieza aleatoria para construir (inlcuye la T cuando isFirst = true)
+        int randomBuilder;
+        if (isFirst)
+            randomBuilder = UnityEngine.Random.Range(0, 4);
+        else
+            randomBuilder = UnityEngine.Random.Range(0, 5);
 
         int rndAttach = UnityEngine.Random.Range(0, 3);
-
-        Debug.Log("Metodo tocho de generacion de piezas " + colores.Count);
 
 
         coroutineGO = new CoroutineWithData(this, tileGen.tileBuilder(aux.transform.GetChild(rndAttach).position, stageMode, randomBuilder, (index++), colores));
         currentTile = (GameObject)coroutineGO.result;
 
-        Debug.Log("Y lo que viene a ser dentro? " + currentTile.GetComponent<TileScript>().getColores().Count);
-
-
         currentTile.transform.GetComponent<TileScript>().setMode(stageMode.getNameAndKey());
-
         currentTile.GetComponent<TileScript>().setTile(aux);
 
         if (randomBuilder == 4)
@@ -121,7 +117,7 @@ public class SimonManager : generalManager
                 tileBT.gameObject.GetComponent<TileScript>().setSimonBifurcado(true);
             }
 
-            currentTile.name = "Esta es una puta T " + (index);
+            currentTile.name = "T tile Bif. " + (index);
             currentTile.transform.SetParent(GameObject.Find("ListaHijos").transform);
 
 
@@ -129,7 +125,6 @@ public class SimonManager : generalManager
 
             int randomWay = Random.Range(0, 2);
 
-            Debug.Log("Antes de bifurcarse ha perdido " + currentTile.GetComponent<TileScript>().getColores().Count);
             genBifurcacion(currentTile, randomWay);
         }
         else
@@ -146,19 +141,113 @@ public class SimonManager : generalManager
     public void genBifurcacion(GameObject originTile, int correctOne)
     {
 
+        // Recogemos todos los colores anteriores (de la T hasta otras tres piezas anteriores)
+        Queue<int> colorList = new Queue<int>();
+
+        IEnumerator listaHijos = GameObject.Find("ListaHijos").transform.GetEnumerator();
+
+        // El don simon comenzará de forma aleatoria en la propia T o en alguna de las 4 piezas anteriores
+        for (int rndSimonStart = Random.Range(1, 5); rndSimonStart > 0; rndSimonStart--)
+            listaHijos.MoveNext();
+        
+
+        Transform simonStart = (Transform)listaHijos.Current;
+        simonStart.gameObject.GetComponent<TileScript>().inicioSimon();
+
+        while (listaHijos.MoveNext())
+        {
+            Transform aux = (Transform) listaHijos.Current;
+
+            foreach(int i in aux.gameObject.GetComponent<TileScript>().getColoresPadre())
+            {
+                colorList.Enqueue(i);
+            }
+        }
+
+        Debug.Log("Se me ha quedado una lista de colores de " + colorList.Count);
+
         frontWRoute.Clear();
         leftWRoute.Clear();
 
         originTile.GetComponent<TileScript>().setSoyUnaT(true);
+        // Añadimos la info necesaria al tile T bifurcado
+        originTile.GetComponent<TileScript>().setAuxColor(colorList);
 
         currentTile = originTile;
 
-        for (int i = 0; i < 3; i++)
+        // Rama izquierda
+
+        for (int i = 0; i < 4; i++)
         {
+
+            if (correctOne == 0)
+            {
+                branchLeft = currentTile;
+                int randomBuilder = UnityEngine.Random.Range(0, 4);
+
+                int rnd = Random.Range(0, 1);       // Attach izquierdo
+
+                Vector3 posOriginInsta = branchLeft.transform.GetChild(rnd).position;
+
+                if (originTile.GetComponent<TileScript>().getColorAuxSize() != 0)
+                {
+                    coroutineGO = new CoroutineWithData(this, tileGen.tileBuilder(posOriginInsta, stageMode, randomBuilder, (index++), originTile.GetComponent<TileScript>().getColorAux() ));
+                }
+                else
+                {
+                    for (int x = 0; x < 4; x++)
+                        auxColor.Enqueue(Random.Range(0, 5));
+
+                    coroutineGO = new CoroutineWithData(this, tileGen.tileBuilder(posOriginInsta, stageMode, randomBuilder, (index++), auxColor));
+                }
+
+                currentTile = (GameObject)coroutineGO.result;
+
+                currentTile.name = "Tile " + index;
+                currentTile.transform.GetComponent<TileScript>().setMode(stageMode.getNameAndKey());
+                //currentTile.GetComponent<TileScript>().setColores(auxColor);
+                currentTile.GetComponent<TileScript>().setTile(branchLeft);
+                currentTile.GetComponent<TileScript>().setAttachIndex(rnd);
+
+                currentTile.transform.SetParent(GameObject.Find("ListaHijos").transform);
+
+                leftWRoute.Add(currentTile);
+            }
+            else
+            {
+
+                for (int x = 0; x < 4; x++)
+                    auxColor.Enqueue(Random.Range(0, 5));
+
+                branchLeft = currentTile;
+                int randomBuilder = UnityEngine.Random.Range(0, 4);
+
+                int rnd = Random.Range(0, 1);       // Attach izquierdo
+
+                Vector3 posOriginInsta = branchLeft.transform.GetChild(rnd).position;
+
+                coroutineGO = new CoroutineWithData(this, tileGen.tileBuilder(posOriginInsta, stageMode, randomBuilder, (index++), auxColor));
+                currentTile = (GameObject)coroutineGO.result;
+
+                currentTile.name = "Tile " + index;
+                currentTile.transform.GetComponent<TileScript>().setMode(stageMode.getNameAndKey());
+                //currentTile.GetComponent<TileScript>().setColores(auxColor);
+                currentTile.GetComponent<TileScript>().setTile(branchLeft);
+                currentTile.GetComponent<TileScript>().setAttachIndex(rnd);
+
+
+                leftWRoute.Add(currentTile);
+
+            }
+
+
+
+
+            /*
 
             if (i == 0 && correctOne == 0)
             {
-                foreach (int m in originTile.GetComponent<TileScript>().getColores())
+                foreach (int m in originTile.GetComponent<TileScript>().getColoresPadre())
                     auxColor.Enqueue(m);
             }
             else
@@ -187,18 +276,82 @@ public class SimonManager : generalManager
 
             currentTile.transform.SetParent(GameObject.Find("ListaHijos").transform);
 
-            leftWRoute.Add(currentTile);
+            leftWRoute.Add(currentTile);*/
         }
 
         branchLeft = currentTile;
 
         currentTile = originTile;
 
-        for (int i = 0; i < 3; i++)
+        // Rama delantera
+
+        for (int i = 0; i < 4; i++)
         {
+
+            if (correctOne == 1)
+            {
+                branchFront = currentTile;
+                int randomBuilder = UnityEngine.Random.Range(0, 4);
+
+                int rnd = Random.Range(1, 3);  // Front attaches
+
+                Vector3 posOriginInsta = branchFront.transform.GetChild(rnd).position;
+
+                if (originTile.GetComponent<TileScript>().getColorAuxSize() != 0)
+                {
+                    coroutineGO = new CoroutineWithData(this, tileGen.tileBuilder(posOriginInsta, stageMode, randomBuilder, (index++), originTile.GetComponent<TileScript>().getColorAux()));
+                }
+                else
+                {
+                    for (int x = 0; x < 4; x++)
+                        auxColor.Enqueue(Random.Range(0, 5));
+
+                    coroutineGO = new CoroutineWithData(this, tileGen.tileBuilder(posOriginInsta, stageMode, randomBuilder, (index++), auxColor));
+                }
+
+                currentTile = (GameObject)coroutineGO.result;
+
+                currentTile.name = "Tile " + index;
+                currentTile.transform.GetComponent<TileScript>().setMode(stageMode.getNameAndKey());
+                //currentTile.GetComponent<TileScript>().setColores(auxColor);
+                currentTile.GetComponent<TileScript>().setTile(branchFront);
+                currentTile.GetComponent<TileScript>().setAttachIndex(rnd);
+
+                currentTile.transform.SetParent(GameObject.Find("ListaHijos").transform);
+
+
+                frontWRoute.Add(currentTile);
+            }
+            else
+            {
+
+                for (int x = 0; x < 4; x++)
+                    auxColor.Enqueue(Random.Range(0, 5));
+
+                branchFront = currentTile;
+                int randomBuilder = UnityEngine.Random.Range(0, 4);
+
+                int rnd = Random.Range(1, 3);
+
+                Vector3 posOriginInsta = branchFront.transform.GetChild(rnd).position;
+
+                coroutineGO = new CoroutineWithData(this, tileGen.tileBuilder(posOriginInsta, stageMode, randomBuilder, (index++), auxColor));
+                currentTile = (GameObject)coroutineGO.result;
+
+                currentTile.name = "Tile " + index;
+                currentTile.transform.GetComponent<TileScript>().setMode(stageMode.getNameAndKey());
+                //currentTile.GetComponent<TileScript>().setColores(auxColor);
+                currentTile.GetComponent<TileScript>().setTile(branchFront);
+                currentTile.GetComponent<TileScript>().setAttachIndex(rnd);
+
+                frontWRoute.Add(currentTile);
+            }
+
+
+            /*
             if (i == 0 && correctOne == 1)
             {
-                foreach (int m in originTile.GetComponent<TileScript>().getColores())
+                foreach (int m in originTile.GetComponent<TileScript>().getColoresPadre())
                     auxColor.Enqueue(m);
             }
             else
@@ -228,6 +381,7 @@ public class SimonManager : generalManager
 
 
             frontWRoute.Add(currentTile);
+            */
         }
 
 
@@ -254,7 +408,7 @@ public class SimonManager : generalManager
 
     public void RemoveWrongWay()
     {
-        for (int i = 0; i < 3; i++)
+        for (int i = 0; i < 4; i++)
         {        
             GameObject aux = deleteRoute.Dequeue();
             Destroy(aux);

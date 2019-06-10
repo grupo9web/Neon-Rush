@@ -51,7 +51,7 @@ public class tileGenerator : generalManager
             case 0:
 
                 parent = (GameObject)Instantiate(neonTiles[colorTiles.Peek()], Ltiles.tileBricks[0] + origin, Quaternion.Euler(mode.getBO())) as GameObject;
-                parent.GetComponent<TileScript>().setColores(colorTiles);
+                parent.GetComponent<TileScript>().setColoresPadre(colorTiles);
                 colorTiles.Dequeue();
 
                 foreach (Vector3 v in Ltiles.attachPoints)
@@ -96,7 +96,7 @@ public class tileGenerator : generalManager
             case 1:
 
                 parent = (GameObject)Instantiate(neonTiles[colorTiles.Peek()], Itiles.tileBricks[0] + origin, Quaternion.Euler(mode.getBO())) as GameObject;
-                parent.GetComponent<TileScript>().setColores(colorTiles);
+                parent.GetComponent<TileScript>().setColoresPadre(colorTiles);
                 colorTiles.Dequeue();
 
                 foreach (Vector3 v in Itiles.attachPoints)
@@ -110,7 +110,6 @@ public class tileGenerator : generalManager
 
                 foreach (Vector3 v in Itiles.tileBricks)
                 {
-                    Debug.Log(colorTiles.Count);
 
                     int rnd = UnityEngine.Random.Range(0, 5);
                     if (!v.Equals(Itiles.tileBricks[0]))
@@ -143,7 +142,7 @@ public class tileGenerator : generalManager
             case 2:
 
                 parent = (GameObject)Instantiate(neonTiles[colorTiles.Peek()], Btiles.tileBricks[0] + origin, Quaternion.Euler(mode.getBO())) as GameObject;
-                parent.GetComponent<TileScript>().setColores(colorTiles);
+                parent.GetComponent<TileScript>().setColoresPadre(colorTiles);
                 colorTiles.Dequeue();
 
                 foreach (Vector3 v in Btiles.attachPoints)
@@ -157,7 +156,6 @@ public class tileGenerator : generalManager
 
                 foreach (Vector3 v in Btiles.tileBricks)
                 {
-                    Debug.Log(colorTiles.Count);
 
                     int rnd = UnityEngine.Random.Range(0, 5);
                     if (!v.Equals(Btiles.tileBricks[0]))
@@ -190,7 +188,7 @@ public class tileGenerator : generalManager
             case 3:
 
                 parent = (GameObject)Instantiate(neonTiles[colorTiles.Peek()], Stiles.tileBricks[0] + origin, Quaternion.Euler(mode.getBO())) as GameObject;
-                parent.GetComponent<TileScript>().setColores(colorTiles);
+                parent.GetComponent<TileScript>().setColoresPadre(colorTiles);
                 colorTiles.Dequeue();
 
                 foreach (Vector3 v in Stiles.attachPoints)
@@ -204,7 +202,6 @@ public class tileGenerator : generalManager
 
                 foreach (Vector3 v in Stiles.tileBricks)
                 {
-                    Debug.Log(colorTiles.Count);
 
                     int rnd = UnityEngine.Random.Range(0, 5);
                     if (!v.Equals(Stiles.tileBricks[0]))
@@ -237,7 +234,7 @@ public class tileGenerator : generalManager
             case 4:
 
                 parent = (GameObject)Instantiate(neonTiles[colorTiles.Peek()], Ttiles.tileBricks[0] + origin, Quaternion.Euler(mode.getBO())) as GameObject;
-                parent.GetComponent<TileScript>().setColores(colorTiles);
+                parent.GetComponent<TileScript>().setColoresPadre(colorTiles);
                 colorTiles.Dequeue();
 
                 //parent = (GameObject)Instantiate(neonTiles[colorTiles.Dequeue()], Ttiles.tileBricks[0] + origin, Quaternion.Euler(mode.getBO())) as GameObject;
@@ -253,7 +250,6 @@ public class tileGenerator : generalManager
 
                 foreach (Vector3 v in Ttiles.tileBricks)
                 {
-                    Debug.Log(colorTiles.Count);
 
                     int rnd = UnityEngine.Random.Range(0, 5);
                     if (!v.Equals(Ttiles.tileBricks[0]))

@@ -3327,6 +3327,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pauseMenu: {fileID: 1578829700}
   gameOverMenu: {fileID: 309589383}
+  volumeSlider: {fileID: 0}
 --- !u!4 &844711962
 Transform:
   m_ObjectHideFlags: 0
@@ -3829,6 +3830,7 @@ MonoBehaviour:
   currentTile: {fileID: 1519198289}
   index: 0
   counter: 0
+  prefab: {fileID: 0}
 --- !u!1 &1103841372
 GameObject:
   m_ObjectHideFlags: 0
