@@ -56,6 +56,10 @@ Durante la partida podrás usar a tu favor 2 tipos de power ups. El primer power
 
 Para dotar de mayor dinamismo al juego, se han incluido cambios de eje en el mundo. Estos cambios de eje se producirán despues de la aparición de una cierta cantidad de piezas. Para evitar un fin de partida repentino para el jugador en estos cambios de eje, se reduce la velocidad del juego.
 
+Para realizar la animación de salto hemos empleado un tutorial que nos permitia definir el movimiento a través de una parábola. 
+Para que funcionase en todos los ejes por los que se puede mover la bola tuvimos que modificar el código para contemplar esos casos. Haciendo click en la imagen de abajo os llevará al tutorial.
+
+[![Parabola](http://img.youtube.com/vi/ddakS7BgHRI/0.jpg)](https://www.youtube.com/watch?v=ddakS7BgHRI "Moving Object Along A Parabola | Unity Tutorial 🎓")
 ### 2.1 Cámara
 
 El juego sera en 3D con una cámara en ángulo picado. Estará centrada en el personaje y lo seguirá. Al realizar el jugador la acción de cambio de dirección, la cámara tambien girará con él, de forma que desde la vista del jugador, siempre se avanzará hacia el frente
