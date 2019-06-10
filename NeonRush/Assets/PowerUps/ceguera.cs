@@ -91,7 +91,7 @@ public class ceguera : MonoBehaviour
 
 
             GameObject.Find("CanvasTextoSalto").transform.GetChild(0).gameObject.SetActive(true);
-            GameObject.Find("CanvasTextoSalto").transform.GetChild(0).gameObject.GetComponent<UnityEngine.UI.Text>().text = "¡ T E  J O D E S !";
+            GameObject.Find("CanvasTextoSalto").transform.GetChild(0).gameObject.GetComponent<UnityEngine.UI.Text>().text = "¡ CIEGO !";
 
             gameObject.GetComponent<Renderer>().enabled = false;
 
