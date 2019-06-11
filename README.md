@@ -1,16 +1,4 @@
-# ZizZagZio
-
-## Instrucciones de juego
-
-### PC
-
-
-
-### MÓVIL
-
-
-
-## SUT!  - Documento de Diseño
+## Neon Rush  - Documento de Diseño
 
 
 ## 1. Introducción
@@ -93,7 +81,7 @@ En este apartado se explicarán los diferentes __flujos de actividades__ que com
 
 El siguiente diagrama de flujo describe los estados en los que se puede encontrar nuestro juego *Neon Rush* y las posibles transiciones entre los mismos según las acciones del usuario.
 
-![Error en carga de Diagrama de Flujo](https://i.imgur.com/QREcMHD.png)
+![Error en carga de Diagrama de Flujo](https://i.imgur.com/iphOvr0.png)
 
 A continuación se muestra también un diagrama de estados adicional que describe las posibilidades y situaciones que pueden suceder durante el estado de **Juego**:
 
@@ -115,13 +103,24 @@ Si el usuario abre por primera vez el juego o tiene un nombre aleatorio le apare
 
 En caso de que el usuario haya escogido nombre o rechace el elegir uno se le llevará al Menú Principal, que finalmente tiene esta estética:
 
-![Error en carga de Menu Principal](https://i.imgur.com/cCcSFwU.png)
+![Error en carga de Menu Principal](https://i.imgur.com/Vnll1yQ.png)
 - **1. Nueva Partida**: permite al usuario iniciar una nueva partida.
 - **2. Ajustes**: acceso al menú de ajustes, donde se pueden cambiar algunas opciones de juego.
-- **3. Marcadores**: muestra al usuario el nombre y puntuación de los 10 mejores jugadores que han abierto el juego en el navegador.
-- **4. Créditos**: da visibilidad a los desarrolladores del videojuego, permitiendo acceder al github de cada uno de ellos.
+- **3. Marcadores Modo Normal**: muestra al usuario el nombre y puntuación de los 10 mejores jugadores que han abierto el juego en el navegador y jugado al modo Normal.
+- **4. Marcadores Modo Don Simón**: muestra al usuario el nombre y puntuación de los 10 mejores jugadores que han abierto el juego en el navegador y jugado al modo Don simón.
+- **5. Créditos**: da visibilidad a los desarrolladores del videojuego, permitiendo acceder al github de cada uno de ellos.
 
-### 3.4 Pantalla de Juego
+### 3.4 Niveles
+
+Neon Rush se compone de dos modos de juego:
+
+![Error en carga de Pantalla de Juego](https://i.imgur.com/Z67ZxZm.png)
+
+- **Normal/Tetris**: Las diferentes piezas que componen el tetris se iran agrupando para generar un camino por el que tenemos que avanzar.
+- **Don Simon**:  Modo de juego con bifurcaciones, en cierto punto el juego se ramifica generando dos caminos, antes de la bifucación al jugador se le notificará el color de patrones de la ficha de la bifurcación que ha se deguir.
+ 
+
+### 3.5 Pantalla de Juego
 
 Si el jugador decide empezar una partida tendrá la siguiente información en pantalla en cuanto a interfaz se refiere:
 
@@ -131,7 +130,7 @@ Si el jugador decide empezar una partida tendrá la siguiente información en pa
 - **2. Botón de Pausa**:  da la posibilidad de detener el juego y cambiar el volumen, continuar o volver al Menú Principal.
  
 
-### 3.5 Game Over
+### 3.6 Game Over
 
 Cuando el usuario cae por alguno de los lados intentando avanzar la partida llegará a su fin y se abrirá el siguiente menú:
 
@@ -142,7 +141,7 @@ Cuando el usuario cae por alguno de los lados intentando avanzar la partida lleg
 - **3. Reintentar**: vuelve a cargar la escena y reinicia la partida.
 - **4. Menú Principal**: devuelve al usuario al Menú Principal.
  
-### 3.6 Menú de Ajustes
+### 3.7 Menú de Ajustes
 
 Accesible desde el Menú Principal, permite cambiar ajustes de juego para que el jugador se encuentre lo más cómodo posible:
 
@@ -153,7 +152,7 @@ Accesible desde el Menú Principal, permite cambiar ajustes de juego para que el
 - **3. Botón de Cambiar el Nombre**: acceso al Menú de Cambiar Nombre.
 - **4. Volver**: forma de acceder al Menú Principal.
  
-### 3.7 Marcadores
+### 3.8 Marcadores
 
 Este menú tiene la siguiente estética:
 
@@ -162,7 +161,7 @@ Este menú tiene la siguiente estética:
 - **1. Lista de jugadores**: proporciona una lista ordenada de mayor a menor puntuación de los 10 mejores jugadores.
 - **2. Volver**: acceso al menú principal.
 
-### 3.8 Créditos
+### 3.9 Créditos
 
 Finalmente se reserva un apartado para dar créditos a los autores:
 
