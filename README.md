@@ -5,7 +5,7 @@
 
 A continuación se presenta el documento de diseño de **Neon Rush**, videojuego desarrollado en Unity como práctica final de la asignatura _Juegos Para Web y Redes Sociales_ del _Grado de Diseño y Desarrollo de Videojuegos_ de la _Universidad Rey Juan Carlos_.
 
-- Puedes jugar  a Neon Rush haciendo click en este enlace:
+- Puedes jugar  a Neon Rush haciendo click en este enlace: https://grupo9web.github.io/NeonRushWeb/
 
 - Puedes jugar  a Neon Rush desde Facebook haciendo click aquí: https://apps.facebook.com/464397884054587
 
