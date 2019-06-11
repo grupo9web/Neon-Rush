@@ -1,3 +1,11 @@
+## Instrucciones de juego
+
+Para navegar por los menús del juego únicamente se necesitará pulsar sobre los botones que hay en los mismos, con el dedo en caso de estar usando un navegador en móvil, o con el clic izquierdo del ratón en caso de usar un pc.
+Al jugar las partidas el control del jugador será básicamente clicando o tapeando la pantalla del móvil para girar izquierda/derecha. 
+En cuanto a los dos tipos de modo de juego cabe destacar:
+-	Modo Normal: La misión del jugador en este tipo de partida será aguantar lo máximo posible sin caerse ayudándose de los power ups que le beneficien e intentando esquivar aquellos que le perjudiquen. Es un videojuego competitivo, por lo que el objetivo es liderar la tabla de los mejores jugadores del navegador usado.
+-	Modo Don Simón: En este caso no solo se le exigirá al jugador la habilidad de no caerse, sino también fijarse en los patrones de colores de ciertas piezas, que se marcarán con halos de luz y señalarán el camino correcto en la bifurcación inmediata. Al igual que en el modo normal, hay una tabla de líderes que conquistar.
+
 ## Neon Rush  - Documento de Diseño
 
 
