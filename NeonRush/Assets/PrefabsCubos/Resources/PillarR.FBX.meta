@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: bcfe9fbef30b7724c98331cb45d74d1f
+guid: f49d14d05700d464bab65be46beb26e4
 ModelImporter:
   serializedVersion: 23
   fileIDToRecycleName:
@@ -8,10 +8,10 @@ ModelImporter:
     2100000: No Name
     2300000: //RootNode
     3300000: //RootNode
-    4300000: Cube.001
+    4300000: Box002
   externalObjects: {}
   materials:
-    importMaterials: 1
+    importMaterials: 0
     materialName: 0
     materialSearch: 1
     materialLocation: 1
@@ -40,7 +40,7 @@ ModelImporter:
     isReadable: 1
   meshes:
     lODScreenPercentages: []
-    globalScale: 200
+    globalScale: 99
     meshCompression: 0
     addColliders: 0
     useSRGBMaterialColor: 1

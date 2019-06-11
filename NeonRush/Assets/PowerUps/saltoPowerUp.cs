@@ -93,18 +93,13 @@ public class saltoPowerUp : MonoBehaviour
         //Si el jugador choca con el PowerUp
         if (col.gameObject.name == "Player")
         {
-
-
             //Lanzamos el sonido de salto
             audioSourcePowerUP.clip = efectoSonidoSalto;
             audioSourcePowerUP.Play();
 
-
             //Activa el texto de salto
             GameObject.Find("CanvasTextoSalto").transform.GetChild(0).gameObject.SetActive(true);
             GameObject.Find("CanvasTextoSalto").transform.GetChild(0).gameObject.GetComponent<UnityEngine.UI.Text>().text = "¡ JUMPING !";
-
-
 
             Transform bloqueSalto;
             GameObject ListaHijos = GameObject.Find("ListaHijos");
@@ -114,7 +109,7 @@ public class saltoPowerUp : MonoBehaviour
 
             for (int i = 0; i < ListaHijos.transform.childCount; i++)
             {
-                Debug.Log("Número de hijos: " + numeroHijos);
+                //Debug.Log("Número de hijos: " + numeroHijos);
                 if (ListaHijos.transform.GetChild(i).tag == "Changer" && i > 0)
                 {
                     indiceBloqueASaltar = i - 1;
@@ -129,39 +124,25 @@ public class saltoPowerUp : MonoBehaviour
             }
             startPosition = player.transform.position;
 
-            Debug.Log("El indice a saltar es: " + indiceBloqueASaltar);
+            //Debug.Log("El indice a saltar es: " + indiceBloqueASaltar);
 
             bloqueSalto = ListaHijos.transform.GetChild(indiceBloqueASaltar);
-
             bloqueSalto.GetComponent<TileScript>().setLandTile(true);
-
             posicionSalto = bloqueSalto.transform.GetChild(9).position;
-
-
-
 
             saltando = true;
 
             //Hace la llamada a gravity control para cada uno de los bloques que hemos saltado
-
-
             for (int i = 0; i < indiceBloqueASaltar; i++)
             {
                 TileScript scriptBloque = ListaHijos.transform.GetChild(i).GetComponent<TileScript>();
                 //scriptBloque.GameControl();
                 scriptBloque.GravityControl();
 
-                Debug.Log("Eeeeey creo dos loco: " + numeroHijos);
-
-                tileMang.reSpawnTiles();
-                
-
+                tileMang.reSpawnTiles();            
             }
-
         }
     }
-
-    
 
     public void checkDestruirPowerUp()
     {
@@ -202,12 +183,6 @@ public class saltoPowerUp : MonoBehaviour
             }
         }
     }
-
-
-
-
-
-
 
     public bool getJumpState() { return this.saltando; }
 }

@@ -10,15 +10,6 @@ public class controlPlatInicial : MonoBehaviour
         
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
-
-
-
     void OnTriggerExit(Collider other)
     {
         if (other.gameObject.name == "Player")
@@ -28,8 +19,5 @@ public class controlPlatInicial : MonoBehaviour
 
             Destroy(this.gameObject, 1);
         }
-    }
-
-
-    
+    } 
 }

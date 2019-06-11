@@ -64,7 +64,6 @@ public class velocidadPowerUp : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        print("Debugito");
 
         //Si el jugador choca con el PowerUp
         if (other.gameObject.name == "Player")

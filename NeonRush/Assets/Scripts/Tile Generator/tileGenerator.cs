@@ -237,8 +237,6 @@ public class tileGenerator : generalManager
                 parent.GetComponent<TileScript>().setColoresPadre(colorTiles);
                 colorTiles.Dequeue();
 
-                //parent = (GameObject)Instantiate(neonTiles[colorTiles.Dequeue()], Ttiles.tileBricks[0] + origin, Quaternion.Euler(mode.getBO())) as GameObject;
-
                 foreach (Vector3 v in Ttiles.attachPoints)
                 {
                     tileElement = new GameObject();

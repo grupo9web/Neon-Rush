@@ -23,7 +23,6 @@ public class TileScript : generalManager
     private GameObject parentTile;                                              // Nodo padre
     private int attachIndex;                                                    // Índice que marca la posición del nodo
 
-    private int landedAxis;
     private Vector3 axisFacing;
 
     private tileManagerMode stageMode;
@@ -51,9 +50,7 @@ public class TileScript : generalManager
         generalMang = GameObject.Find("TileManager").GetComponent<generalManager>();
         instanceOfC = GameObject.Find("Player").GetComponent<scirp>();
 
-        this.landedAxis = 1;                    // Se parará en el eje Y
-    } 
-
+    }
 
 
     void OnTriggerExit(Collider other)
@@ -85,7 +82,6 @@ public class TileScript : generalManager
             
             if (soyUnaT)
                 simonMode.RemoveWrongWay();
-
         }
 
         //Actualizamos la puntuación
@@ -103,9 +99,11 @@ public class TileScript : generalManager
         if (instanceOfB != null)
             GameObject.Find("TileManager").GetComponent<TileManager>().colaTilesActivos.TryDequeue(out tileQuitado);
 
+        if (instanceOfB != null)
+            Destroy(this.gameObject);
+        else
+            Destroy(this.gameObject, 1);
 
-
-        Destroy(this.gameObject);
     }
 
 

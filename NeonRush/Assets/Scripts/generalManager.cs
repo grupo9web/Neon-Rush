@@ -226,19 +226,9 @@ public class generalManager : MonoBehaviour
     }
 
 
-    private void Start()
-    {
-        player = GameObject.Find("Player").GetComponent<scirp>();
-    }
+    private void Start() { player = GameObject.Find("Player").GetComponent<scirp>(); }   
 
-
-    public void changeStageMode(string key)
-    {
-        //player = GameObject.Find("Player").GetComponent<scirp>();
-        //tileManager.updateStageMode(key);
-        player.updateStageMode(key);
-    }
-
-
+    public void changeStageMode(string key) { player.updateStageMode(key); }
+     
 
 }

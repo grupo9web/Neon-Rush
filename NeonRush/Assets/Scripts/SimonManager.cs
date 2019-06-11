@@ -139,9 +139,6 @@ public class SimonManager : generalManager
         } while (listaHijos.MoveNext());
 
 
-
-        Debug.Log("Se me ha quedado una lista de colores de " + colorList.Count);
-
         frontWRoute.Clear();
         leftWRoute.Clear();
 
@@ -221,7 +218,6 @@ public class SimonManager : generalManager
                 leftWRoute.Add(currentTile);
 
             }
-
 
         }
 
