@@ -81,7 +81,7 @@ En este apartado se explicarán los diferentes __flujos de actividades__ que com
 
 El siguiente diagrama de flujo describe los estados en los que se puede encontrar nuestro juego *Neon Rush* y las posibles transiciones entre los mismos según las acciones del usuario.
 
-![Error en carga de Diagrama de Flujo](https://i.imgur.com/QREcMHD.png)
+![Error en carga de Diagrama de Flujo](https://i.imgur.com/iphOvr0.png)
 
 A continuación se muestra también un diagrama de estados adicional que describe las posibilidades y situaciones que pueden suceder durante el estado de **Juego**:
 
@@ -103,11 +103,12 @@ Si el usuario abre por primera vez el juego o tiene un nombre aleatorio le apare
 
 En caso de que el usuario haya escogido nombre o rechace el elegir uno se le llevará al Menú Principal, que finalmente tiene esta estética:
 
-![Error en carga de Menu Principal](https://i.imgur.com/cCcSFwU.png)
+![Error en carga de Menu Principal](https://i.imgur.com/Vnll1yQ.png)
 - **1. Nueva Partida**: permite al usuario iniciar una nueva partida.
 - **2. Ajustes**: acceso al menú de ajustes, donde se pueden cambiar algunas opciones de juego.
-- **3. Marcadores**: muestra al usuario el nombre y puntuación de los 10 mejores jugadores que han abierto el juego en el navegador.
-- **4. Créditos**: da visibilidad a los desarrolladores del videojuego, permitiendo acceder al github de cada uno de ellos.
+- **3. Marcadores Modo Normal**: muestra al usuario el nombre y puntuación de los 10 mejores jugadores que han abierto el juego en el navegador y jugado al modo Normal.
+- **4. Marcadores Modo Don Simón**: muestra al usuario el nombre y puntuación de los 10 mejores jugadores que han abierto el juego en el navegador y jugado al modo Don simón.
+- **5. Créditos**: da visibilidad a los desarrolladores del videojuego, permitiendo acceder al github de cada uno de ellos.
 
 ### 3.4 Niveles
 
