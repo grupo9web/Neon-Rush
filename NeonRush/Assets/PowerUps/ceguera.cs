@@ -53,8 +53,9 @@ public class ceguera : MonoBehaviour
             if (tiempo >= tiempoDuracion)
             {
                 activo = false;
-                GameObject.Find("CanvasTextoSalto").transform.GetChild(0).gameObject.SetActive(false);
-            }
+                //GameObject.Find("CanvasTextoSalto").transform.GetChild(0).gameObject.SetActive(false);
+                GameObject.Find("CanvasTextoSalto").transform.GetChild(0).gameObject.GetComponent<UnityEngine.UI.Text>().text = "";
+            }   
 
         }
         else if (tiempo >= tiempoDuracion)
@@ -90,7 +91,7 @@ public class ceguera : MonoBehaviour
             audioSourcePowerUP.Play();
 
 
-            GameObject.Find("CanvasTextoSalto").transform.GetChild(0).gameObject.SetActive(true);
+            //GameObject.Find("CanvasTextoSalto").transform.GetChild(0).gameObject.SetActive(true);
             GameObject.Find("CanvasTextoSalto").transform.GetChild(0).gameObject.GetComponent<UnityEngine.UI.Text>().text = "¡ CIEGO !";
 
             gameObject.GetComponent<Renderer>().enabled = false;

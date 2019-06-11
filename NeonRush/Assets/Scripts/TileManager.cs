@@ -112,7 +112,7 @@ public class TileManager : generalManager
 
 
             //Con un 10% de probabilidad spawneamos el power up y nunca en el bloque en el que caemos
-            if (Random.Range(0.0f, 1.0f) <= 0.5f && !currentTile.GetComponent<TileScript>().getLandTile())
+            if (Random.Range(0.0f, 1.0f) <= 0.2f && !currentTile.GetComponent<TileScript>().getLandTile())
             {
                 if (nextNumber == -1) //Primera ejecucion
                 {

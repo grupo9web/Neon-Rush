@@ -93,7 +93,7 @@ public class scirp : generalManager
         if (Mathf.FloorToInt(speed) % scoreTxtCount == 0)
         {
             //Activa el texto de salto
-            GameObject.Find("CanvasTextoSalto").transform.GetChild(0).gameObject.SetActive(true);
+            //GameObject.Find("CanvasTextoSalto").transform.GetChild(0).gameObject.SetActive(true);
             GameObject.Find("CanvasTextoSalto").transform.GetChild(0).gameObject.GetComponent<UnityEngine.UI.Text>().text = "Speed LVL: " + Mathf.Round(speed);
             StartCoroutine(Example());
             timeLeft = 2.0f;
@@ -234,7 +234,8 @@ public class scirp : generalManager
     {
         //print(Time.time);
         yield return new WaitForSeconds(2);
-        GameObject.Find("CanvasTextoSalto").transform.GetChild(0).gameObject.SetActive(false);
+        //GameObject.Find("CanvasTextoSalto").transform.GetChild(0).gameObject.SetActive(false);
+        GameObject.Find("CanvasTextoSalto").transform.GetChild(0).gameObject.GetComponent<UnityEngine.UI.Text>().text = "";
         //print(Time.time);
     }
 

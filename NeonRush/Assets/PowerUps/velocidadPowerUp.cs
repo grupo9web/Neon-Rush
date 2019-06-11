@@ -55,7 +55,8 @@ public class velocidadPowerUp : MonoBehaviour
                 activo = false;
                 ScriptPersonaje.speed = velocidadNormalPersonaje;
                 GameObject.Find("Player").GetComponent<scirp>().velocidadReducida = false;
-                GameObject.Find("CanvasTextoSalto").transform.GetChild(0).gameObject.SetActive(false);
+                //GameObject.Find("CanvasTextoSalto").transform.GetChild(0).gameObject.SetActive(false);
+                GameObject.Find("CanvasTextoSalto").transform.GetChild(0).gameObject.GetComponent<UnityEngine.UI.Text>().text = "";
                 Destroy(gameObject);
             }
         }
@@ -74,7 +75,7 @@ public class velocidadPowerUp : MonoBehaviour
             audioSourcePowerUP.Play();
 
 
-            GameObject.Find("CanvasTextoSalto").transform.GetChild(0).gameObject.SetActive(true);
+            //GameObject.Find("CanvasTextoSalto").transform.GetChild(0).gameObject.SetActive(true);
             GameObject.Find("CanvasTextoSalto").transform.GetChild(0).gameObject.GetComponent<UnityEngine.UI.Text>().text = "¡ SLOW DOWN !";
 
             gameObject.GetComponent<Renderer>().enabled = false;

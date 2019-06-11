@@ -81,7 +81,8 @@ public class saltoPowerUp : MonoBehaviour
             if (Vector3.Distance(player.transform.position, posicionSalto) <= 0.35f) // Si hemos llegado a la posicion que queremos
             {
                 saltando = false;
-                GameObject.Find("CanvasTextoSalto").transform.GetChild(0).gameObject.SetActive(false);
+                //GameObject.Find("CanvasTextoSalto").transform.GetChild(0).gameObject.SetActive(false);
+                GameObject.Find("CanvasTextoSalto").transform.GetChild(0).gameObject.GetComponent<UnityEngine.UI.Text>().text = "";
                 Destroy(gameObject);
             }
         }
@@ -98,7 +99,7 @@ public class saltoPowerUp : MonoBehaviour
             audioSourcePowerUP.Play();
 
             //Activa el texto de salto
-            GameObject.Find("CanvasTextoSalto").transform.GetChild(0).gameObject.SetActive(true);
+            //GameObject.Find("CanvasTextoSalto").transform.GetChild(0).gameObject.SetActive(true);
             GameObject.Find("CanvasTextoSalto").transform.GetChild(0).gameObject.GetComponent<UnityEngine.UI.Text>().text = "¡ JUMPING !";
 
             Transform bloqueSalto;
