@@ -7,6 +7,8 @@ A continuación se presenta el documento de diseño de **Neon Rush**, videojuego
 
 - Puedes jugar  a Neon Rush haciendo click en este enlace:
 
+- Puedes jugar  a Neon Rush desde Facebook haciendo click aquí: https://apps.facebook.com/464397884054587
+
 - Puedes acceder a nuestra web mediante este enlace: https://grupo9web.github.io/WebHulioEntertainment/
 
 - Consulta nuestro repositorio en GitHub: https://github.com/grupo9web/ZizZagZio
