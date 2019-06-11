@@ -55,7 +55,7 @@ public class UIManagerInGame : MonoBehaviour
             case 0:
                 //Pause Menu
                 pauseMenu.GetComponentsInChildren<TMPro.TextMeshProUGUI>()[0].text = "PAUSA";
-                pauseMenu.GetComponentsInChildren<TMPro.TextMeshProUGUI>()[1].text = "VOLÚMEN";
+                pauseMenu.GetComponentsInChildren<TMPro.TextMeshProUGUI>()[1].text = "VOLUMEN";
                 pauseMenu.GetComponentsInChildren<TMPro.TextMeshProUGUI>()[2].text = "CONTINUAR";
                 pauseMenu.GetComponentsInChildren<TMPro.TextMeshProUGUI>()[3].text = "MENÚ PRINCIPAL";
 
